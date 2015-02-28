@@ -596,6 +596,14 @@ button.dropdown-toggle.btn:active, button.dropdown-toggle.btn:focus, .open .drop
     text-decoration: none;
 }
 
+
+.featured-item-content a:hover
+{
+    color:  #24b6ac;
+    text-decoration: none;
+}
+
+
 .featured-item-content p
 {
     color: #6d6d6d;
@@ -608,7 +616,7 @@ button.dropdown-toggle.btn:active, button.dropdown-toggle.btn:focus, .open .drop
 
 .featured-item-overlay
 {
-    background: rgba(0,0,0,.85);
+    background: rgba(255,255,255,0.1);
     text-align: center;
     padding: 45px 0 66px 0;
     /* background: #fff; */
@@ -619,26 +627,27 @@ button.dropdown-toggle.btn:active, button.dropdown-toggle.btn:focus, .open .drop
     transition: all 0.5s;
     opacity: 0;
     position: absolute;
-    display: block;
+    cursor:pointer;
+    display: table;
     left: 0;
     top: 0;
     height: 100%;
-    margin: 0 15px;
-    /* float: left; */
-    width: 253px;
-    height: 358px;
-    cursor:pointer;
+    margin: 13px 29px;
+    float: left;
+    width: 227px;
+    height: 150px;
 }
 
-.featured-item:hover .featured-item-overlay
+.featured-item .logotype:hover .featured-item-overlay
 {
     opacity: 1;
+    box-shadow: 0 0 200px -1px #fff inset;
 }
 
-.featured-item:hover .featured-item-overlay .view-icon
+.featured-item .logotype:hover .featured-item-overlay .view-icon
 {
     top: 50%;
-    margin: -60px 0 0 -50px;
+    margin: -20px 0 0 -20px;
     opacity: 1;
 }
 
@@ -647,24 +656,24 @@ button.dropdown-toggle.btn:active, button.dropdown-toggle.btn:focus, .open .drop
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 100px;
-    height: 100px;
-    line-height: 100px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
     font-family: 'Codeus';
     font-weight: normal;
-    font-size: 52px;
+    font-size: 18px;
     border: 1px solid transparent;
     border-radius: 50px;
     border-color: #ffffff;
     transition: all 0.5s;
-    margin: -300px 0 0 -50px;
+    margin: -300px 0 0 -20px;
     transition: all 0.5s;
-    /* background-color: #fff; */
+     background-color: #fff;
 }
 
 .featured-item .featured-item-overlay .view-icon .fa-search
 {
-    color: #48afdb;
+    color: #17120E;
 }
 
 .featured-item .featured-item-overlay .caption
