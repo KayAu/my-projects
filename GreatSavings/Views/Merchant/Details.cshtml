@@ -1,0 +1,114 @@
+﻿@model GreatSavings.Merchant
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Merchant</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CompanyName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CompanyName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StreetName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StreetName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Postcode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Postcode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.State)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.State)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Country)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Country)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Website)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Website)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.OperateFrom)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OperateFrom)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.OperateTo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OperateTo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FirstContact)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FirstContact)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FirstContactNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FirstContactNo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SecondContact)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SecondContact)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SecondContactNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SecondContactNo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BusinessIndustry.BusIndustry)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BusinessIndustry.BusIndustry)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.MerchantId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,75 @@
+﻿@model GreatSavings.Models.RegisterViewModel
+
+<div class="form-title ng-scope">
+    <h3>Register New Account</h3>
+</div>
+<form name="registrationForm"  ng-controller="subscriptionController" ng-init="loadModel(0)" novalidate valid-submission="update($event)">      
+
+    <div id="form-leftSection" >
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-xs-2">First Name</label>
+                <div class="col-xs-10">
+                    <input type="text" ng-model="model.FirstName" class="form-control" name="firstname" required validation-style />
+                    <validation-error has-error="registrationForm.$submitted && registrationForm.firstname.$error.required" show-icon="true"
+                        error-message="The first name is required"></validation-error>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">Last Name</label>
+                <div class="col-xs-10">
+                    <input ng-model="model.LastName" class="form-control" name="lastname" required validation-style/>
+                    <validation-error has-error="registrationForm.$submitted && registrationForm.lastname.$error.required" show-icon="true"
+                        error-message="The last name is required"></validation-error>
+                </div>
+            </div>   
+            <div class="form-group">
+                <label class="control-label col-xs-2">Email</label>
+                <div class="col-xs-10">
+                    <input type="email" ng-model="model.Email" class="form-control" name="email" required validation-style unique-email/>
+                    <p class="progress-text" ng-if="registrationForm.email.$pending">Validating email address...</p>
+                    <validation-error has-error="registrationForm.$submitted && registrationForm.email.$error.required" show-icon="true"
+                        error-message="The email is required"></validation-error>
+                    <validation-error has-error="registrationForm.$submitted && registrationForm.email.$error.email" show-icon="true"
+                        error-message="Invalid email address"></validation-error>
+                    <validation-error has-error="registrationForm.email.$error.uniqueEmail" show-icon="true"
+                        error-message="Email already in use"></validation-error>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">Password</label>
+                <div class="col-xs-10">
+                    <input ng-model="model.Password" class="form-control" type="password" name="password" required validation-style/>
+                    <validation-error has-error="registrationForm.$submitted && registrationForm.password.$error.required" show-icon="true"
+                        error-message="The password is required"></validation-error>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">Confirm Password</label>
+                <div class="col-xs-10">
+                    <input ng-model="model.ConfirmPassword" class="form-control" type="password" name="confirmPassword" required 
+                        validation-style confirm-password="{{model.Password}}" />
+                    <validation-error has-error="registrationForm.$submitted && registrationForm.confirmPassword.$error.required" show-icon="true"
+                        error-message="The confirmation password is required"></validation-error>
+                    <validation-error has-error="registrationForm.confirmPassword.$error.confirmPassword" show-icon="true"
+                        error-message="The confirmation password is incorrect"></validation-error>
+                </div>
+            </div>
+        </div>
+    
+        <div class="form-update">
+            <input id="btnAccContinue" type="button" value="Continue" class="btn btn-large btn-primary btn-r-pos btn-subs continue" 
+                ng-click="saveAll($event)" ng-disabled="completed == false || registrationForm.$invalid" />
+           &nbsp
+   @*         <input id="btnAccUpdate" type="submit" value="Update" class="btn btn-large btn-primary btn-r-pos btn-subs" />*@
+
+             <button id="btnAccUpdate" class="btn btn-large btn-primary btn-r-pos btn-subs action" type="submit" >
+	            <i class="act-indicator i-M-loader"></i>
+	            <i class="act-indicator i-accept"></i>
+	            <i class="act-indicator i-ignore"></i>
+	            <span><b>Update</b></span>
+            </button>
+        </div>
+    </div>
+</form>
+

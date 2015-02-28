@@ -1,0 +1,143 @@
+﻿    
+        public int MerchantId { get; set; }
+        [Display(Name = "Company Name")]
+        public string CompanyName { get; set; }
+        [Display(Name = "Street Name")]
+        public string StreetName { get; set; }
+        public int Postcode { get; set; }
+        public string State { get; set; }
+        public string Country { get; set; }
+        public string Website { get; set; }
+        [Display(Name = "Operate From")]
+        public string OperateFrom { get; set; }
+        [Display(Name = "Operate To")]
+        public string OperateTo { get; set; }
+        public int BusIndustryId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        [Display(Name = "Contact No")]
+        public string ContactNo { get; set; }
+        public Nullable<bool> IsActivated { get; set; }
+        [Display(Name = "Company Image")]
+        public byte[] CompanyImg { get; set; }
+        public string UserId { get; set; }
+    
+        public virtual BusinessIndustry BusinessIndustry { get; set; }
+        public virtual ICollection<MerchantAccount> MerchantAccounts { get; set; }
+
+		//eventModule.controller("cartController", function ($scope, productFactory) {
+//    $scope.products = productFactory.products;
+
+//    $scope.itemsInCart = [];
+//    $scope.addToCart = function () {
+
+//        alert(this.name);
+//    }
+//});
+
+
+bizModule.controller("productController", function ($scope, productFactory) {
+    $scope.products = productFactory.getProducts();
+    $scope.itemsInCart = [];
+    $scope.totalPrice = 0;
+    $scope.cartIsEmpty = false;
+
+
+    $scope.addToCart = function (itmIdx) {
+        var product = this.item;
+        var priceElem = $(".price-block").eq(itmIdx);
+
+        $scope.itemsInCart.push({
+            'id': product.id,
+            'product' : product.name,
+            'price' : product.price,
+            'qty': 1,
+            'maxTerm': product.maxTerm,
+            'term': product.term,
+        });
+        $scope.totalPrice += product.price;
+
+        priceElem.addClass('price-block-selected');
+        priceElem.removeClass('buy');
+
+        this.item.selected = true;
+    }
+
+    $scope.removeFromCart = function (itmIdx) {
+        var removeProd = this.item;
+        var priceElem = $(".price-block").eq(itmIdx);
+
+        priceElem.removeClass('price-block-selected');
+        priceElem.addClass('buy');
+
+        $scope.itemsInCart = $scope.itemsInCart.filter(function (item) {
+            return item.product !== removeProd.name;
+        });
+
+        this.item.selected = false;
+    }
+
+    //$scope.removeFromCart = function (selIndex) {
+    //    var price = $scope.itemsInCart[selIndex].price;
+
+    //    $scope.itemsInCart.splice(selIndex, 1);
+    //    $scope.totalPrice -= price;
+    //}
+
+    $scope.subscribe = function () {
+        var selectedProducts = angular.toJson($scope.itemsInCart);
+        $("#selectedProducts").val(selectedProducts);
+    }
+
+});
+
+bizModule.controller("cartController", function ($scope, $http, $compile, subscribeFactory) {
+
+    $scope.directory = {};
+    $scope.deals = {};
+
+    $scope.loadForm = function (productId, form) {
+
+        $http({
+            method: 'GET',
+            url: '/ProductSubmission/GetForm',
+            params: {
+                productId: productId
+            }
+        }).success(function (data, status, headers, config) {
+            form.html(data);    //jQuery code to load the content
+            $compile(form.contents())($scope);
+            return true;
+        });
+    }
+
+    $scope.showForm = function (formId) {
+        //alert('Hi');
+        showForm(formId);
+    }
+
+    $scope.init = function (dataKey) {
+        $scope.cartItems = subscribeFactory.getSubscriptions();
+        //angular.forEach($scope.cartItems, function (product) {
+        //    var container_id = product.product.replace(' ', '-').toLowerCase();
+        //    var container_ele = $("<div id='" + container_id + "' class='form-container'>" + product.product + "</div>");
+
+        //    $("#subs-form-container").append(container_ele);
+        //    $scope.loadForm(product.id, container_ele);
+        //});
+
+    }
+
+    $scope.getMaxTerm = function (num) {
+        return new Array(num);
+    }
+
+    $scope.getSubTotal = function () {
+        var item = this.item;
+
+        item.subTotal = item.termSelected * item.price;
+    }
+});
+
+
+	

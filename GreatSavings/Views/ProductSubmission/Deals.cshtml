@@ -1,0 +1,92 @@
+﻿
+<link href="~/Content/bootstrap-datepicker3.css" rel="stylesheet" />
+
+
+<div class="form-title" >
+    <h3>Create Deals</h3>
+</div>
+<form name="dealsForm"  ng-controller="subscriptionController" ng-init="loadModel(2)" novalidate valid-submission="update($event)">  
+    <div class="form-horizontal">    
+        <div id="entry-list" style="float:left" ng-show="orderQty > 1">
+            <ul class="nav nav-tabs nav-tabs2" id="myTab">
+                <li>
+                    <label>&nbsp</label>
+                </li>
+                <li ng-repeat="i in listings track by $index" ng-class="{'active-wbg': $index == currentIndex }">
+                   @* ng-class="$index == 0 ? 'active-wbg' : ''"*@ 
+                     <a href="#tab{{$index+1}}" ng-click="getSelectedForm(dealsForm, $index)">Deals {{$index+1}}</a>
+                </li>
+            </ul>
+        </div>   
+        <div id="form-leftSection" > 
+           <merchant-selector datasource="$parent.merchants" ng-model="model.DirId" 
+                invalid="dealsForm.$submitted && dealsForm.merchant.$error.required"></merchant-selector>  
+            <div class="form-group">
+                <label class="control-label col-xs-2">Title</label>
+                <div class="col-xs-10">
+                    <input ng-model="model.Title" class="form-control" name="title" required validation-style />
+                    <validation-error has-error="dealsForm.$submitted && dealsForm.title.$error.required" show-icon="true"
+                        error-message="The title is required"></validation-error>              
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">Description</label>
+                <div class="col-xs-10">
+                    <textarea ng-model="model.Description" class="form-control" rows="6" name="description" required validation-style  />
+                    <validation-error has-error="dealsForm.$submitted && dealsForm.description.$error.required" show-icon="true"
+                        error-message="The description is required"></validation-error>    
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">Terms and Condition</label>
+                <div class="col-xs-10">
+                    <textarea ng-model="model.TermsAndCondition" class="form-control" rows="6" name="termsAndCondition" required validation-style />
+                    <validation-error has-error="dealsForm.$submitted && dealsForm.termsAndCondition.$error.required" show-icon="true"
+                        error-message="The description is required"></validation-error>    
+                </div>
+            </div>
+          @*  <div class="form-group">
+                <label class="control-label col-xs-2" >Expiry Date</label>
+                <div class="col-xs-10">
+                   <div class='input-group date' id='expiryDatePicker'>
+                        <input id="deal_exp_date" type='text'" class="form-control" ng-model="model.ExpiryDate"/>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+         
+                </div>
+            </div>*@
+            <div class="form-group">
+                <input type="file" ng-model="model.uploadedImage" selected-image="model.Image" name="dealsImage" id="dealsImageUploader" class="hdn" 
+                    accept='image/*' image-file-reader required/>
+                <label class="control-label col-xs-2">Deals Picture</label>
+                <div class="col-xs-10">
+                    <label style="font-weight: normal;margin-top: 8px;">Max. file size: 8 MB. Allowed images: jpg, gif, png.</label><br />
+                    <div image-picker  file-uploader="dealsImageUploader" uploaded-image="model.uploadedImage"></div>
+                    <validation-error has-error="dealsForm.$submitted && dealsForm.dealsImage.$error.required" show-icon="false"
+                        error-message="The picture is required"></validation-error>   
+                </div>
+            </div>
+        </div>
+   @*     <div id="form-rightSection">
+            <div class="form-group">
+                  
+                  <span>Max. file size: 8 MB. Allowed images: jpg, gif, png.</span><br />
+            
+        </div>  
+    </div> *@
+        </div>
+    <div class="form-update">
+        <input id="btnDirContinue" type="button" value="Continue" class="btn btn-large btn-primary btn-r-pos btn-subs continue" 
+            ng-click="saveAll($event)" ng-disabled="completed == false"  />
+         &nbsp
+         @*<input id="btnDirUpdate" type="button" value="Update" class="btn btn-large btn-primary btn-r-pos btn-subs" ng-click="update($event)"/>*@
+        
+        <button id="btnDealsUpdate" class="btn btn-large btn-primary btn-r-pos btn-subs action" type="submit" >
+	        <i class="act-indicator i-M-loader"></i>
+	        <i class="act-indicator i-accept"></i>
+	        <i class="act-indicator i-ignore"></i>
+	        <span><b>Update</b></span>
+        </button>
+    </div>
+</form>

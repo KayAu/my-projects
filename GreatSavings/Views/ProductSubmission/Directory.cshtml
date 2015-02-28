@@ -1,0 +1,220 @@
+﻿
+@*<link href="../../Content/bootstrap-datepicker3.css" rel="stylesheet" />*@
+<script src="~/Scripts/Controllers/DirectoryController.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('.timepicker').timepicker({
+            minuteStep: 5,
+            disableFocus: true
+        });
+
+
+        $('#start_time').timepicker('setTime', '12:45 AM');
+        $('#end_time').timepicker('setTime', '12:45 AM');
+
+        // Events for time picker
+        $('#start_time').timepicker().on('changeTime.timepicker', function (e) {
+            $('#StartTime').val(e.time.value);
+        });
+
+        $('#end_time').timepicker().on('changeTime.timepicker', function (e) {
+            $('#EndTime').val(e.time.value);
+        });
+
+        $('#comp-image-link').click(function () {
+            $('#hImageUploader').trigger('click');
+        });
+
+    });
+
+
+</script>
+
+<div class="form-title" >
+    <h3>Create Directory Listing</h3>
+</div>
+<form name="directoryForm"  ng-controller="subscriptionController" ng-init="loadModel(3)" novalidate valid-submission="updateDirectory($event)" >  
+    <div class="form-horizontal">
+        <div id="entry-list" style="float:left" ng-show="orderQty > 1">
+            <ul class="nav nav-tabs nav-tabs2" id="myTab">
+                <li>
+                    <label>&nbsp</label>
+                </li>
+                <li ng-repeat="i in listings track by $index" ng-class="{'active-wbg': $index == currentIndex }">
+                   @* ng-class="$index == 0 ? 'active-wbg' : ''"*@ 
+                    <a href="#tab{{$index+1}}" ng-click="getSelectedForm(directoryForm, $index)">Directory {{$index+1}}</a>
+                </li>
+            </ul>
+        </div>
+        <div id="form-leftSection" >
+                <div class="form-group">
+                    <label class="control-label col-xs-2" >Company Name</label>
+                    <div class="col-xs-10">
+                        <input type="text" ng-model="model.Merchant.CompanyName" name="companyname" class="form-control"  required validation-style"/>
+                        <validation-error has-error="directoryForm.$submitted && directoryForm.companyname.$error.required" show-icon="true"
+                        error-message="The company name is required"></validation-error>       
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2">Business Industry</label>
+                    <div class="col-xs-10">
+                        <select ng-model="model.Merchant.BusIndustryId" data-ng-options="busInd.Key as busInd.Value for busInd in model.BusinessIndustries" 
+                            class="form-control" name="busIndustry" required validation-style">
+                            <option value="" selected>Please select an industry...</option>
+                        </select>
+                        <validation-error has-error="directoryForm.$submitted && directoryForm.busIndustry.$error.required" show-icon="false"
+                        error-message="The business industry is required"></validation-error>  
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2">Street Name</label>
+                    <div class="col-xs-10">
+                        <input ng-model="model.Merchant.StreetName" class="form-control" name="street" required validation-style"/>
+                        <validation-error has-error="directoryForm.$submitted && directoryForm.street.$error.required" show-icon="true"
+                        error-message="The street name is required"></validation-error>  
+                     </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2">Postcode</label>
+                    <div class="col-xs-10">
+                        <input ng-model="model.Merchant.Postcode" class="form-control" name="postcode" type="text" 
+                               ng-pattern="/^[0-9]{6}$/" required validation-style/>
+                        <validation-error has-error="directoryForm.$submitted && directoryForm.postcode.$error.required" show-icon="true"
+                        error-message="The postcode is required"></validation-error>  
+                        <validation-error has-error="directoryForm.$submitted && directoryForm.postcode.$error.pattern" show-icon="true"
+                        error-message="The postcode must be 6 digits"></validation-error>  
+                      @*   <validation-error has-error="directoryForm.$submitted && directoryForm.postcode.$error.pattern" show-icon="true"
+                        error-message="The postcode is invalid"></validation-error>  *@
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2">State</label>
+                    <div class="col-xs-10">
+                        <select ng-model="model.SelectedState" name="state" data-ng-options="state.StateName for state in model.States" 
+                            class="form-control" required validation-style>
+                            <option value="" selected>Please select a State...</option>
+                        </select>
+                        <validation-error has-error="directoryForm.$submitted && directoryForm.state.$error.required" show-icon="false"
+                        error-message="The state is required"></validation-error>  
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-xs-2">Country</label>
+                    <div class="col-xs-10">
+                        <select ng-model="model.Merchant.Country" name="country" 
+                            data-ng-options="country.CountryName  as country.CountryName for country in model.Countries" 
+                            class="form-control" required validation-style>
+                            <option value="" selected>Please select a Country...</option>
+                        </select>
+                        <validation-error has-error="directoryForm.$submitted && directoryForm.country.$error.required" show-icon="false"
+                        error-message="The country is required"></validation-error>  
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2">Contact Number</label>
+                    <div class="col-xs-10">
+                        <input ng-model="model.Merchant.ContactNo" class="form-control" name="contactNo" required validation-style/>
+                        <validation-error has-error="directoryForm.$submitted && directoryForm.contactNo.$error.required" show-icon="false"
+                        error-message="The contact number  is required"></validation-error>  
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2">Website</label>
+                    <div class="col-xs-10">
+                        <input ng-model="model.Merchant.Website" class="form-control" type="url" name="website"
+                               placeholder="e.g. http://wwww.example.com" validation-style/>
+                        <validation-error has-error="directoryForm.$submitted && directoryForm.website.$invalid" show-icon="true"
+                        error-message="This is not a valid url"></validation-error>  
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2">
+                        Operation Hours:
+                    </label>
+                    <div class="col-xs-10">
+                        <div class="input-append bootstrap-timepicker">
+                            <input id="start_time" type="text" name="start_time" class="timepicker" placeholder="h:mm PM" 
+                                data-default-time="false" data-minute-step="5" ng-model="model.Merchant.OperateFrom" 
+                                required validation-style/>
+                            <span class="add-on"><i class="icon-time"></i></span>
+                           @* <span class="control-error-msg" ng-show="directoryForm.$submitted &&  directoryForm.start_time.$error.required">This is required</span>*@
+                        </div>
+                        <label class="control-label field-label "> to </label>
+                        <div class="input-append bootstrap-timepicker">
+                            <input id="end_time" type="text" name="end_time" class="timepicker" placeholder="h:mm PM" 
+                                data-default-time="false" data-minute-step="5" ng-model="model.Merchant.OperateTo" 
+                                required validation-style/>
+                            <span class="add-on"><i class="icon-time"></i></span>
+                            @*<span class="control-error-msg" ng-show="directoryForm.$submitted &&  directoryForm.end_time.$error.required">This is required</span>*@
+                        </div>
+                        <validation-error has-error="directoryForm.$submitted &&  (directoryForm.end_time.$error.required || directoryForm.start_time.$error.required)"                              show-icon="false" error-message=" The operation hours is required"></validation-error>  
+                    </div>
+                </div>
+               <div class="form-group">
+                   <input type="file" ng-model="model.uploadedImage" selected-image="model.Merchant.CompanyImg" name="companyImage" id="hImageUploader" 
+                       accept='image/*' class="hdn" image-file-reader required/>
+                   <label class="control-label col-xs-2">Company Picture</label>
+                   <div class="col-xs-10">
+                        <label style="font-weight: normal;margin-top: 8px;">Max. file size: 8 MB. Allowed images: jpg, gif, png.</label><br />
+                        <div image-picker  file-uploader="hImageUploader" uploaded-image="model.uploadedImage"></div>
+                        <validation-error has-error="directoryForm.$submitted &&  directoryForm.companyImage.$error.required" show-icon="false"
+                        error-message="The company photo required"></validation-error>   
+                   </div>
+                   
+               </div>
+        </div>
+        <div id="form-rightSection">
+             
+                   @*<a id="comp-image-link" class="change_picture_link"  href=""  >
+                      
+                       <img id="comp-image" ng-src="{{!model.uploadedImage ? '../Images/noImg256.png' : model.uploadedImage.imageObject}}" width="300" alt="company profile picture" />
+                       <span class="change_picture"> 
+                            <span class="icon"></span>Browse Picture
+                       </span>
+                   </a>
+                    <div class="img-uploaded" ng-show="!!model.uploadedImage"  >
+                        <div class="img-uploaded-desc">
+                            <span class="img-uploaded-name">
+                                File: {{model.uploadedImage.name}} 
+                            </span>
+                                <span class="img-uploaded-size">
+                                Size: {{model.uploadedImage.size}} MB
+                            </span>
+                        </div>
+                    </div>*@
+             @*       <div class="col-xs-10">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <span class="btn btn-primary btn-file">
+                                    Browse… <input type="file" ng-model="model.uploadedImage" name="ImageData" id="ImageData" accept='image/*' image-file-reader />
+                                </span>
+                            </span>
+                            <input id="imgPath" type="text" class="form-control" readonly="" value="{{model.uploadedImage.name}}">
+                        </div>
+                        <div id="photoSizeLimit">Size limit: 4 MB</div>
+                  
+                    </div>*@
+               
+                
+         </div>
+    </div>
+    <div class="form-update">
+        <input id="btnDirContinue1" type="button" value="Continue" class="btn btn-large btn-primary btn-r-pos btn-subs continue" ng-click="saveAll($event)" ng-disabled="completed == false" />
+        &nbsp
+@*        <a href="#" id="btnDirUpdate" class="btn btn-large btn-primary btn-r-pos btn-subs action"  ng-click="updateDirectory($event)"  ng-disabled="!directoryForm.$valid">*@
+            <button id="btnDirUpdate" class="btn btn-large btn-primary btn-r-pos btn-subs action" type="submit">
+	            <i class="act-indicator i-M-loader"></i>
+	            <i class="act-indicator i-accept"></i>
+	            <i class="act-indicator i-ignore"></i>
+	            <span><b>Update</b></span>
+            </button>
+        @*</a>*@
+         
+        @* <input id="btnDirUpdate" type="button" value="Update" class="btn btn-large btn-primary btn-r-pos btn-subs" ng-click="updateDirectory($event)"/>*@
+    </div>
+</form>

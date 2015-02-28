@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="615fad94f915461faf50b3eb7d964ca8" Name="Diagram1" ZoomLevel="88" >
+        <EntityTypeShape EntityType="GreatSavingsModel.BusinessIndustry" Width="1.5" PointX="4" PointY="0.625" />
+        <EntityTypeShape EntityType="GreatSavingsModel.Merchant" Width="1.5" PointX="0.75" PointY="0.5" />
+        <EntityTypeShape EntityType="GreatSavingsModel.Promotion" Width="1.5" PointX="12.25" PointY="0.5" />
+        <EntityTypeShape EntityType="GreatSavingsModel.PromotionsType" Width="2.625" PointX="8.375" PointY="0.5" />
+        <AssociationConnector Association="GreatSavingsModel.FK_Merchant_BusinessIndustry" />
+        <AssociationConnector Association="GreatSavingsModel.FK_Promotions_PromotionsType" />
+        <EntityTypeShape EntityType="GreatSavingsModel.State" Width="1.5" PointX="9.875" PointY="2.625" />
+        <EntityTypeShape EntityType="GreatSavingsModel.Country" Width="1.5" PointX="12.25" PointY="4.25" />
+        <EntityTypeShape EntityType="GreatSavingsModel.Deal" Width="1.5" PointX="0.625" PointY="7" />
+        <EntityTypeShape EntityType="GreatSavingsModel.Product" Width="1.5" PointX="6.5" PointY="2.125" />
+        <EntityTypeShape EntityType="GreatSavingsModel.Advertisement" Width="1.5" PointX="6.5" PointY="5.25" />
+        <EntityTypeShape EntityType="GreatSavingsModel.AdvertisementType" Width="1.5" PointX="8.875" PointY="5.375" />
+        <EntityTypeShape EntityType="GreatSavingsModel.Directory" Width="1.5" PointX="2.375" PointY="9.375" />
+        <EntityTypeShape EntityType="GreatSavingsModel.NewOpening" Width="1.5" PointX="9" PointY="7.875" />
+        <EntityTypeShape EntityType="GreatSavingsModel.Recommendation" Width="1.5" PointX="7" PointY="10.125" />
+        <AssociationConnector Association="GreatSavingsModel.FK_Advertisement_AdvertisementType" />
+        <AssociationConnector Association="GreatSavingsModel.FK_Directory_BusinessIndustry" />
+        <EntityTypeShape EntityType="GreatSavingsModel.MerchantAccount" Width="1.5" PointX="2.75" PointY="5.75" />
+        <AssociationConnector Association="GreatSavingsModel.FK_MerchantAccount_Merchant" />
+        <EntityTypeShape EntityType="GreatSavingsModel.Transaction" Width="1.5" PointX="5.125" PointY="8.5" />
+        <AssociationConnector Association="GreatSavingsModel.FK_Advertisement_Advertisement" />
+        <AssociationConnector Association="GreatSavingsModel.FK_Directory_Transaction" />
+        <AssociationConnector Association="GreatSavingsModel.FK_NewOpening_Transaction" />
+        <AssociationConnector Association="GreatSavingsModel.FK_Recommendations_Transaction" />
+        <AssociationConnector Association="GreatSavingsModel.FK_Deals_Transactions" />
+        <AssociationConnector Association="GreatSavingsModel.FK_Directory_Directory" />
+        <AssociationConnector Association="GreatSavingsModel.FK_Transactions_Merchant" ManuallyRouted="true" >
+          <ConnectorPoint PointX="2.25" PointY="0.53125" />
+          <ConnectorPoint PointX="2.675390870025" PointY="0.53125" />
+          <ConnectorPoint PointX="2.675390870025" PointY="3.1742424212919533" />
+          <ConnectorPoint PointX="4.604166666666667" PointY="3.1742424212919529" />
+          <ConnectorPoint PointX="4.770833333333333" PointY="3.1742424212919533" />
+          <ConnectorPoint PointX="6.15625225" PointY="3.1742424212919533" />
+          <ConnectorPoint PointX="6.15625225" PointY="8.5" />
+        </AssociationConnector>
+        <AssociationConnector Association="GreatSavingsModel.FK_Transactions_Transactions" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

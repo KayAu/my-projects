@@ -1,0 +1,271 @@
+﻿
+@model string
+
+@{
+    ViewBag.Title = "item";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using GreatSavings.Models
+
+<link href="~/Content/progress-tracker.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-timepicker.css" rel="stylesheet" />
+<link href="~/Content/action-button.css" rel="stylesheet" />
+@*<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />*@
+
+<script src="~/Scripts/bootstrap-timepicker.js" type="text/javascript"></script>
+<script src="~/Scripts/bootstrap-datepicker.js" type="text/javascript"></script>
+<!-- jQuery easing plugin -->
+<script src="~/Scripts/JQPlugins/jquery.easing.min.js" type="text/javascript"></script>
+<script src="~/Scripts/Services/productservices.js" type="text/javascript"></script>
+<script src="~/Scripts/Controllers/productcontroller.js" type="text/javascript"></script>
+<script src="~/Scripts/Controllers/subscriptionController.js" type="text/javascript"></script>
+<script src="~/Scripts/ProductSubmission/form-animate.js" type="text/javascript"></script>
+<script src="~/Scripts/Directives/imageFileReader.js" type="text/javascript"></script>
+<script src="~/Scripts/Directives/imagePicker.js" type="text/javascript"></script>
+<script src="~/Scripts/Directives/multipleImageUploader.js" type="text/javascript"></script>
+<script src="~/Scripts/Directives/merchantSelector.js" type="text/javascript"></script>
+<script src="~/Scripts/Directives/validateSubmission.js" type="text/javascript"></script>
+<script src="~/Scripts/Business/Validation.js" type="text/javascript"></script>
+
+<script type="text/javascript">    
+
+    @*bizModule.factory("cartFactory", function () {
+        var fac = {};
+        fac.getCartItems = function () { return  @Html.Raw(Model); }
+        return fac;
+    });*@
+
+
+@*    bizModule.factory("productFactory", function () {
+        var fac = {};
+        fac.getProducts = function () { return  @Html.Raw(Model); }
+        return fac;
+    });*@
+
+
+    $(document).ready(function ($) {
+        //$('#orderform-tab a').click(function (e) {
+        //    e.preventDefault()
+        //    $(this).tab('show');
+        //})
+    });
+
+</script>  
+
+<div id="progressbar-container">
+    <ul id="progressbar">
+        <li class="active">
+            <a href="#cart" >Cart</a>
+        </li>
+        <li>
+            <a href="#orderForms">Fill in Details</a>
+        </li>
+        <li>
+            <a href="#">Payment</a>
+        </li>
+        <li>
+            <a href="#">Thank You</a>
+        </li>
+    </ul>
+</div>
+
+<div id="subs-form-wrapper" ng-controller="productController" ng-init="getCartItems(@Html.Raw(Model))" >
+    <div id="cart" class="form-container">
+        <div class="form-content">
+            <h3>Review your current order</h3>
+            <table class="cart-list">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th style="padding-left:10px;">Unit Price</th>
+                        <th>Term</th>
+                        <th class="last">Subtotal</th>
+                        <th class="last">Remove</th>
+                    </tr>
+                </thead>
+                <tr ng-repeat="item in cartItems" >
+                    <td>
+                        <span class="pi pi_websitebuilder"></span>
+                        <div class="text">
+                            <span class="name">{{item.product}}</span><br>
+                            <span class="description">
+                            </span>
+                            <br>
+                            <span class="discount"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="amount">{{item.currency}}{{item.price}}</span>
+                    </td>
+                    <td>
+                        <select ng-model="item.qty" ng-change="updateSubTotal()">
+                            <option ng-repeat="i in getMaxTerm(item.maxTerm) track by $index">{{$index+1}}</option>
+                        </select>
+                        &nbsp
+                        <span>{{item.term}}</span>                    
+                    </td>
+                    <td>
+                        <span class="total">{{item.currency}}{{item.subTotal}} </span>  @*== undefined ? item.price : item.subTotal*@
+                    </td>
+                    <td>
+                        <div class="fleft">
+                            <a href="#" ng-click="removeFromCart()">
+                                <img src="~/Images/blank.gif" />
+                            </a> 
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class="cart-nav">
+                <input class="btn btn-primary" style="text-transform: uppercase; width: 150px;" type="button" name="checkout" value="CHECK OUT" ng-click="checkout('login')">
+                &nbsp
+@*                <input type="button" value="Back to Previous" class="btn btn-link">*@
+                <a class="btn btn-link" href="~/ProductSubmission/ProductList">Back to Previous</a>
+                <div id="cartTotal" >
+                    <label class="labelText">Total</label>
+                    <label class="cart-summary-subtotal">{{totalPayment}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="cart-summary" style="width: 320px;">
+            <h3>Summary</h3>
+            <div class="cart-count">{{cartItems.length}} items</div>
+            <div class="cb"></div>
+            <p style="line-height: 16px;font-size: 15px;padding-top: 6px;font-family: 'Open Sans';color: #555;">Shipping Internationally?<br>Visit our <a href="//eushop.ouya.tv">International</a> Store!</p>        <hr>
+            <div class="cart-total">
+                <span style="float:left;font-size:22px;">Total</span><span class="cart-summary-subtotal" style="float:right">{{totalPayment}}</span>
+            </div>
+            <div class="cb"></div>
+            <input class="btn btn-primary" style="text-transform: uppercase; margin-top: 20px; width: 100%;" type="button" value="CHECK OUT" ng-click="checkout('login')">
+        </div>
+    </div>
+    <div id="login" class="form-container">
+        <div class="f-left">
+            <div class="partial-login">
+                <div class="login-form-wrapper">
+                    <div class="header">
+                        <h1>New Customer</h1>
+                        <span>If you do not have an account yet, please continue to checkout.</span>
+                    </div>
+                </div>
+                <div class="footer">
+                    <input type="button" class="btn btn-primary" value="Continue" ng-click="loadOrderForm('orderForms', true)" />
+                    @*<input type="button" name="submit" value="Register" class="register">*@
+                </div>
+            </div>
+        </div>
+        <div class="f-left">
+            <div class="partial-login">
+                @Html.Partial("~/Views/Account/MerchantLogin.cshtml", new LoginViewModel())  
+            </div>
+        </div>
+    </div>
+    <div id="orderForms" class="form-container" >
+        <ul id="orderform-tab" class="nav nav-tabs" role="tablist">
+            <li ng-repeat="item in cartItems" ng-class="$index == 0 ? 'active' : ''"  >
+                <a id="l-{{item.product.replace(' ', '-').toLowerCase()}}" href="#{{item.product.replace(' ', '-').toLowerCase()}}"
+                   data-toggle="tab">
+                    {{item.product}}
+
+                </a>
+            </li>
+	    </ul>
+         <div class="tab-content">
+
+         </div>
+    </div>
+
+    <div id="paymentForm" class="form-container" >
+      <div id="paymentSection">
+        <h3>Payment Details</h3>
+        <div class="cart-summary">
+            <div class="form-group">
+                <label class="control-label col-xs-2" style="width: 180px; padding-top: 6px;">Transaction Code</label>
+                <div class="col-ori">
+                    <input type="text" ng-model="transactionCode" class="form-control" style="width: 340px;"/>
+                </div>
+                <div class="form-update">
+                   
+                     <p>
+                         <label class="fancy-checkbox custom-bgcolor-green lbl-font-norm" >
+						    <input type="checkbox" class="hdn" ng-model="acknowledged" >
+						    <span  >I agree that the informations related to my subscription will be published after the transaction has successfully completed which would take mmaximum 2 working days for checking and editing.</span>
+					     </label>
+                     </p>
+                     <input id="btnPayment Done" type="button" value="Done" class="btn btn-large btn-primary btn-r-pos btn-subs" ng-click="paymentCompleted()"  ng-disabled="acknowledged == 0"/>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div id="paymentSummary">
+        <h3>Summary</h3>
+        <div class="cart-summary">
+            <table class="cart-list">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th class="last">Subtotal</th>
+                    </tr>
+                </thead>
+                <tr ng-repeat="item in cartItems" >
+                    <td  ng-if="item.id !== 0">
+                        <span class="pi pi_websitebuilder"></span>
+                        <div class="text">
+                            <span class="name">{{item.product}}</span>
+                            <span class="description">
+                                 &nbsp x&nbsp{{item.qty}}&nbsp<span>{{item.term}}</span>     
+                            </span>
+                            <br>
+                            <span class="discount"></span>
+                        </div>
+                    </td>
+                    <td ng-if="item.id !== 0">
+                        <span class="amount">{{item.currency}}{{item.subTotal}} </span>
+                    </td>
+                </tr>
+            </table>
+            <div class="cart-nav" style="width: 100%">
+                <div id="cartTotal2" style="text-align: right">
+                    <label class="labelText">Total</label>
+                    <label class="cart-summary-subtotal">{{totalPayment}}</label>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="thankyouForm" class="form-container" style="width: 800px;margin-left: 80px;">
+        <div class="large-text-mid box-underline">Thank You</div>
+        <p class="large-text-mid">
+            <img src="https://cdn3.iconfinder.com/data/icons/ultimate-social/150/18_email-128.png" style="margin-top: 10px;">
+        </p>
+        <p class="normal-text-mid">The Transaction id is: <br> 
+            <b>{{transactionId}}</b>
+        </p>
+        <p class="normal-text-mid">
+           Please check your email for transaction details. Your submission will take 2 working days to be published in our site.
+            Feel free to email sales@goody-heaven.com if you have any questions.
+        </p>
+        <p class="normal-text-mid">
+            <a href="#" class="btn btn-warning btn-large" style="width: 200px;">Continue &gt;</a>
+        </p>
+    </div>
+    @*@Html.Partial("Register", new RegisterViewModel())  *@
+@*    <div id="progressbar-container">
+        <ul id="progressbar">
+            <li ng-repeat="item in subscriptions" >
+                <a href="#" ng-click="showForm(item.product.replace(' ', '-').toLowerCase())">{{item.product}}</a>
+            </li>
+            <li>
+                <a href="#payment">Payment</a>
+
+            </li>
+        </ul>
+
+    </div>
+    <div id="subs-form-container" >
+
+
+    </div>*@
+</div>
+

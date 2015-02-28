@@ -1,0 +1,1078 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GreatSavingsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="GreatSavingsModelStoreContainer">
+          <EntitySet Name="Advertisement" EntityType="GreatSavingsModel.Store.Advertisement" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AdvertisementType" EntityType="GreatSavingsModel.Store.AdvertisementType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BusinessIndustry" EntityType="GreatSavingsModel.Store.BusinessIndustry" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Country" EntityType="GreatSavingsModel.Store.Country" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Deals" EntityType="GreatSavingsModel.Store.Deals" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Directory" EntityType="GreatSavingsModel.Store.Directory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Merchant" EntityType="GreatSavingsModel.Store.Merchant" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MerchantAccount" EntityType="GreatSavingsModel.Store.MerchantAccount" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NewOpening" EntityType="GreatSavingsModel.Store.NewOpening" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Product" EntityType="GreatSavingsModel.Store.Product" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Promotions" EntityType="GreatSavingsModel.Store.Promotions" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PromotionsType" EntityType="GreatSavingsModel.Store.PromotionsType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Recommendations" EntityType="GreatSavingsModel.Store.Recommendations" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="States" EntityType="GreatSavingsModel.Store.States" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Transactions" EntityType="GreatSavingsModel.Store.Transactions" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Advertisement_Advertisement" Association="GreatSavingsModel.Store.FK_Advertisement_Advertisement">
+            <End Role="Transactions" EntitySet="Transactions" />
+            <End Role="Advertisement" EntitySet="Advertisement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advertisement_AdvertisementType" Association="GreatSavingsModel.Store.FK_Advertisement_AdvertisementType">
+            <End Role="AdvertisementType" EntitySet="AdvertisementType" />
+            <End Role="Advertisement" EntitySet="Advertisement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deals_Transactions" Association="GreatSavingsModel.Store.FK_Deals_Transactions">
+            <End Role="Transactions" EntitySet="Transactions" />
+            <End Role="Deals" EntitySet="Deals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Directory_BusinessIndustry" Association="GreatSavingsModel.Store.FK_Directory_BusinessIndustry">
+            <End Role="BusinessIndustry" EntitySet="BusinessIndustry" />
+            <End Role="Directory" EntitySet="Directory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Directory_Directory" Association="GreatSavingsModel.Store.FK_Directory_Directory">
+            <End Role="Directory" EntitySet="Directory" />
+            <End Role="Directory1" EntitySet="Directory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Directory_Transaction" Association="GreatSavingsModel.Store.FK_Directory_Transaction">
+            <End Role="Transactions" EntitySet="Transactions" />
+            <End Role="Directory" EntitySet="Directory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Merchant_BusinessIndustry" Association="GreatSavingsModel.Store.FK_Merchant_BusinessIndustry">
+            <End Role="BusinessIndustry" EntitySet="BusinessIndustry" />
+            <End Role="Merchant" EntitySet="Merchant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NewOpening_Transaction" Association="GreatSavingsModel.Store.FK_NewOpening_Transaction">
+            <End Role="Transactions" EntitySet="Transactions" />
+            <End Role="NewOpening" EntitySet="NewOpening" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promotions_PromotionsType" Association="GreatSavingsModel.Store.FK_Promotions_PromotionsType">
+            <End Role="PromotionsType" EntitySet="PromotionsType" />
+            <End Role="Promotions" EntitySet="Promotions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recommendations_Transaction" Association="GreatSavingsModel.Store.FK_Recommendations_Transaction">
+            <End Role="Transactions" EntitySet="Transactions" />
+            <End Role="Recommendations" EntitySet="Recommendations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_Merchant" Association="GreatSavingsModel.Store.FK_Transactions_Merchant">
+            <End Role="Merchant" EntitySet="Merchant" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_Transactions" Association="GreatSavingsModel.Store.FK_Transactions_Transactions">
+            <End Role="Transactions" EntitySet="Transactions" />
+            <End Role="Transactions1" EntitySet="Transactions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Advertisement">
+          <Key>
+            <PropertyRef Name="AdId" />
+          </Key>
+          <Property Name="AdId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TransId" Type="int" Nullable="false" />
+          <Property Name="DirId" Type="varchar" MaxLength="10" />
+          <Property Name="ExpiryDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Image" Type="image" />
+          <Property Name="AdTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AdvertisementType">
+          <Key>
+            <PropertyRef Name="AdTypeId" />
+          </Key>
+          <Property Name="AdTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AdName" Type="varchar" Nullable="false" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="BusinessIndustry">
+          <Key>
+            <PropertyRef Name="BusIndustryId" />
+          </Key>
+          <Property Name="BusIndustryId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BusIndustry" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryCode" />
+          </Key>
+          <Property Name="CountryCode" Type="char" Nullable="false" MaxLength="2" />
+          <Property Name="CountryName" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Deals">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TransId" Type="int" Nullable="false" />
+          <Property Name="DirId" Type="varchar" MaxLength="10" />
+          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="Description" Type="varchar" Nullable="false" MaxLength="850" />
+          <Property Name="ExpiryDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="TermsAndCondition" Type="text" Nullable="false" />
+          <Property Name="Image" Type="image" Nullable="false" />
+          <Property Name="IsActivated" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Directory">
+          <Key>
+            <PropertyRef Name="DirId" />
+          </Key>
+          <Property Name="DirId" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="CompanyName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="StreetName" Type="varchar" Nullable="false" MaxLength="80" />
+          <Property Name="Postcode" Type="int" Nullable="false" />
+          <Property Name="State" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="Country" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Website" Type="varchar" MaxLength="50" />
+          <Property Name="OperateFrom" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="OperateTo" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="ContactNo" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="BusIndustryId" Type="int" Nullable="false" />
+          <Property Name="IsActivated" Type="bit" />
+          <Property Name="CompanyImg" Type="image" />
+          <Property Name="TransId" Type="int" />
+          <Property Name="MerchantId" Type="int" />
+        </EntityType>
+        <EntityType Name="Merchant">
+          <Key>
+            <PropertyRef Name="MerchantId" />
+          </Key>
+          <Property Name="MerchantId" Type="int" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="StreetName" Type="varchar" Nullable="false" MaxLength="80" />
+          <Property Name="Postcode" Type="int" Nullable="false" />
+          <Property Name="State" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="Country" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Website" Type="varchar" MaxLength="50" />
+          <Property Name="OperateFrom" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="OperateTo" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="ContactNo" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="BusIndustryId" Type="int" Nullable="false" />
+          <Property Name="IsActivated" Type="bit" />
+          <Property Name="CompanyImg" Type="image" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="MerchantAccount">
+          <Key>
+            <PropertyRef Name="MerchantId" />
+          </Key>
+          <Property Name="MerchantId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="NewOpening">
+          <Key>
+            <PropertyRef Name="NewOpenId" />
+          </Key>
+          <Property Name="NewOpenId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TransId" Type="int" Nullable="false" />
+          <Property Name="DirId" Type="varchar" MaxLength="10" />
+          <Property Name="Description" Type="text" Nullable="false" />
+          <Property Name="ExpiryDate" Type="smalldatetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Image" Type="image" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Price" Type="smallmoney" Nullable="false" />
+          <Property Name="Currency" Type="char" Nullable="false" MaxLength="3" />
+          <Property Name="Hint" Type="varchar" MaxLength="20" />
+          <Property Name="Payable" Type="bit" Nullable="false" />
+          <Property Name="Description" Type="text" />
+          <Property Name="MaxTerm" Type="int" Nullable="false" />
+          <Property Name="Term" Type="varchar" MaxLength="20" />
+          <Property Name="Position" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Promotions">
+          <Key>
+            <PropertyRef Name="PromotionId" />
+          </Key>
+          <Property Name="PromotionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PromotionTypeId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Desc" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="ValidFrom" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="ValidTo" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="IsNationWide" Type="bit" />
+          <Property Name="ImgThumbnail" Type="image" Nullable="false" />
+          <Property Name="ImgDetailPage" Type="image" Nullable="false" />
+          <Property Name="ImgPremiumAd" Type="image" />
+        </EntityType>
+        <EntityType Name="PromotionsType">
+          <Key>
+            <PropertyRef Name="PromotionsTypeId" />
+          </Key>
+          <Property Name="PromotionsTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PromotionsType" Type="varchar" Nullable="false" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Recommendations">
+          <Key>
+            <PropertyRef Name="RecomId" />
+          </Key>
+          <Property Name="RecomId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TransId" Type="int" Nullable="false" />
+          <Property Name="DirId" Type="varchar" MaxLength="10" />
+          <Property Name="Description" Type="text" Nullable="false" />
+          <Property Name="ExpiryDate" Type="smalldatetime" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="Image1" Type="image" Nullable="false" />
+          <Property Name="Image2" Type="image" Nullable="false" />
+          <Property Name="Image3" Type="image" />
+          <Property Name="Image4" Type="image" />
+          <Property Name="Image5" Type="image" />
+          <Property Name="Image6" Type="image" />
+        </EntityType>
+        <EntityType Name="States">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StateName" Type="varchar" MaxLength="50" />
+          <Property Name="StateCode" Type="char" MaxLength="3" />
+          <Property Name="CountryCode" Type="char" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="Transactions">
+          <Key>
+            <PropertyRef Name="TransId" />
+          </Key>
+          <Property Name="TransId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TransCode" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="MerchantId" Type="int" Nullable="false" />
+          <Property Name="TotalPymt" Type="smallmoney" Nullable="false" />
+          <Property Name="CreatedOn" Type="smalldatetime" Nullable="false" />
+          <Property Name="PymtReceived" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Advertisement_Advertisement">
+          <End Role="Transactions" Type="GreatSavingsModel.Store.Transactions" Multiplicity="1" />
+          <End Role="Advertisement" Type="GreatSavingsModel.Store.Advertisement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transactions">
+              <PropertyRef Name="TransId" />
+            </Principal>
+            <Dependent Role="Advertisement">
+              <PropertyRef Name="TransId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advertisement_AdvertisementType">
+          <End Role="AdvertisementType" Type="GreatSavingsModel.Store.AdvertisementType" Multiplicity="1" />
+          <End Role="Advertisement" Type="GreatSavingsModel.Store.Advertisement" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AdvertisementType">
+              <PropertyRef Name="AdTypeId" />
+            </Principal>
+            <Dependent Role="Advertisement">
+              <PropertyRef Name="AdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deals_Transactions">
+          <End Role="Transactions" Type="GreatSavingsModel.Store.Transactions" Multiplicity="1" />
+          <End Role="Deals" Type="GreatSavingsModel.Store.Deals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transactions">
+              <PropertyRef Name="TransId" />
+            </Principal>
+            <Dependent Role="Deals">
+              <PropertyRef Name="TransId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Directory_BusinessIndustry">
+          <End Role="BusinessIndustry" Type="GreatSavingsModel.Store.BusinessIndustry" Multiplicity="1" />
+          <End Role="Directory" Type="GreatSavingsModel.Store.Directory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessIndustry">
+              <PropertyRef Name="BusIndustryId" />
+            </Principal>
+            <Dependent Role="Directory">
+              <PropertyRef Name="BusIndustryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Directory_Directory">
+          <End Role="Directory" Type="GreatSavingsModel.Store.Directory" Multiplicity="1" />
+          <End Role="Directory1" Type="GreatSavingsModel.Store.Directory" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Directory">
+              <PropertyRef Name="DirId" />
+            </Principal>
+            <Dependent Role="Directory1">
+              <PropertyRef Name="DirId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Directory_Transaction">
+          <End Role="Transactions" Type="GreatSavingsModel.Store.Transactions" Multiplicity="0..1" />
+          <End Role="Directory" Type="GreatSavingsModel.Store.Directory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transactions">
+              <PropertyRef Name="TransId" />
+            </Principal>
+            <Dependent Role="Directory">
+              <PropertyRef Name="TransId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Merchant_BusinessIndustry">
+          <End Role="BusinessIndustry" Type="GreatSavingsModel.Store.BusinessIndustry" Multiplicity="1" />
+          <End Role="Merchant" Type="GreatSavingsModel.Store.Merchant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessIndustry">
+              <PropertyRef Name="BusIndustryId" />
+            </Principal>
+            <Dependent Role="Merchant">
+              <PropertyRef Name="BusIndustryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NewOpening_Transaction">
+          <End Role="Transactions" Type="GreatSavingsModel.Store.Transactions" Multiplicity="1" />
+          <End Role="NewOpening" Type="GreatSavingsModel.Store.NewOpening" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transactions">
+              <PropertyRef Name="TransId" />
+            </Principal>
+            <Dependent Role="NewOpening">
+              <PropertyRef Name="TransId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promotions_PromotionsType">
+          <End Role="PromotionsType" Type="GreatSavingsModel.Store.PromotionsType" Multiplicity="1" />
+          <End Role="Promotions" Type="GreatSavingsModel.Store.Promotions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PromotionsType">
+              <PropertyRef Name="PromotionsTypeId" />
+            </Principal>
+            <Dependent Role="Promotions">
+              <PropertyRef Name="PromotionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recommendations_Transaction">
+          <End Role="Transactions" Type="GreatSavingsModel.Store.Transactions" Multiplicity="1" />
+          <End Role="Recommendations" Type="GreatSavingsModel.Store.Recommendations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transactions">
+              <PropertyRef Name="TransId" />
+            </Principal>
+            <Dependent Role="Recommendations">
+              <PropertyRef Name="TransId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_Merchant">
+          <End Role="Merchant" Type="GreatSavingsModel.Store.Merchant" Multiplicity="1" />
+          <End Role="Transactions" Type="GreatSavingsModel.Store.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantId" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="MerchantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_Transactions">
+          <End Role="Transactions" Type="GreatSavingsModel.Store.Transactions" Multiplicity="1" />
+          <End Role="Transactions1" Type="GreatSavingsModel.Store.Transactions" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Transactions">
+              <PropertyRef Name="TransId" />
+            </Principal>
+            <Dependent Role="Transactions1">
+              <PropertyRef Name="TransId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_CheckEmailAlreadyExist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="prEmail" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_CreateMerchant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="prUserID" Type="nvarchar" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GreatSavingsModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="GreatSavingsEntities" p1:LazyLoadingEnabled="true" >
+          <EntitySet Name="BusinessIndustries" EntityType="GreatSavingsModel.BusinessIndustry" />
+          <EntitySet Name="Merchants" EntityType="GreatSavingsModel.Merchant" />
+          <EntitySet Name="Promotions" EntityType="GreatSavingsModel.Promotion" />
+          <EntitySet Name="PromotionsTypes" EntityType="GreatSavingsModel.PromotionsType" />
+          <AssociationSet Name="FK_Merchant_BusinessIndustry" Association="GreatSavingsModel.FK_Merchant_BusinessIndustry">
+            <End Role="BusinessIndustry" EntitySet="BusinessIndustries" />
+            <End Role="Merchant" EntitySet="Merchants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promotions_PromotionsType" Association="GreatSavingsModel.FK_Promotions_PromotionsType">
+            <End Role="PromotionsType" EntitySet="PromotionsTypes" />
+            <End Role="Promotion" EntitySet="Promotions" />
+          </AssociationSet>
+          <EntitySet Name="States" EntityType="GreatSavingsModel.State" />
+          <EntitySet Name="Countries" EntityType="GreatSavingsModel.Country" />
+          <EntitySet Name="Deals" EntityType="GreatSavingsModel.Deal" />
+          <EntitySet Name="Products" EntityType="GreatSavingsModel.Product" />
+          <EntitySet Name="Advertisements" EntityType="GreatSavingsModel.Advertisement" />
+          <EntitySet Name="AdvertisementTypes" EntityType="GreatSavingsModel.AdvertisementType" />
+          <EntitySet Name="Directories" EntityType="GreatSavingsModel.Directory" />
+          <EntitySet Name="NewOpenings" EntityType="GreatSavingsModel.NewOpening" />
+          <EntitySet Name="Recommendations" EntityType="GreatSavingsModel.Recommendation" />
+          <AssociationSet Name="FK_Advertisement_AdvertisementType" Association="GreatSavingsModel.FK_Advertisement_AdvertisementType">
+            <End Role="AdvertisementType" EntitySet="AdvertisementTypes" />
+            <End Role="Advertisement" EntitySet="Advertisements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Directory_BusinessIndustry" Association="GreatSavingsModel.FK_Directory_BusinessIndustry">
+            <End Role="BusinessIndustry" EntitySet="BusinessIndustries" />
+            <End Role="Directory" EntitySet="Directories" />
+          </AssociationSet>
+          <EntitySet Name="MerchantAccounts" EntityType="GreatSavingsModel.MerchantAccount" />
+          <AssociationSet Name="FK_MerchantAccount_Merchant" Association="GreatSavingsModel.FK_MerchantAccount_Merchant">
+            <End Role="Merchant" EntitySet="Merchants" />
+            <End Role="MerchantAccount" EntitySet="MerchantAccounts" />
+          </AssociationSet>
+          <FunctionImport Name="CreateMerchantAccount" ReturnType="Collection(Int32)">
+          <Parameter Name="prUserID" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Transactions" EntityType="GreatSavingsModel.Transaction" />
+          <AssociationSet Name="FK_Advertisement_Advertisement" Association="GreatSavingsModel.FK_Advertisement_Advertisement">
+            <End Role="Transaction" EntitySet="Transactions" />
+            <End Role="Advertisement" EntitySet="Advertisements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Directory_Transaction" Association="GreatSavingsModel.FK_Directory_Transaction">
+            <End Role="Transaction" EntitySet="Transactions" />
+            <End Role="Directory" EntitySet="Directories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NewOpening_Transaction" Association="GreatSavingsModel.FK_NewOpening_Transaction">
+            <End Role="Transaction" EntitySet="Transactions" />
+            <End Role="NewOpening" EntitySet="NewOpenings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recommendations_Transaction" Association="GreatSavingsModel.FK_Recommendations_Transaction">
+            <End Role="Transaction" EntitySet="Transactions" />
+            <End Role="Recommendation" EntitySet="Recommendations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deals_Transactions" Association="GreatSavingsModel.FK_Deals_Transactions">
+            <End Role="Transaction" EntitySet="Transactions" />
+            <End Role="Deal" EntitySet="Deals" />
+          </AssociationSet>
+          <FunctionImport Name="CheckEmailAlreadyExist" ReturnType="Collection(Int32)">
+          <Parameter Name="prEmail" Mode="In" Type="String" />
+          </FunctionImport>
+          <AssociationSet Name="FK_Directory_Directory" Association="GreatSavingsModel.FK_Directory_Directory">
+            <End Role="Directory" EntitySet="Directories" />
+            <End Role="Directory1" EntitySet="Directories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_Merchant" Association="GreatSavingsModel.FK_Transactions_Merchant">
+            <End Role="Merchant" EntitySet="Merchants" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_Transactions" Association="GreatSavingsModel.FK_Transactions_Transactions">
+            <End Role="Transaction" EntitySet="Transactions" />
+            <End Role="Transaction1" EntitySet="Transactions" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="BusinessIndustry">
+          <Key>
+            <PropertyRef Name="BusIndustryId" />
+          </Key>
+          <Property Type="Int32" Name="BusIndustryId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="BusIndustry" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Merchants" Relationship="GreatSavingsModel.FK_Merchant_BusinessIndustry" FromRole="BusinessIndustry" ToRole="Merchant" />
+          <NavigationProperty Name="Directories" Relationship="GreatSavingsModel.FK_Directory_BusinessIndustry" FromRole="BusinessIndustry" ToRole="Directory" />
+        </EntityType>
+        <EntityType Name="Merchant">
+          <Key>
+            <PropertyRef Name="MerchantId" />
+          </Key>
+          <Property Type="Int32" Name="MerchantId" Nullable="false" />
+          <Property Type="String" Name="CompanyName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="StreetName" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Postcode" Nullable="false" />
+          <Property Type="String" Name="State" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Country" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Website" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OperateFrom" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OperateTo" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="BusIndustryId" Nullable="false" />
+          <NavigationProperty Name="BusinessIndustry" Relationship="GreatSavingsModel.FK_Merchant_BusinessIndustry" FromRole="Merchant" ToRole="BusinessIndustry" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ContactNo" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsActivated" />
+          <Property Type="Binary" Name="CompanyImg" MaxLength="Max" FixedLength="false" />
+          <Property Type="String" Name="UserId" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MerchantAccount" Relationship="GreatSavingsModel.FK_MerchantAccount_Merchant" FromRole="Merchant" ToRole="MerchantAccount" />
+          <NavigationProperty Name="Transactions" Relationship="GreatSavingsModel.FK_Transactions_Merchant" FromRole="Merchant" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="Promotion">
+          <Key>
+            <PropertyRef Name="PromotionId" />
+          </Key>
+          <Property Type="Int32" Name="PromotionId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="PromotionTypeId" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Desc" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ValidFrom" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ValidTo" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsNationWide" />
+          <Property Type="Binary" Name="ImgThumbnail" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Type="Binary" Name="ImgDetailPage" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Type="Binary" Name="ImgPremiumAd" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="PromotionsType" Relationship="GreatSavingsModel.FK_Promotions_PromotionsType" FromRole="Promotion" ToRole="PromotionsType" />
+        </EntityType>
+        <EntityType Name="PromotionsType">
+          <Key>
+            <PropertyRef Name="PromotionsTypeId" />
+          </Key>
+          <Property Type="Int32" Name="PromotionsTypeId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="PromotionsType1" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Promotions" Relationship="GreatSavingsModel.FK_Promotions_PromotionsType" FromRole="PromotionsType" ToRole="Promotion" />
+        </EntityType>
+        <Association Name="FK_Merchant_BusinessIndustry">
+          <End Type="GreatSavingsModel.BusinessIndustry" Role="BusinessIndustry" Multiplicity="1" />
+          <End Type="GreatSavingsModel.Merchant" Role="Merchant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessIndustry">
+              <PropertyRef Name="BusIndustryId" />
+            </Principal>
+            <Dependent Role="Merchant">
+              <PropertyRef Name="BusIndustryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promotions_PromotionsType">
+          <End Type="GreatSavingsModel.PromotionsType" Role="PromotionsType" Multiplicity="1" />
+          <End Type="GreatSavingsModel.Promotion" Role="Promotion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PromotionsType">
+              <PropertyRef Name="PromotionsTypeId" />
+            </Principal>
+            <Dependent Role="Promotion">
+              <PropertyRef Name="PromotionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Type="Int32" Name="StateId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="StateName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CountryCode" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="StateCode" MaxLength="3" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryCode" />
+          </Key>
+          <Property Type="String" Name="CountryCode" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="CountryName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Deal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="850" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="ExpiryDate" Precision="0" Nullable="false" />
+          <Property Type="String" Name="TermsAndCondition" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Binary" Name="Image" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Type="Int32" Name="TransId" Nullable="false" />
+          <NavigationProperty Name="Transaction" Relationship="GreatSavingsModel.FK_Deals_Transactions" FromRole="Deal" ToRole="Transaction" />
+          <Property Type="Boolean" Name="IsActivated" Nullable="false" />
+          <Property Type="String" Name="DirId" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Payable" Nullable="false" />
+          <Property Type="Decimal" Name="Price" Precision="10" Scale="4" Nullable="false" />
+          <Property Type="String" Name="Hint" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="MaxTerm" Nullable="false" />
+          <Property Type="String" Name="Term" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Currency" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Type="Int16" Name="Position" />
+        </EntityType>
+        <EntityType Name="Advertisement">
+          <Key>
+            <PropertyRef Name="AdId" />
+          </Key>
+          <Property Type="Int32" Name="AdId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="TransId" Nullable="false" />
+          <Property Type="DateTime" Name="ExpiryDate" Nullable="false" Precision="0" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="Binary" Name="Image" MaxLength="Max" FixedLength="false" />
+          <Property Type="Int32" Name="AdTypeId" Nullable="false" />
+          <NavigationProperty Name="AdvertisementType" Relationship="GreatSavingsModel.FK_Advertisement_AdvertisementType" FromRole="Advertisement" ToRole="AdvertisementType" />
+          <NavigationProperty Name="Transaction" Relationship="GreatSavingsModel.FK_Advertisement_Advertisement" FromRole="Advertisement" ToRole="Transaction" />
+          <Property Type="String" Name="DirId" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AdvertisementType">
+          <Key>
+            <PropertyRef Name="AdTypeId" />
+          </Key>
+          <Property Type="Int32" Name="AdTypeId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="AdName" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Advertisement" Relationship="GreatSavingsModel.FK_Advertisement_AdvertisementType" FromRole="AdvertisementType" ToRole="Advertisement" />
+        </EntityType>
+        <EntityType Name="Directory">
+          <Key>
+            <PropertyRef Name="DirId" />
+          </Key>
+          <Property Type="String" Name="DirId" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Type="String" Name="CompanyName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="StreetName" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Postcode" Nullable="false" />
+          <Property Type="String" Name="State" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Country" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Website" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OperateFrom" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OperateTo" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FirstName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ContactNo" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="BusIndustryId" Nullable="false" />
+          <Property Type="Boolean" Name="IsActivated" />
+          <Property Type="Binary" Name="CompanyImg" MaxLength="Max" FixedLength="false" />
+          <Property Type="Int32" Name="TransId" />
+          <NavigationProperty Name="BusinessIndustry" Relationship="GreatSavingsModel.FK_Directory_BusinessIndustry" FromRole="Directory" ToRole="BusinessIndustry" />
+          <NavigationProperty Name="Transaction" Relationship="GreatSavingsModel.FK_Directory_Transaction" FromRole="Directory" ToRole="Transaction" />
+          <Property Type="Int32" Name="MerchantId" />
+          <NavigationProperty Name="Directory1" Relationship="GreatSavingsModel.FK_Directory_Directory" FromRole="Directory" ToRole="Directory1" />
+          <NavigationProperty Name="Directory2" Relationship="GreatSavingsModel.FK_Directory_Directory" FromRole="Directory1" ToRole="Directory" />
+        </EntityType>
+        <EntityType Name="NewOpening">
+          <Key>
+            <PropertyRef Name="NewOpenId" />
+          </Key>
+          <Property Type="Int32" Name="NewOpenId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="TransId" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="ExpiryDate" Precision="0" />
+          <Property Type="Binary" Name="Image" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Transaction" Relationship="GreatSavingsModel.FK_NewOpening_Transaction" FromRole="NewOpening" ToRole="Transaction" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="String" Name="DirId" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Recommendation">
+          <Key>
+            <PropertyRef Name="RecomId" />
+          </Key>
+          <Property Type="Int32" Name="RecomId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="TransId" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="ExpiryDate" Precision="0" />
+          <Property Type="Boolean" Name="IsActive" />
+          <Property Type="Binary" Name="Image1" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Type="Binary" Name="Image2" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Type="Binary" Name="Image3" MaxLength="Max" FixedLength="false" />
+          <Property Type="Binary" Name="Image4" MaxLength="Max" FixedLength="false" />
+          <Property Type="Binary" Name="Image5" MaxLength="Max" FixedLength="false" />
+          <Property Type="Binary" Name="Image6" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Transaction" Relationship="GreatSavingsModel.FK_Recommendations_Transaction" FromRole="Recommendation" ToRole="Transaction" />
+          <Property Type="String" Name="DirId" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Advertisement_AdvertisementType">
+          <End Type="GreatSavingsModel.AdvertisementType" Role="AdvertisementType" Multiplicity="1" />
+          <End Type="GreatSavingsModel.Advertisement" Role="Advertisement" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AdvertisementType">
+              <PropertyRef Name="AdTypeId" />
+            </Principal>
+            <Dependent Role="Advertisement">
+              <PropertyRef Name="AdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Directory_BusinessIndustry">
+          <End Type="GreatSavingsModel.BusinessIndustry" Role="BusinessIndustry" Multiplicity="1" />
+          <End Type="GreatSavingsModel.Directory" Role="Directory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessIndustry">
+              <PropertyRef Name="BusIndustryId" />
+            </Principal>
+            <Dependent Role="Directory">
+              <PropertyRef Name="BusIndustryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MerchantAccount">
+          <Key>
+            <PropertyRef Name="MerchantId" />
+          </Key>
+          <Property Type="Int32" Name="MerchantId" Nullable="false" />
+          <Property Type="String" Name="UserId" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Merchant" Relationship="GreatSavingsModel.FK_MerchantAccount_Merchant" FromRole="MerchantAccount" ToRole="Merchant" />
+        </EntityType>
+        <Association Name="FK_MerchantAccount_Merchant">
+          <End Type="GreatSavingsModel.Merchant" Role="Merchant" Multiplicity="1" />
+          <End Type="GreatSavingsModel.MerchantAccount" Role="MerchantAccount" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantId" />
+            </Principal>
+            <Dependent Role="MerchantAccount">
+              <PropertyRef Name="MerchantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="TransId" />
+          </Key>
+          <Property Type="Int32" Name="TransId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="TransCode" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="MerchantId" Nullable="false" />
+          <Property Type="Decimal" Name="TotalPymt" Nullable="false" Precision="10" Scale="4" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="0" />
+          <Property Type="Boolean" Name="PymtReceived" Nullable="false" />
+          <NavigationProperty Name="Advertisements" Relationship="GreatSavingsModel.FK_Advertisement_Advertisement" FromRole="Transaction" ToRole="Advertisement" />
+          <NavigationProperty Name="Directories" Relationship="GreatSavingsModel.FK_Directory_Transaction" FromRole="Transaction" ToRole="Directory" />
+          <NavigationProperty Name="NewOpenings" Relationship="GreatSavingsModel.FK_NewOpening_Transaction" FromRole="Transaction" ToRole="NewOpening" />
+          <NavigationProperty Name="Recommendations" Relationship="GreatSavingsModel.FK_Recommendations_Transaction" FromRole="Transaction" ToRole="Recommendation" />
+          <NavigationProperty Name="Deals" Relationship="GreatSavingsModel.FK_Deals_Transactions" FromRole="Transaction" ToRole="Deal" />
+          <NavigationProperty Name="Merchant" Relationship="GreatSavingsModel.FK_Transactions_Merchant" FromRole="Transaction" ToRole="Merchant" />
+          <NavigationProperty Name="Transactions1" Relationship="GreatSavingsModel.FK_Transactions_Transactions" FromRole="Transaction" ToRole="Transaction1" />
+          <NavigationProperty Name="Transaction1" Relationship="GreatSavingsModel.FK_Transactions_Transactions" FromRole="Transaction1" ToRole="Transaction" />
+        </EntityType>
+        <Association Name="FK_Advertisement_Advertisement">
+          <End Type="GreatSavingsModel.Transaction" Role="Transaction" Multiplicity="1" />
+          <End Type="GreatSavingsModel.Advertisement" Role="Advertisement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaction">
+              <PropertyRef Name="TransId" />
+            </Principal>
+            <Dependent Role="Advertisement">
+              <PropertyRef Name="TransId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Directory_Transaction">
+          <End Type="GreatSavingsModel.Transaction" Role="Transaction" Multiplicity="0..1" />
+          <End Type="GreatSavingsModel.Directory" Role="Directory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaction">
+              <PropertyRef Name="TransId" />
+            </Principal>
+            <Dependent Role="Directory">
+              <PropertyRef Name="TransId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NewOpening_Transaction">
+          <End Type="GreatSavingsModel.Transaction" Role="Transaction" Multiplicity="1" />
+          <End Type="GreatSavingsModel.NewOpening" Role="NewOpening" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaction">
+              <PropertyRef Name="TransId" />
+            </Principal>
+            <Dependent Role="NewOpening">
+              <PropertyRef Name="TransId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recommendations_Transaction">
+          <End Type="GreatSavingsModel.Transaction" Role="Transaction" Multiplicity="1" />
+          <End Type="GreatSavingsModel.Recommendation" Role="Recommendation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaction">
+              <PropertyRef Name="TransId" />
+            </Principal>
+            <Dependent Role="Recommendation">
+              <PropertyRef Name="TransId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deals_Transactions">
+          <End Type="GreatSavingsModel.Transaction" Role="Transaction" Multiplicity="1" />
+          <End Type="GreatSavingsModel.Deal" Role="Deal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaction">
+              <PropertyRef Name="TransId" />
+            </Principal>
+            <Dependent Role="Deal">
+              <PropertyRef Name="TransId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Directory_Directory">
+          <End Type="GreatSavingsModel.Directory" Role="Directory" Multiplicity="1" />
+          <End Type="GreatSavingsModel.Directory" Role="Directory1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Directory">
+              <PropertyRef Name="DirId" />
+            </Principal>
+            <Dependent Role="Directory1">
+              <PropertyRef Name="DirId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_Merchant">
+          <End Type="GreatSavingsModel.Merchant" Role="Merchant" Multiplicity="1" />
+          <End Type="GreatSavingsModel.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantId" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="MerchantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_Transactions">
+          <End Type="GreatSavingsModel.Transaction" Role="Transaction" Multiplicity="1" />
+          <End Type="GreatSavingsModel.Transaction" Role="Transaction1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Transaction">
+              <PropertyRef Name="TransId" />
+            </Principal>
+            <Dependent Role="Transaction1">
+              <PropertyRef Name="TransId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GreatSavingsModelStoreContainer" CdmEntityContainer="GreatSavingsEntities" >
+          <EntitySetMapping Name="BusinessIndustries">
+            <EntityTypeMapping TypeName="GreatSavingsModel.BusinessIndustry">
+              <MappingFragment StoreEntitySet="BusinessIndustry">
+                <ScalarProperty Name="BusIndustry" ColumnName="BusIndustry" />
+                <ScalarProperty Name="BusIndustryId" ColumnName="BusIndustryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Merchants">
+            <EntityTypeMapping TypeName="GreatSavingsModel.Merchant">
+              <MappingFragment StoreEntitySet="Merchant">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CompanyImg" ColumnName="CompanyImg" />
+                <ScalarProperty Name="IsActivated" ColumnName="IsActivated" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="BusIndustryId" ColumnName="BusIndustryId" />
+                <ScalarProperty Name="OperateTo" ColumnName="OperateTo" />
+                <ScalarProperty Name="OperateFrom" ColumnName="OperateFrom" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="MerchantId" ColumnName="MerchantId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Promotions">
+            <EntityTypeMapping TypeName="GreatSavingsModel.Promotion">
+              <MappingFragment StoreEntitySet="Promotions">
+                <ScalarProperty Name="ImgPremiumAd" ColumnName="ImgPremiumAd" />
+                <ScalarProperty Name="ImgDetailPage" ColumnName="ImgDetailPage" />
+                <ScalarProperty Name="ImgThumbnail" ColumnName="ImgThumbnail" />
+                <ScalarProperty Name="IsNationWide" ColumnName="IsNationWide" />
+                <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+                <ScalarProperty Name="ValidFrom" ColumnName="ValidFrom" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="PromotionTypeId" ColumnName="PromotionTypeId" />
+                <ScalarProperty Name="PromotionId" ColumnName="PromotionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PromotionsTypes">
+            <EntityTypeMapping TypeName="GreatSavingsModel.PromotionsType">
+              <MappingFragment StoreEntitySet="PromotionsType">
+                <ScalarProperty Name="PromotionsType1" ColumnName="PromotionsType" />
+                <ScalarProperty Name="PromotionsTypeId" ColumnName="PromotionsTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="GreatSavingsModel.State">
+              <MappingFragment StoreEntitySet="States">
+                <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="GreatSavingsModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Deals">
+            <EntityTypeMapping TypeName="GreatSavingsModel.Deal">
+              <MappingFragment StoreEntitySet="Deals">
+                <ScalarProperty Name="DirId" ColumnName="DirId" />
+                <ScalarProperty Name="IsActivated" ColumnName="IsActivated" />
+                <ScalarProperty Name="TransId" ColumnName="TransId" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="TermsAndCondition" ColumnName="TermsAndCondition" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="GreatSavingsModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Term" ColumnName="Term" />
+                <ScalarProperty Name="MaxTerm" ColumnName="MaxTerm" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Hint" ColumnName="Hint" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Payable" ColumnName="Payable" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Advertisements">
+            <EntityTypeMapping TypeName="GreatSavingsModel.Advertisement">
+              <MappingFragment StoreEntitySet="Advertisement">
+                <ScalarProperty Name="DirId" ColumnName="DirId" />
+                <ScalarProperty Name="AdTypeId" ColumnName="AdTypeId" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="TransId" ColumnName="TransId" />
+                <ScalarProperty Name="AdId" ColumnName="AdId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdvertisementTypes">
+            <EntityTypeMapping TypeName="GreatSavingsModel.AdvertisementType">
+              <MappingFragment StoreEntitySet="AdvertisementType">
+                <ScalarProperty Name="AdName" ColumnName="AdName" />
+                <ScalarProperty Name="AdTypeId" ColumnName="AdTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Directories">
+            <EntityTypeMapping TypeName="GreatSavingsModel.Directory">
+              <MappingFragment StoreEntitySet="Directory">
+                <ScalarProperty Name="MerchantId" ColumnName="MerchantId" />
+                <ScalarProperty Name="TransId" ColumnName="TransId" />
+                <ScalarProperty Name="CompanyImg" ColumnName="CompanyImg" />
+                <ScalarProperty Name="IsActivated" ColumnName="IsActivated" />
+                <ScalarProperty Name="BusIndustryId" ColumnName="BusIndustryId" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="OperateTo" ColumnName="OperateTo" />
+                <ScalarProperty Name="OperateFrom" ColumnName="OperateFrom" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="DirId" ColumnName="DirId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewOpenings">
+            <EntityTypeMapping TypeName="GreatSavingsModel.NewOpening">
+              <MappingFragment StoreEntitySet="NewOpening">
+                <ScalarProperty Name="DirId" ColumnName="DirId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TransId" ColumnName="TransId" />
+                <ScalarProperty Name="NewOpenId" ColumnName="NewOpenId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recommendations">
+            <EntityTypeMapping TypeName="GreatSavingsModel.Recommendation">
+              <MappingFragment StoreEntitySet="Recommendations">
+                <ScalarProperty Name="DirId" ColumnName="DirId" />
+                <ScalarProperty Name="Image6" ColumnName="Image6" />
+                <ScalarProperty Name="Image5" ColumnName="Image5" />
+                <ScalarProperty Name="Image4" ColumnName="Image4" />
+                <ScalarProperty Name="Image3" ColumnName="Image3" />
+                <ScalarProperty Name="Image2" ColumnName="Image2" />
+                <ScalarProperty Name="Image1" ColumnName="Image1" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TransId" ColumnName="TransId" />
+                <ScalarProperty Name="RecomId" ColumnName="RecomId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MerchantAccounts">
+            <EntityTypeMapping TypeName="GreatSavingsModel.MerchantAccount">
+              <MappingFragment StoreEntitySet="MerchantAccount">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="MerchantId" ColumnName="MerchantId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CreateMerchantAccount" FunctionName="GreatSavingsModel.Store.sp_CreateMerchant" />
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="GreatSavingsModel.Transaction">
+              <MappingFragment StoreEntitySet="Transactions">
+                <ScalarProperty Name="PymtReceived" ColumnName="PymtReceived" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="TotalPymt" ColumnName="TotalPymt" />
+                <ScalarProperty Name="MerchantId" ColumnName="MerchantId" />
+                <ScalarProperty Name="TransCode" ColumnName="TransCode" />
+                <ScalarProperty Name="TransId" ColumnName="TransId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CheckEmailAlreadyExist" FunctionName="GreatSavingsModel.Store.sp_CheckEmailAlreadyExist" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,76 @@
+﻿
+<link href="~/Content/bootstrap-datepicker3.css" rel="stylesheet" />
+@*<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('#newOpenExpiryPicker').datepicker({
+            format: 'dd/mm/yyyy'
+        });
+
+        $('#newOpenExpiryPicker').on('changeDate', function (ev) {
+            //Functionality to be called whenever the date is changed
+            $('#ExpiryDate').val($('#new_open_exp_date').val());
+        });
+
+
+        //$('#deals-image-link').click(function () {
+        //    $('#dealsImageUploader').trigger('click');
+        //});
+
+    });
+
+</script>*@
+<div class="form-title" >
+    <h3>Add Information for Recommendation</h3>
+</div>
+<form name="recommendationForm"  ng-controller="subscriptionController" ng-init="loadModel(5)" novalidate valid-submission="updateRecommendation($event)">  
+    <div class="form-horizontal">       
+       <div id="entry-list" style="float:left" ng-show="orderQty > 1">
+            <ul class="nav nav-tabs nav-tabs2" id="myTab">
+                <li>
+                    <label>&nbsp</label>
+                </li>
+                <li ng-repeat="i in listings track by $index" ng-class="{'active-wbg': $index == currentIndex }">
+                   @* ng-class="$index == 0 ? 'active-wbg' : ''"*@ 
+                     <a href="#tab{{$index+1}}" ng-click="getSelectedForm(dealsForm, $index)">Deals {{$index+1}}</a>
+                </li>
+            </ul>
+        </div>   
+        <div id="form-leftSection" > 
+           
+            <merchant-selector datasource="$parent.merchants" ng-model="model.DirId" 
+                invalid="recommendationForm.$submitted && recommendationForm.merchant.$error.required"></merchant-selector> 
+            <div class="form-group">
+                <label class="control-label col-xs-2">Description</label>
+                <div class="col-xs-10">
+                    <textarea ng-model="model.Description" class="form-control" rows="8" name="description" required validation-style/>
+                    <validation-error has-error="recommendationForm.$submitted && recommendationForm.description.$error.required" show-icon="true"
+                        error-message="The description is required"></validation-error>    
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="file" ng-model="model.uploadedImages" name="recommendationImg" id="recImageUploader" accept='image/*' class="hdn" multiple image-file-reader required />
+                <label class="control-label col-xs-2">Images</label>
+                <div class="col-xs-10">
+                    <label style="font-weight: normal;margin-top: 8px;">Max. file size: 8 MB. Allowed images: jpg, gif, png.</label><br />
+                    <div multiple-image-uploader  file-uploader="recImageUploader" uploaded-images="model.uploadedImages"></div>
+                    <validation-error has-error="recommendationForm.$submitted && recommendationForm.recommendationImg.$error.required" show-icon="false"
+                        error-message="At least one image is required"></validation-error>    
+                </div>
+            </div>
+        </div>
+        <div class="form-update">
+            <input id="btnDirContinue" type="button" value="Continue" class="btn btn-large btn-primary btn-r-pos btn-subs continue" 
+                ng-click="saveAll($event)" ng-disabled="completed == false" />
+             &nbsp
+             @*<input id="btnDirUpdate" type="button" value="Update" class="btn btn-large btn-primary btn-r-pos btn-subs" ng-click="updateRecommendation($event)"/>*@
+             <button id="btnRecomUpdate" class="btn btn-large btn-primary btn-r-pos btn-subs action"  type="submit" >
+	            <i class="act-indicator i-M-loader"></i>
+	            <i class="act-indicator i-accept"></i>
+	            <i class="act-indicator i-ignore"></i>
+	            <span><b>Update</b></span>
+            </button>   
+        </div>
+    </div>
+</form>

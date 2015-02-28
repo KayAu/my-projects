@@ -1,0 +1,181 @@
+﻿@model GreatSavings.Models.MerchantModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+  
+    <fieldset>
+        <legend>Merchant</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Merchant.CompanyName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Merchant.CompanyName)
+            @Html.ValidationMessageFor(model => model.Merchant.CompanyName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Merchant.StreetName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Merchant.StreetName)
+            @Html.ValidationMessageFor(model => model.Merchant.StreetName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Merchant.Postcode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Merchant.Postcode)
+            @Html.ValidationMessageFor(model => model.Merchant.Postcode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Merchant.State)
+        </div>
+        <div class="editor-field">
+            
+            @Html.DropDownListFor(n => n.SelectedState, Model.States, "Please select a state...")
+           @* @Html.ValidationMessageFor(model => model.)*@
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Merchant.Country)
+        </div>
+        <div class="editor-field">
+          
+            @Html.DropDownListFor(n => n.SelectedCountry, Model.Countries, "Please select a country...")
+           @* @Html.ValidationMessageFor(model => model.Country)*@
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Merchant.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Merchant.Email)
+            @Html.ValidationMessageFor(model => model.Merchant.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Merchant.Website)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Merchant.Website)
+            @Html.ValidationMessageFor(model => model.Merchant.Website)
+        </div>
+        <div class="editor-label">
+            <u>Operation Hours</u>
+        </div>
+        <div class="editor-label">
+         @*   @Html.LabelFor(model => model.Merchant.OperateFrom)*@
+            Start From:
+        </div>
+        <div class="editor-field">
+            <ul>
+                <li>@Html.DropDownListFor(n => n.SelectedStartHour, Model.OperatingHours, "Hour")</li>
+                <li>@Html.DropDownListFor(n => n.SelectedStartMins, Model.OperatingMinutes, "Minutes")</li>
+                <li>
+                    @{
+                        foreach (var period in Model.OperatingPeriod)
+                        {
+                            <div>
+                                @Html.RadioButtonFor(model => model.SelectedStartPeriod, new { id = period.Text })
+                                @Html.Label( period.Text , period.Text)
+                            </div>
+                        }
+                    }
+                </li>
+            </ul>
+
+       @*     @Html.ValidationMessageFor(model => model.Merchant.OperateFrom)*@
+        </div>
+
+        <div class="editor-label">
+         @*   @Html.LabelFor(model => model.Merchant.OperateFrom)*@
+            End At:
+        </div>
+        <div class="editor-field">
+            <ul>
+                <li>@Html.DropDownListFor(n => n.SelectedEndHour, Model.OperatingHours, "Hour")</li>
+                <li>@Html.DropDownListFor(n => n.SelectedEndMins, Model.OperatingMinutes, "Minutes")</li>
+                <li>
+                    @{
+                        foreach (var period in Model.OperatingPeriod)
+                        {
+                            <div>
+                                @Html.RadioButtonFor(model => model.SelectedEndPeriod, new { id = period.Text })
+                                @Html.Label( period.Text , period.Text)
+                            </div>
+                        }
+                    }
+                </li>
+            </ul>
+
+       @*     @Html.ValidationMessageFor(model => model.Merchant.OperateFrom)*@
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Merchant.OperateTo)
+            @Html.ValidationMessageFor(model => model.Merchant.OperateTo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Merchant.FirstContact)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Merchant.FirstContact)
+            @Html.ValidationMessageFor(model => model.Merchant.FirstContact)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Merchant.FirstContactNo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Merchant.FirstContactNo)
+            @Html.ValidationMessageFor(model => model.Merchant.FirstContactNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Merchant.SecondContact)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Merchant.SecondContact)
+            @Html.ValidationMessageFor(model => model.Merchant.SecondContact)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Merchant.SecondContactNo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Merchant.SecondContactNo)
+            @Html.ValidationMessageFor(model => model.Merchant.SecondContactNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Merchant.BusIndustryId, "BusinessIndustry")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("BusIndustryId", "Please select an industry...")
+            @Html.ValidationMessageFor(model => model.Merchant.BusIndustryId)
+        </div>
+       
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

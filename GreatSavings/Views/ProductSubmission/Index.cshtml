@@ -1,0 +1,40 @@
+﻿@model IEnumerable<GreatSavings.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="../../Content/admin.css" rel="stylesheet" />
+
+
+<div class="pricing-table group">
+    <h1 class="heading">
+        Pricing overview
+    </h1>
+    @foreach (var item in Model) {    
+        <div class="price-block fl @(item.Name.Replace(' ', '-').ToLower())">
+            <h2 class="title">@Html.DisplayFor(modelItem => item.Name)</h2>
+            <!-- CONTENT -->
+            <div class="content">
+                <p class="price">
+                    <sup>RM</sup>
+                    <span>@(item.Price.ToString("F0", System.Globalization.CultureInfo.InvariantCulture))</span>
+                </p>
+                <p class="hint">@Html.DisplayFor(modelItem => item.Hint)</p>
+            </div>
+            <!-- /CONTENT -->
+            <!-- FEATURES -->
+            <div class="features">
+               @Html.DisplayFor(modelItem => item.Description)
+            </div>
+            <!-- /FEATURES -->
+            <!-- PT-FOOTER -->
+            <div class="pt-footer">
+                <input type="submit" value="Buy Now" class="btn" />
+            </div>
+            <!-- /PT-FOOTER -->
+        </div>
+    }
+
+</div>
