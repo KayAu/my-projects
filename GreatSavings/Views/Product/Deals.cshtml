@@ -1,0 +1,24 @@
+﻿@model GreatSavings.Deal
+
+@{
+    ViewBag.Title = "Deals";
+    Layout = "~/Views/Shared/ClientMaster.cshtml";
+}
+
+
+
+<div class="container">
+    <section class="article-content">
+        <div>
+            <figure>
+                <img src="data:image/gif;base64,@System.Convert.ToBase64String(Model.Image)" />
+            </figure>
+        </div>
+        <details>
+            <summary>@Html.DisplayFor(model => model.Title)</summary>
+            <p>
+                @Html.DisplayFor(model => model.Description)
+            </p>
+        </details>
+    </section>
+</div>
