@@ -220,6 +220,7 @@
     <Compile Include="Controllers\NewOpeningController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductSubmissionController.cs" />
+    <Compile Include="Controllers\PromotionController.cs" />
     <Compile Include="Controllers\RecommendationController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\TransactionController.cs" />

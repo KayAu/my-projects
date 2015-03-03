@@ -731,16 +731,16 @@ button.dropdown-toggle.btn:active, button.dropdown-toggle.btn:focus, .open .drop
     }
 
 .article-content {
-    width: 750px;
+    /* width: 725px; */
     background: #fff;
     padding: 20px;
-    border: 1px solid #d1d1d1;
-    -webkit-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1);
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
+    /*border: 1px solid #e5e5e5;
+    -webkit-box-shadow: 3px 7px 1px 0px rgba(208, 208, 208, .1);
+    -moz-box-shadow: 3px 7px 1px 0px rgba(208, 208, 208, .1);
+    box-shadow: 3px 7px 1px 0px rgba(208, 208, 208, .1);*/
     float: left;
+    margin: auto;
+    margin-top:40px;
 }
 
 .article-content figure {
@@ -753,19 +753,113 @@ button.dropdown-toggle.btn:active, button.dropdown-toggle.btn:focus, .open .drop
 width: 100%;
 }
 
-.article-content details {
+.article-content article {
     height: auto;
-    width: 65%;
+    width: 64%;
     vertical-align: top;
-    float: right;
+    float: left;
 }
 
-.article-content summary {
+.article-content header {
     color: #525252;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    margin-bottom:20px;
+}
+
+.article-content p {
+    font-size: 14px;
+}
+
+.article-content article .product_meta {
     font-size:12px;
+}
+
+.article-content article .item-meta {
+    padding:0px !important;
+}
+
+.article-content article span {
+    float: left;
+    display: block;
+    width: 50px;
     font-weight: bold;
 }
 
-.wrapper
+.article-content article .item-meta .social-links{
+    float:none;
+}
+
+.article-content .terms-condition
 {
+    border-top: 1px solid #dadada;
+    float: left;
+    padding:20px 0;
+}
+
+.article-content .product_meta>span {
+    display: block;
+    color: #000;
+    margin-bottom: 6px;
+    font-weight:bold;
+}
+
+.article-content .product_meta > span > span
+{
+    font-weight:normal;
+}
+
+.article-content .btn-group
+{
+    margin:6px 0 16px 0;
+}
+
+.article-content .btn-group .btn
+{
+    font-family: 'Open Sans',sans-serif;
+    font-weight: 400;
+    color: #777;
+    font-size: 13px;
+}
+
+.article-content .tab-content p
+{
+    margin: 15px;
+}
+
+.article-content .tab-content 
+{
+    border: 1px solid #e0dede;
+    min-height: 200px;
+}
+
+.article-content .nav-tabs {
+    border-bottom: 0;
+}
+
+.article-content .nav-tabs > li
+{
+   border: 1px solid #e0dede;
+   border-bottom: none;
+   border-left: none;
+}
+
+.article-content  ul.nav-tabs li:first-child {
+    border-left: 1px solid #d9d9d9; 
+}
+
+
+.article-content  ul.nav-tabs li a {
+    font-family: 'Oswald';
+    text-transform: uppercase;
+}
+
+.article-content  ul.nav-tabs li.active a, .article-content  ul.nav-tabs li.active a:focus {
+    border:0 !important;
+    color: #1e9944;
+    position: relative;
+    top:2px;
+    background-color: #fff;
+    width:100%;
 }

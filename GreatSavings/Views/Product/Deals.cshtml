@@ -13,12 +13,116 @@
             <figure>
                 <img src="data:image/gif;base64,@System.Convert.ToBase64String(Model.Image)" />
             </figure>
+            <article>
+                <header>@Html.DisplayFor(model => model.Transaction.Merchant.CompanyName)</header>
+                <p>
+                    @Html.DisplayFor(model => model.Title)
+                </p>
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Save</button>
+                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
+                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Email</button>                    
+                </div>
+                <div class="product_meta"> 
+                    <span class="expDt_wrapper">Expiry Date: 
+                        <span>@Model.ExpiryDate.ToString("dd MMM yyyy")</span>
+
+                    </span>
+                     <span class="cat_wrapper">Category: 
+                        <span>To be added</span>
+                    </span>
+                </div>
+                <div class="item-meta">     
+                        <span>Share</span>           
+                        <ul class="social-links">
+                              <li>
+                                  <a id="social-link-facebook" href="https://www.facebook.com/envatomarket">
+                                      <i class="fa fa-facebook"></i>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a id="social-link-twitter" href="https://twitter.com/envatomarket">
+                                      <i class="fa fa-twitter"></i>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a id="social-link-pinterest" href="https://plus.google.com/u/0/112592709425670873637/about">
+                                      <i class="fa fa-pinterest"></i>
+                                  </a>
+                              </li>
+                              <li>
+                                   <a id="social-link-google" href="https://plus.google.com/u/0/112592709425670873637/about">
+                                      <i class="fa fa-google-plus"></i>
+                                  </a>
+                              </li>
+                         </ul>                  
+                    </div>
+                <div id="moreDetails">
+                    <ul class="nav nav-tabs"  role="tablist">
+                        <li class="active"><a data-toggle="tab" href="#description">Description</a></li>
+                        <li><a data-toggle="tab" href="#termsandcondition">Terms And Condition</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="description" class="tab-pane fade in active">
+                            <p>@Model.Description</p>
+                        </div>
+                        <div id="termsandcondition" class="tab-pane fade">
+                            <p>@Model.TermsAndCondition</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
         </div>
-        <details>
-            <summary>@Html.DisplayFor(model => model.Title)</summary>
-            <p>
-                @Html.DisplayFor(model => model.Description)
-            </p>
-        </details>
     </section>
+
+@*    <section class="article-content">
+        <div>
+            <figure>
+                <img src="data:image/gif;base64,@System.Convert.ToBase64String(Model.Image)" />
+            </figure>
+            <article>
+                <header>@Html.DisplayFor(model => model.Title)</header>
+                <p>
+                    @Html.DisplayFor(model => model.Description)
+                </p>
+                <div class="exp"> 
+                    Expired:  @Model.ExpiryDate.ToString("dd MMM yyyy")
+                </div>
+                <div class="item-meta">
+                
+                        <a href="#"><i class="fa fa-plus-square">&nbsp;</i>Save</a>             
+                
+                        <ul class="social-links">
+                              <li>
+                                  <a id="social-link-facebook" href="https://www.facebook.com/envatomarket">
+                                      <i class="fa fa-facebook"></i>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a id="social-link-twitter" href="https://twitter.com/envatomarket">
+                                      <i class="fa fa-twitter"></i>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a id="social-link-pinterest" href="https://plus.google.com/u/0/112592709425670873637/about">
+                                      <i class="fa fa-pinterest"></i>
+                                  </a>
+                              </li>
+                              <li>
+                                   <a id="social-link-google" href="https://plus.google.com/u/0/112592709425670873637/about">
+                                      <i class="fa fa-google-plus"></i>
+                                  </a>
+                              </li>
+                         </ul>
+
+                   
+                    </div>
+            </article>
+        </div>
+        <div class="terms-condition">
+            <label></label>
+            @Model.TermsAndCondition
+        </div>
+    </section>*@
+
 </div>
