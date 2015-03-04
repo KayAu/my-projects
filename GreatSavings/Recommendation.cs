@@ -28,5 +28,8 @@ namespace GreatSavings
         public string DirId { get; set; }
     
         public virtual Transaction Transaction { get; set; }
+        public virtual Directory Directory { get; set; }
+        public virtual Recommendation Recommendations1 { get; set; }
+        public virtual Recommendation Recommendation1 { get; set; }
     }
 }

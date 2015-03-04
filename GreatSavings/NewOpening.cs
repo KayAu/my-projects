@@ -23,5 +23,6 @@ namespace GreatSavings
         public string DirId { get; set; }
     
         public virtual Transaction Transaction { get; set; }
+        public virtual Directory Directory { get; set; }
     }
 }

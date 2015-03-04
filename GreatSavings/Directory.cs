@@ -14,6 +14,14 @@ namespace GreatSavings
     
     public partial class Directory
     {
+        public Directory()
+        {
+            this.Advertisements = new HashSet<Advertisement>();
+            this.Deals = new HashSet<Deal>();
+            this.NewOpenings = new HashSet<NewOpening>();
+            this.Recommendations = new HashSet<Recommendation>();
+        }
+    
         public string DirId { get; set; }
         public string CompanyName { get; set; }
         public string StreetName { get; set; }
@@ -31,10 +39,15 @@ namespace GreatSavings
         public byte[] CompanyImg { get; set; }
         public Nullable<int> TransId { get; set; }
         public Nullable<int> MerchantId { get; set; }
+        public string Email { get; set; }
     
         public virtual BusinessIndustry BusinessIndustry { get; set; }
         public virtual Transaction Transaction { get; set; }
         public virtual Directory Directory1 { get; set; }
         public virtual Directory Directory2 { get; set; }
+        public virtual ICollection<Advertisement> Advertisements { get; set; }
+        public virtual ICollection<Deal> Deals { get; set; }
+        public virtual ICollection<NewOpening> NewOpenings { get; set; }
+        public virtual ICollection<Recommendation> Recommendations { get; set; }
     }
 }

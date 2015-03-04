@@ -8,8 +8,10 @@
 
 
 <div class="container">
+
     <section class="article-content">
-        <div>
+        <!-- TOP SECTION -->
+        <div class="top-section">
             <figure>
                 <img src="data:image/gif;base64,@System.Convert.ToBase64String(Model.Image)" />
             </figure>
@@ -18,60 +20,105 @@
                 <p>
                     @Html.DisplayFor(model => model.Title)
                 </p>
-                <div class="btn-group" role="group" aria-label="...">
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Save</button>
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Email</button>                    
-                </div>
                 <div class="product_meta"> 
                     <span class="expDt_wrapper">Expiry Date: 
                         <span>@Model.ExpiryDate.ToString("dd MMM yyyy")</span>
-
                     </span>
                      <span class="cat_wrapper">Category: 
                         <span>To be added</span>
                     </span>
                 </div>
-                <div class="item-meta">     
-                        <span>Share</span>           
-                        <ul class="social-links">
-                              <li>
-                                  <a id="social-link-facebook" href="https://www.facebook.com/envatomarket">
-                                      <i class="fa fa-facebook"></i>
-                                  </a>
-                              </li>
-                              <li>
-                                  <a id="social-link-twitter" href="https://twitter.com/envatomarket">
-                                      <i class="fa fa-twitter"></i>
-                                  </a>
-                              </li>
-                              <li>
-                                  <a id="social-link-pinterest" href="https://plus.google.com/u/0/112592709425670873637/about">
-                                      <i class="fa fa-pinterest"></i>
-                                  </a>
-                              </li>
-                              <li>
-                                   <a id="social-link-google" href="https://plus.google.com/u/0/112592709425670873637/about">
-                                      <i class="fa fa-google-plus"></i>
-                                  </a>
-                              </li>
-                         </ul>                  
-                    </div>
-                <div id="moreDetails">
-                    <ul class="nav nav-tabs"  role="tablist">
-                        <li class="active"><a data-toggle="tab" href="#description">Description</a></li>
-                        <li><a data-toggle="tab" href="#termsandcondition">Terms And Condition</a></li>
-                    </ul>
-                    <div class="tab-content">
-                        <div id="description" class="tab-pane fade in active">
-                            <p>@Model.Description</p>
-                        </div>
-                        <div id="termsandcondition" class="tab-pane fade">
-                            <p>@Model.TermsAndCondition</p>
-                        </div>
-                    </div>
-                </div>
+                                
             </article>
+        </div>
+        <!-- MIDDLE SECTION -->
+        <div id="moreDetails" class="mid-section">
+            <ul class="nav nav-tabs"  role="tablist">
+                <li class="active"><a data-toggle="tab" href="#description">Description</a></li>
+                <li><a data-toggle="tab" href="#termsandcondition">Terms And Condition</a></li>
+                <li><a data-toggle="tab" href="#compdetails">Company Details</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="description" class="tab-pane fade in active">
+                    <p>@Model.Description</p>
+                </div>
+                <div id="termsandcondition" class="tab-pane fade">
+                    <p>@Model.TermsAndCondition</p>
+                </div>
+                <div id="compdetails" class="tab-pane fade">
+                    <table class="contact">
+                        <tbody>
+                        <tr>
+                            <th class="address">
+                                <i class="fa fa-map-marker"></i>
+                                <span>Address:</span>
+                            </th>
+                            <td>@Model.Transaction.Merchant.StreetName</td>
+                        </tr>
+                        <tr>
+                            <th class="phone">
+                                <i class="fa fa-phone"></i>
+                                <span>Phone:</span>
+                            </th>
+                            <td>@Model.Transaction.Merchant.ContactNo</td>
+                        </tr>
+                        <tr>
+                            <th class="email">
+                                <i class="fa fa-envelope"></i>
+                                <span>E-mail:</span>
+                            </th>
+                            <td><a href="mailto:info@yourcompany.com">@Model.Directory.Email</a></td>
+                        </tr>
+                        <tr>
+                            <th class="email">
+                                <i class="fa fa-link"></i>
+                                <span>Website:</span>
+                            </th>
+                            <td><a href="@Model.Directory.Website">@Model.Directory.Website</a></td>
+                        </tr>
+                        <tr>
+                            <th class="gps">
+                                <i class="fa fa-clock-o"></i>
+                                <span>Operating Hours:</span>
+                            </th>
+                            <td>@Model.Directory.OperateFrom - @Model.Directory.OperateTo</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- BOTTOM SECTION -->
+        <div class="bottom-section buttons-bar">
+            <div class="btn-group" role="group" aria-label="...">
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Save</button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Email</button>                    
+            </div>
+            <div class="item-meta">         
+                <ul class="social-links">
+                        <li>
+                            <a id="social-link-facebook" href="https://www.facebook.com/envatomarket">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="social-link-twitter" href="https://twitter.com/envatomarket">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="social-link-pinterest" href="https://plus.google.com/u/0/112592709425670873637/about">
+                                <i class="fa fa-pinterest"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="social-link-google" href="https://plus.google.com/u/0/112592709425670873637/about">
+                                <i class="fa fa-google-plus"></i>
+                            </a>
+                        </li>
+                    </ul>                  
+            </div>
         </div>
     </section>
 

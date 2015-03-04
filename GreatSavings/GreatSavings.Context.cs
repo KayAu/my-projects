@@ -42,6 +42,7 @@ namespace GreatSavings
         public DbSet<Recommendation> Recommendations { get; set; }
         public DbSet<MerchantAccount> MerchantAccounts { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<AspNetUser> AspNetUsers { get; set; }
     
         public virtual ObjectResult<Nullable<int>> CreateMerchantAccount(string prUserID)
         {

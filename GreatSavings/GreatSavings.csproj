@@ -208,6 +208,9 @@
     <Compile Include="Areas\RouteDebugger\RequestHelper.cs" />
     <Compile Include="Areas\RouteDebugger\RouteDebuggerAreaRegistration.cs" />
     <Compile Include="Areas\RouteDebugger\RouteDebuggerConfig.cs" />
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>GreatSavings.tt</DependentUpon>
+    </Compile>
     <Compile Include="BusinessIndustry.cs">
       <DependentUpon>GreatSavings.tt</DependentUpon>
     </Compile>

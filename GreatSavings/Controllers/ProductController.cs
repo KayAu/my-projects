@@ -21,7 +21,7 @@ namespace GreatSavings.Controllers
         public ActionResult Deals(int id)
         {
             Deal dealObj = db.Deals.Where(d => d.Id == id).FirstOrDefault();
-
+            
             return View(dealObj);
 
         }

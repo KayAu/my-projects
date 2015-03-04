@@ -8,6 +8,7 @@
         <EntityContainer Name="GreatSavingsModelStoreContainer">
           <EntitySet Name="Advertisement" EntityType="GreatSavingsModel.Store.Advertisement" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="AdvertisementType" EntityType="GreatSavingsModel.Store.AdvertisementType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AspNetUsers" EntityType="GreatSavingsModel.Store.AspNetUsers" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="BusinessIndustry" EntityType="GreatSavingsModel.Store.BusinessIndustry" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Country" EntityType="GreatSavingsModel.Store.Country" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Deals" EntityType="GreatSavingsModel.Store.Deals" store:Type="Tables" Schema="dbo" />
@@ -25,9 +26,25 @@
             <End Role="Transactions" EntitySet="Transactions" />
             <End Role="Advertisement" EntitySet="Advertisement" />
           </AssociationSet>
+          <AssociationSet Name="FK_Advertisement_Advertisement1" Association="GreatSavingsModel.Store.FK_Advertisement_Advertisement1">
+            <End Role="Advertisement" EntitySet="Advertisement" />
+            <End Role="Advertisement1" EntitySet="Advertisement" />
+          </AssociationSet>
           <AssociationSet Name="FK_Advertisement_AdvertisementType" Association="GreatSavingsModel.Store.FK_Advertisement_AdvertisementType">
             <End Role="AdvertisementType" EntitySet="AdvertisementType" />
             <End Role="Advertisement" EntitySet="Advertisement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advertisement_Directory" Association="GreatSavingsModel.Store.FK_Advertisement_Directory">
+            <End Role="Directory" EntitySet="Directory" />
+            <End Role="Advertisement" EntitySet="Advertisement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deals_Deals" Association="GreatSavingsModel.Store.FK_Deals_Deals">
+            <End Role="Deals" EntitySet="Deals" />
+            <End Role="Deals1" EntitySet="Deals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deals_Directory" Association="GreatSavingsModel.Store.FK_Deals_Directory">
+            <End Role="Directory" EntitySet="Directory" />
+            <End Role="Deals" EntitySet="Deals" />
           </AssociationSet>
           <AssociationSet Name="FK_Deals_Transactions" Association="GreatSavingsModel.Store.FK_Deals_Transactions">
             <End Role="Transactions" EntitySet="Transactions" />
@@ -49,6 +66,10 @@
             <End Role="BusinessIndustry" EntitySet="BusinessIndustry" />
             <End Role="Merchant" EntitySet="Merchant" />
           </AssociationSet>
+          <AssociationSet Name="FK_NewOpening_Directory" Association="GreatSavingsModel.Store.FK_NewOpening_Directory">
+            <End Role="Directory" EntitySet="Directory" />
+            <End Role="NewOpening" EntitySet="NewOpening" />
+          </AssociationSet>
           <AssociationSet Name="FK_NewOpening_Transaction" Association="GreatSavingsModel.Store.FK_NewOpening_Transaction">
             <End Role="Transactions" EntitySet="Transactions" />
             <End Role="NewOpening" EntitySet="NewOpening" />
@@ -56,6 +77,14 @@
           <AssociationSet Name="FK_Promotions_PromotionsType" Association="GreatSavingsModel.Store.FK_Promotions_PromotionsType">
             <End Role="PromotionsType" EntitySet="PromotionsType" />
             <End Role="Promotions" EntitySet="Promotions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recommendations_Directory" Association="GreatSavingsModel.Store.FK_Recommendations_Directory">
+            <End Role="Directory" EntitySet="Directory" />
+            <End Role="Recommendations" EntitySet="Recommendations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recommendations_Recommendations" Association="GreatSavingsModel.Store.FK_Recommendations_Recommendations">
+            <End Role="Recommendations" EntitySet="Recommendations" />
+            <End Role="Recommendations1" EntitySet="Recommendations" />
           </AssociationSet>
           <AssociationSet Name="FK_Recommendations_Transaction" Association="GreatSavingsModel.Store.FK_Recommendations_Transaction">
             <End Role="Transactions" EntitySet="Transactions" />
@@ -88,6 +117,24 @@
           </Key>
           <Property Name="AdTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="AdName" Type="varchar" Nullable="false" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="ConfirmedEmail" Type="bit" Nullable="false" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
         </EntityType>
         <EntityType Name="BusinessIndustry">
           <Key>
@@ -127,6 +174,7 @@
           <Property Name="Postcode" Type="int" Nullable="false" />
           <Property Name="State" Type="varchar" Nullable="false" MaxLength="30" />
           <Property Name="Country" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
           <Property Name="Website" Type="varchar" MaxLength="50" />
           <Property Name="OperateFrom" Type="varchar" Nullable="false" MaxLength="10" />
           <Property Name="OperateTo" Type="varchar" Nullable="false" MaxLength="10" />
@@ -265,6 +313,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Advertisement_Advertisement1">
+          <End Role="Advertisement" Type="GreatSavingsModel.Store.Advertisement" Multiplicity="1" />
+          <End Role="Advertisement1" Type="GreatSavingsModel.Store.Advertisement" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Advertisement">
+              <PropertyRef Name="AdId" />
+            </Principal>
+            <Dependent Role="Advertisement1">
+              <PropertyRef Name="AdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Advertisement_AdvertisementType">
           <End Role="AdvertisementType" Type="GreatSavingsModel.Store.AdvertisementType" Multiplicity="1" />
           <End Role="Advertisement" Type="GreatSavingsModel.Store.Advertisement" Multiplicity="0..1" />
@@ -274,6 +334,42 @@
             </Principal>
             <Dependent Role="Advertisement">
               <PropertyRef Name="AdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advertisement_Directory">
+          <End Role="Directory" Type="GreatSavingsModel.Store.Directory" Multiplicity="0..1" />
+          <End Role="Advertisement" Type="GreatSavingsModel.Store.Advertisement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Directory">
+              <PropertyRef Name="DirId" />
+            </Principal>
+            <Dependent Role="Advertisement">
+              <PropertyRef Name="DirId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deals_Deals">
+          <End Role="Deals" Type="GreatSavingsModel.Store.Deals" Multiplicity="1" />
+          <End Role="Deals1" Type="GreatSavingsModel.Store.Deals" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Deals">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Deals1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deals_Directory">
+          <End Role="Directory" Type="GreatSavingsModel.Store.Directory" Multiplicity="0..1" />
+          <End Role="Deals" Type="GreatSavingsModel.Store.Deals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Directory">
+              <PropertyRef Name="DirId" />
+            </Principal>
+            <Dependent Role="Deals">
+              <PropertyRef Name="DirId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -337,6 +433,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_NewOpening_Directory">
+          <End Role="Directory" Type="GreatSavingsModel.Store.Directory" Multiplicity="0..1" />
+          <End Role="NewOpening" Type="GreatSavingsModel.Store.NewOpening" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Directory">
+              <PropertyRef Name="DirId" />
+            </Principal>
+            <Dependent Role="NewOpening">
+              <PropertyRef Name="DirId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_NewOpening_Transaction">
           <End Role="Transactions" Type="GreatSavingsModel.Store.Transactions" Multiplicity="1" />
           <End Role="NewOpening" Type="GreatSavingsModel.Store.NewOpening" Multiplicity="*" />
@@ -358,6 +466,30 @@
             </Principal>
             <Dependent Role="Promotions">
               <PropertyRef Name="PromotionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recommendations_Directory">
+          <End Role="Directory" Type="GreatSavingsModel.Store.Directory" Multiplicity="0..1" />
+          <End Role="Recommendations" Type="GreatSavingsModel.Store.Recommendations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Directory">
+              <PropertyRef Name="DirId" />
+            </Principal>
+            <Dependent Role="Recommendations">
+              <PropertyRef Name="DirId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recommendations_Recommendations">
+          <End Role="Recommendations" Type="GreatSavingsModel.Store.Recommendations" Multiplicity="1" />
+          <End Role="Recommendations1" Type="GreatSavingsModel.Store.Recommendations" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Recommendations">
+              <PropertyRef Name="RecomId" />
+            </Principal>
+            <Dependent Role="Recommendations1">
+              <PropertyRef Name="RecomId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -481,6 +613,35 @@
             <End Role="Transaction" EntitySet="Transactions" />
             <End Role="Transaction1" EntitySet="Transactions" />
           </AssociationSet>
+          <EntitySet Name="AspNetUsers" EntityType="GreatSavingsModel.AspNetUser" />
+          <AssociationSet Name="FK_Advertisement_Advertisement1" Association="GreatSavingsModel.FK_Advertisement_Advertisement1">
+            <End Role="Advertisement" EntitySet="Advertisements" />
+            <End Role="Advertisement1" EntitySet="Advertisements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advertisement_Directory" Association="GreatSavingsModel.FK_Advertisement_Directory">
+            <End Role="Directory" EntitySet="Directories" />
+            <End Role="Advertisement" EntitySet="Advertisements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deals_Deals" Association="GreatSavingsModel.FK_Deals_Deals">
+            <End Role="Deal" EntitySet="Deals" />
+            <End Role="Deal1" EntitySet="Deals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deals_Directory" Association="GreatSavingsModel.FK_Deals_Directory">
+            <End Role="Directory" EntitySet="Directories" />
+            <End Role="Deal" EntitySet="Deals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NewOpening_Directory" Association="GreatSavingsModel.FK_NewOpening_Directory">
+            <End Role="Directory" EntitySet="Directories" />
+            <End Role="NewOpening" EntitySet="NewOpenings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recommendations_Directory" Association="GreatSavingsModel.FK_Recommendations_Directory">
+            <End Role="Directory" EntitySet="Directories" />
+            <End Role="Recommendation" EntitySet="Recommendations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recommendations_Recommendations" Association="GreatSavingsModel.FK_Recommendations_Recommendations">
+            <End Role="Recommendation" EntitySet="Recommendations" />
+            <End Role="Recommendation1" EntitySet="Recommendations" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="BusinessIndustry">
           <Key>
@@ -593,6 +754,9 @@
           <NavigationProperty Name="Transaction" Relationship="GreatSavingsModel.FK_Deals_Transactions" FromRole="Deal" ToRole="Transaction" />
           <Property Type="Boolean" Name="IsActivated" Nullable="false" />
           <Property Type="String" Name="DirId" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Deals1" Relationship="GreatSavingsModel.FK_Deals_Deals" FromRole="Deal" ToRole="Deal1" />
+          <NavigationProperty Name="Deal1" Relationship="GreatSavingsModel.FK_Deals_Deals" FromRole="Deal1" ToRole="Deal" />
+          <NavigationProperty Name="Directory" Relationship="GreatSavingsModel.FK_Deals_Directory" FromRole="Deal" ToRole="Directory" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -622,6 +786,9 @@
           <NavigationProperty Name="AdvertisementType" Relationship="GreatSavingsModel.FK_Advertisement_AdvertisementType" FromRole="Advertisement" ToRole="AdvertisementType" />
           <NavigationProperty Name="Transaction" Relationship="GreatSavingsModel.FK_Advertisement_Advertisement" FromRole="Advertisement" ToRole="Transaction" />
           <Property Type="String" Name="DirId" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Advertisement1" Relationship="GreatSavingsModel.FK_Advertisement_Advertisement1" FromRole="Advertisement" ToRole="Advertisement1" />
+          <NavigationProperty Name="Advertisement2" Relationship="GreatSavingsModel.FK_Advertisement_Advertisement1" FromRole="Advertisement1" ToRole="Advertisement" />
+          <NavigationProperty Name="Directory" Relationship="GreatSavingsModel.FK_Advertisement_Directory" FromRole="Advertisement" ToRole="Directory" />
         </EntityType>
         <EntityType Name="AdvertisementType">
           <Key>
@@ -656,6 +823,11 @@
           <Property Type="Int32" Name="MerchantId" />
           <NavigationProperty Name="Directory1" Relationship="GreatSavingsModel.FK_Directory_Directory" FromRole="Directory" ToRole="Directory1" />
           <NavigationProperty Name="Directory2" Relationship="GreatSavingsModel.FK_Directory_Directory" FromRole="Directory1" ToRole="Directory" />
+          <Property Type="String" Name="Email" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Advertisements" Relationship="GreatSavingsModel.FK_Advertisement_Directory" FromRole="Directory" ToRole="Advertisement" />
+          <NavigationProperty Name="Deals" Relationship="GreatSavingsModel.FK_Deals_Directory" FromRole="Directory" ToRole="Deal" />
+          <NavigationProperty Name="NewOpenings" Relationship="GreatSavingsModel.FK_NewOpening_Directory" FromRole="Directory" ToRole="NewOpening" />
+          <NavigationProperty Name="Recommendations" Relationship="GreatSavingsModel.FK_Recommendations_Directory" FromRole="Directory" ToRole="Recommendation" />
         </EntityType>
         <EntityType Name="NewOpening">
           <Key>
@@ -669,6 +841,7 @@
           <NavigationProperty Name="Transaction" Relationship="GreatSavingsModel.FK_NewOpening_Transaction" FromRole="NewOpening" ToRole="Transaction" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <Property Type="String" Name="DirId" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Directory" Relationship="GreatSavingsModel.FK_NewOpening_Directory" FromRole="NewOpening" ToRole="Directory" />
         </EntityType>
         <EntityType Name="Recommendation">
           <Key>
@@ -687,6 +860,9 @@
           <Property Type="Binary" Name="Image6" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Transaction" Relationship="GreatSavingsModel.FK_Recommendations_Transaction" FromRole="Recommendation" ToRole="Transaction" />
           <Property Type="String" Name="DirId" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Directory" Relationship="GreatSavingsModel.FK_Recommendations_Directory" FromRole="Recommendation" ToRole="Directory" />
+          <NavigationProperty Name="Recommendations1" Relationship="GreatSavingsModel.FK_Recommendations_Recommendations" FromRole="Recommendation" ToRole="Recommendation1" />
+          <NavigationProperty Name="Recommendation1" Relationship="GreatSavingsModel.FK_Recommendations_Recommendations" FromRole="Recommendation1" ToRole="Recommendation" />
         </EntityType>
         <Association Name="FK_Advertisement_AdvertisementType">
           <End Type="GreatSavingsModel.AdvertisementType" Role="AdvertisementType" Multiplicity="1" />
@@ -847,6 +1023,108 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="ConfirmedEmail" Nullable="false" />
+          <Property Type="Boolean" Name="EmailConfirmed" Nullable="false" />
+          <Property Type="String" Name="PasswordHash" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SecurityStamp" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PhoneNumber" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="PhoneNumberConfirmed" Nullable="false" />
+          <Property Type="Boolean" Name="TwoFactorEnabled" Nullable="false" />
+          <Property Type="DateTime" Name="LockoutEndDateUtc" Precision="3" />
+          <Property Type="Boolean" Name="LockoutEnabled" Nullable="false" />
+          <Property Type="Int32" Name="AccessFailedCount" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Advertisement_Advertisement1">
+          <End Type="GreatSavingsModel.Advertisement" Role="Advertisement" Multiplicity="1" />
+          <End Type="GreatSavingsModel.Advertisement" Role="Advertisement1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Advertisement">
+              <PropertyRef Name="AdId" />
+            </Principal>
+            <Dependent Role="Advertisement1">
+              <PropertyRef Name="AdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advertisement_Directory">
+          <End Type="GreatSavingsModel.Directory" Role="Directory" Multiplicity="0..1" />
+          <End Type="GreatSavingsModel.Advertisement" Role="Advertisement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Directory">
+              <PropertyRef Name="DirId" />
+            </Principal>
+            <Dependent Role="Advertisement">
+              <PropertyRef Name="DirId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deals_Deals">
+          <End Type="GreatSavingsModel.Deal" Role="Deal" Multiplicity="1" />
+          <End Type="GreatSavingsModel.Deal" Role="Deal1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Deal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Deal1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deals_Directory">
+          <End Type="GreatSavingsModel.Directory" Role="Directory" Multiplicity="0..1" />
+          <End Type="GreatSavingsModel.Deal" Role="Deal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Directory">
+              <PropertyRef Name="DirId" />
+            </Principal>
+            <Dependent Role="Deal">
+              <PropertyRef Name="DirId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NewOpening_Directory">
+          <End Type="GreatSavingsModel.Directory" Role="Directory" Multiplicity="0..1" />
+          <End Type="GreatSavingsModel.NewOpening" Role="NewOpening" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Directory">
+              <PropertyRef Name="DirId" />
+            </Principal>
+            <Dependent Role="NewOpening">
+              <PropertyRef Name="DirId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recommendations_Directory">
+          <End Type="GreatSavingsModel.Directory" Role="Directory" Multiplicity="0..1" />
+          <End Type="GreatSavingsModel.Recommendation" Role="Recommendation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Directory">
+              <PropertyRef Name="DirId" />
+            </Principal>
+            <Dependent Role="Recommendation">
+              <PropertyRef Name="DirId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recommendations_Recommendations">
+          <End Type="GreatSavingsModel.Recommendation" Role="Recommendation" Multiplicity="1" />
+          <End Type="GreatSavingsModel.Recommendation" Role="Recommendation1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Recommendation">
+              <PropertyRef Name="RecomId" />
+            </Principal>
+            <Dependent Role="Recommendation1">
+              <PropertyRef Name="RecomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -980,6 +1258,7 @@
           <EntitySetMapping Name="Directories">
             <EntityTypeMapping TypeName="GreatSavingsModel.Directory">
               <MappingFragment StoreEntitySet="Directory">
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="MerchantId" ColumnName="MerchantId" />
                 <ScalarProperty Name="TransId" ColumnName="TransId" />
                 <ScalarProperty Name="CompanyImg" ColumnName="CompanyImg" />
@@ -1053,6 +1332,25 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="CheckEmailAlreadyExist" FunctionName="GreatSavingsModel.Store.sp_CheckEmailAlreadyExist" />
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="GreatSavingsModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="ConfirmedEmail" ColumnName="ConfirmedEmail" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -24,5 +24,8 @@ namespace GreatSavings
     
         public virtual AdvertisementType AdvertisementType { get; set; }
         public virtual Transaction Transaction { get; set; }
+        public virtual Advertisement Advertisement1 { get; set; }
+        public virtual Advertisement Advertisement2 { get; set; }
+        public virtual Directory Directory { get; set; }
     }
 }
