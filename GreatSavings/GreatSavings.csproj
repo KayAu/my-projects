@@ -398,6 +398,7 @@
     <Content Include="Images\sprite.png" />
     <Content Include="Images\x-mark-2-16.gif" />
     <Content Include="Images\x-mark-1-16.gif" />
+    <Content Include="script.sql" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-messages.min.js" />
     <Content Include="Scripts\angular-resource.js" />
