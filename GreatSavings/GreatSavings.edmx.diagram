@@ -32,8 +32,8 @@
         <AssociationConnector Association="GreatSavingsModel.FK_Deals_Transactions" />
         <AssociationConnector Association="GreatSavingsModel.FK_Directory_Directory" />
         <AssociationConnector Association="GreatSavingsModel.FK_Transactions_Merchant" ManuallyRouted="true" >
-          <ConnectorPoint PointX="2.25" PointY="1.6681266276041664" />
-          <ConnectorPoint PointX="2.675390870025" PointY="1.6681266276041664" />
+          <ConnectorPoint PointX="2.25" PointY="5.1725065104166656" />
+          <ConnectorPoint PointX="2.675390870025" PointY="44.16463417977225" />
           <ConnectorPoint PointX="2.675390870025" PointY="3.1742424212919533" />
           <ConnectorPoint PointX="4.604166666666667" PointY="3.1742424212919529" />
           <ConnectorPoint PointX="4.770833333333333" PointY="3.1742424212919533" />
