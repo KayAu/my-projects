@@ -9,8 +9,6 @@ using System.Web.Http;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.AspNet.Identity; // Maybe this one too
-
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity.Validation;
 using GreatSavings.ViewModels;

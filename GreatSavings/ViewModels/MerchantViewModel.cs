@@ -9,7 +9,7 @@ namespace GreatSavings.ViewModels
 {
     public class MerchantViewModel
     {
-        public Merchant Merchant { get; set; }
+       // public Merchant Merchant { get; set; }
         //public SelectList States { get; set; }
         //public SelectList Countries { get; set; }
         public List<State> States { get; set; }
@@ -35,7 +35,7 @@ namespace GreatSavings.ViewModels
 
         public MerchantViewModel()
         {
-            this.Merchant = new Merchant();
+           // this.Merchant = new Merchant();
            // this.SelectedCountry = new SelectListItem();
             
         }
@@ -44,11 +44,11 @@ namespace GreatSavings.ViewModels
         {
             int newId = 100001;
 
-            if (db.Merchants.Count() > 0)
-            {
-                var result = db.Merchants.Where(m => m.MerchantId > 0).Max(m => m.MerchantId);
-                newId = result+=1;
-            }
+            //if (db.Merchants.Count() > 0)
+            //{
+            //    var result = db.Merchants.Where(m => m.MerchantId > 0).Max(m => m.MerchantId);
+            //    newId = result+=1;
+            //}
   
             return newId;
         }

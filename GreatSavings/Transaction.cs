@@ -35,8 +35,5 @@ namespace GreatSavings
         public virtual ICollection<NewOpening> NewOpenings { get; set; }
         public virtual ICollection<Recommendation> Recommendations { get; set; }
         public virtual ICollection<Deal> Deals { get; set; }
-        public virtual Merchant Merchant { get; set; }
-        public virtual Transaction Transactions1 { get; set; }
-        public virtual Transaction Transaction1 { get; set; }
     }
 }

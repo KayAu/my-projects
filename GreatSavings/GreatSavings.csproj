@@ -214,12 +214,9 @@
     <Compile Include="BusinessIndustry.cs">
       <DependentUpon>GreatSavings.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Account1Controller.cs" />
     <Compile Include="Controllers\DealsController.cs" />
     <Compile Include="Controllers\DirectoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MerchantController.cs" />
-    <Compile Include="Controllers\MerchantModelController.cs" />
     <Compile Include="Controllers\NewOpeningController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductSubmissionController.cs" />
@@ -255,9 +252,6 @@
       <DependentUpon>GreatSavings.edmx</DependentUpon>
     </Compile>
     <Compile Include="Helper\DataManager.cs" />
-    <Compile Include="Merchant.cs">
-      <DependentUpon>GreatSavings.tt</DependentUpon>
-    </Compile>
     <Compile Include="MerchantAccount.cs">
       <DependentUpon>GreatSavings.tt</DependentUpon>
     </Compile>

@@ -14,9 +14,14 @@ namespace GreatSavings
     
     public partial class MerchantAccount
     {
+        public MerchantAccount()
+        {
+            this.Directories = new HashSet<Directory>();
+        }
+    
         public int MerchantId { get; set; }
         public string UserId { get; set; }
     
-        public virtual Merchant Merchant { get; set; }
+        public virtual ICollection<Directory> Directories { get; set; }
     }
 }

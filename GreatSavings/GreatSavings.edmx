@@ -13,7 +13,6 @@
           <EntitySet Name="Country" EntityType="GreatSavingsModel.Store.Country" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Deals" EntityType="GreatSavingsModel.Store.Deals" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Directory" EntityType="GreatSavingsModel.Store.Directory" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Merchant" EntityType="GreatSavingsModel.Store.Merchant" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MerchantAccount" EntityType="GreatSavingsModel.Store.MerchantAccount" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="NewOpening" EntityType="GreatSavingsModel.Store.NewOpening" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Product" EntityType="GreatSavingsModel.Store.Product" store:Type="Tables" Schema="dbo" />
@@ -22,14 +21,6 @@
           <EntitySet Name="Recommendations" EntityType="GreatSavingsModel.Store.Recommendations" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="States" EntityType="GreatSavingsModel.Store.States" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Transactions" EntityType="GreatSavingsModel.Store.Transactions" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_Advertisement_Advertisement" Association="GreatSavingsModel.Store.FK_Advertisement_Advertisement">
-            <End Role="Transactions" EntitySet="Transactions" />
-            <End Role="Advertisement" EntitySet="Advertisement" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Advertisement_Advertisement1" Association="GreatSavingsModel.Store.FK_Advertisement_Advertisement1">
-            <End Role="Advertisement" EntitySet="Advertisement" />
-            <End Role="Advertisement1" EntitySet="Advertisement" />
-          </AssociationSet>
           <AssociationSet Name="FK_Advertisement_AdvertisementType" Association="GreatSavingsModel.Store.FK_Advertisement_AdvertisementType">
             <End Role="AdvertisementType" EntitySet="AdvertisementType" />
             <End Role="Advertisement" EntitySet="Advertisement" />
@@ -37,10 +28,6 @@
           <AssociationSet Name="FK_Advertisement_Directory" Association="GreatSavingsModel.Store.FK_Advertisement_Directory">
             <End Role="Directory" EntitySet="Directory" />
             <End Role="Advertisement" EntitySet="Advertisement" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Deals_Deals" Association="GreatSavingsModel.Store.FK_Deals_Deals">
-            <End Role="Deals" EntitySet="Deals" />
-            <End Role="Deals1" EntitySet="Deals" />
           </AssociationSet>
           <AssociationSet Name="FK_Deals_Directory" Association="GreatSavingsModel.Store.FK_Deals_Directory">
             <End Role="Directory" EntitySet="Directory" />
@@ -54,17 +41,13 @@
             <End Role="BusinessIndustry" EntitySet="BusinessIndustry" />
             <End Role="Directory" EntitySet="Directory" />
           </AssociationSet>
-          <AssociationSet Name="FK_Directory_Directory" Association="GreatSavingsModel.Store.FK_Directory_Directory">
+          <AssociationSet Name="FK_Directory_MerchantAccount" Association="GreatSavingsModel.Store.FK_Directory_MerchantAccount">
+            <End Role="MerchantAccount" EntitySet="MerchantAccount" />
             <End Role="Directory" EntitySet="Directory" />
-            <End Role="Directory1" EntitySet="Directory" />
           </AssociationSet>
           <AssociationSet Name="FK_Directory_Transaction" Association="GreatSavingsModel.Store.FK_Directory_Transaction">
             <End Role="Transactions" EntitySet="Transactions" />
             <End Role="Directory" EntitySet="Directory" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Merchant_BusinessIndustry" Association="GreatSavingsModel.Store.FK_Merchant_BusinessIndustry">
-            <End Role="BusinessIndustry" EntitySet="BusinessIndustry" />
-            <End Role="Merchant" EntitySet="Merchant" />
           </AssociationSet>
           <AssociationSet Name="FK_NewOpening_Directory" Association="GreatSavingsModel.Store.FK_NewOpening_Directory">
             <End Role="Directory" EntitySet="Directory" />
@@ -82,21 +65,9 @@
             <End Role="Directory" EntitySet="Directory" />
             <End Role="Recommendations" EntitySet="Recommendations" />
           </AssociationSet>
-          <AssociationSet Name="FK_Recommendations_Recommendations" Association="GreatSavingsModel.Store.FK_Recommendations_Recommendations">
-            <End Role="Recommendations" EntitySet="Recommendations" />
-            <End Role="Recommendations1" EntitySet="Recommendations" />
-          </AssociationSet>
           <AssociationSet Name="FK_Recommendations_Transaction" Association="GreatSavingsModel.Store.FK_Recommendations_Transaction">
             <End Role="Transactions" EntitySet="Transactions" />
             <End Role="Recommendations" EntitySet="Recommendations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Transactions_Merchant" Association="GreatSavingsModel.Store.FK_Transactions_Merchant">
-            <End Role="Merchant" EntitySet="Merchant" />
-            <End Role="Transactions" EntitySet="Transactions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Transactions_Transactions" Association="GreatSavingsModel.Store.FK_Transactions_Transactions">
-            <End Role="Transactions" EntitySet="Transactions" />
-            <End Role="Transactions1" EntitySet="Transactions" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Advertisement">
@@ -186,27 +157,6 @@
           <Property Name="CompanyImg" Type="image" />
           <Property Name="TransId" Type="int" />
           <Property Name="MerchantId" Type="int" />
-        </EntityType>
-        <EntityType Name="Merchant">
-          <Key>
-            <PropertyRef Name="MerchantId" />
-          </Key>
-          <Property Name="MerchantId" Type="int" Nullable="false" />
-          <Property Name="CompanyName" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="StreetName" Type="varchar" Nullable="false" MaxLength="80" />
-          <Property Name="Postcode" Type="int" Nullable="false" />
-          <Property Name="State" Type="varchar" Nullable="false" MaxLength="30" />
-          <Property Name="Country" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="Website" Type="varchar" MaxLength="50" />
-          <Property Name="OperateFrom" Type="varchar" Nullable="false" MaxLength="10" />
-          <Property Name="OperateTo" Type="varchar" Nullable="false" MaxLength="10" />
-          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="LastName" Type="varchar" MaxLength="50" />
-          <Property Name="ContactNo" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="BusIndustryId" Type="int" Nullable="false" />
-          <Property Name="IsActivated" Type="bit" />
-          <Property Name="CompanyImg" Type="image" />
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="MerchantAccount">
           <Key>
@@ -301,30 +251,6 @@
           <Property Name="CreatedOn" Type="smalldatetime" Nullable="false" />
           <Property Name="PymtReceived" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Advertisement_Advertisement">
-          <End Role="Transactions" Type="GreatSavingsModel.Store.Transactions" Multiplicity="1" />
-          <End Role="Advertisement" Type="GreatSavingsModel.Store.Advertisement" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Transactions">
-              <PropertyRef Name="TransId" />
-            </Principal>
-            <Dependent Role="Advertisement">
-              <PropertyRef Name="TransId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Advertisement_Advertisement1">
-          <End Role="Advertisement" Type="GreatSavingsModel.Store.Advertisement" Multiplicity="1" />
-          <End Role="Advertisement1" Type="GreatSavingsModel.Store.Advertisement" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Advertisement">
-              <PropertyRef Name="AdId" />
-            </Principal>
-            <Dependent Role="Advertisement1">
-              <PropertyRef Name="AdId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Advertisement_AdvertisementType">
           <End Role="AdvertisementType" Type="GreatSavingsModel.Store.AdvertisementType" Multiplicity="1" />
           <End Role="Advertisement" Type="GreatSavingsModel.Store.Advertisement" Multiplicity="0..1" />
@@ -346,18 +272,6 @@
             </Principal>
             <Dependent Role="Advertisement">
               <PropertyRef Name="DirId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Deals_Deals">
-          <End Role="Deals" Type="GreatSavingsModel.Store.Deals" Multiplicity="1" />
-          <End Role="Deals1" Type="GreatSavingsModel.Store.Deals" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Deals">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Deals1">
-              <PropertyRef Name="Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -397,15 +311,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Directory_Directory">
-          <End Role="Directory" Type="GreatSavingsModel.Store.Directory" Multiplicity="1" />
-          <End Role="Directory1" Type="GreatSavingsModel.Store.Directory" Multiplicity="0..1" />
+        <Association Name="FK_Directory_MerchantAccount">
+          <End Role="MerchantAccount" Type="GreatSavingsModel.Store.MerchantAccount" Multiplicity="0..1" />
+          <End Role="Directory" Type="GreatSavingsModel.Store.Directory" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Directory">
-              <PropertyRef Name="DirId" />
+            <Principal Role="MerchantAccount">
+              <PropertyRef Name="MerchantId" />
             </Principal>
-            <Dependent Role="Directory1">
-              <PropertyRef Name="DirId" />
+            <Dependent Role="Directory">
+              <PropertyRef Name="MerchantId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -418,18 +332,6 @@
             </Principal>
             <Dependent Role="Directory">
               <PropertyRef Name="TransId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Merchant_BusinessIndustry">
-          <End Role="BusinessIndustry" Type="GreatSavingsModel.Store.BusinessIndustry" Multiplicity="1" />
-          <End Role="Merchant" Type="GreatSavingsModel.Store.Merchant" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusinessIndustry">
-              <PropertyRef Name="BusIndustryId" />
-            </Principal>
-            <Dependent Role="Merchant">
-              <PropertyRef Name="BusIndustryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -481,18 +383,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Recommendations_Recommendations">
-          <End Role="Recommendations" Type="GreatSavingsModel.Store.Recommendations" Multiplicity="1" />
-          <End Role="Recommendations1" Type="GreatSavingsModel.Store.Recommendations" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Recommendations">
-              <PropertyRef Name="RecomId" />
-            </Principal>
-            <Dependent Role="Recommendations1">
-              <PropertyRef Name="RecomId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Recommendations_Transaction">
           <End Role="Transactions" Type="GreatSavingsModel.Store.Transactions" Multiplicity="1" />
           <End Role="Recommendations" Type="GreatSavingsModel.Store.Recommendations" Multiplicity="*" />
@@ -501,30 +391,6 @@
               <PropertyRef Name="TransId" />
             </Principal>
             <Dependent Role="Recommendations">
-              <PropertyRef Name="TransId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Transactions_Merchant">
-          <End Role="Merchant" Type="GreatSavingsModel.Store.Merchant" Multiplicity="1" />
-          <End Role="Transactions" Type="GreatSavingsModel.Store.Transactions" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Merchant">
-              <PropertyRef Name="MerchantId" />
-            </Principal>
-            <Dependent Role="Transactions">
-              <PropertyRef Name="MerchantId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Transactions_Transactions">
-          <End Role="Transactions" Type="GreatSavingsModel.Store.Transactions" Multiplicity="1" />
-          <End Role="Transactions1" Type="GreatSavingsModel.Store.Transactions" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Transactions">
-              <PropertyRef Name="TransId" />
-            </Principal>
-            <Dependent Role="Transactions1">
               <PropertyRef Name="TransId" />
             </Dependent>
           </ReferentialConstraint>
@@ -540,14 +406,8 @@
     <edmx:ConceptualModels>
       <Schema Namespace="GreatSavingsModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="GreatSavingsEntities" p1:LazyLoadingEnabled="true" >
-          <EntitySet Name="BusinessIndustries" EntityType="GreatSavingsModel.BusinessIndustry" />
-          <EntitySet Name="Merchants" EntityType="GreatSavingsModel.Merchant" />
           <EntitySet Name="Promotions" EntityType="GreatSavingsModel.Promotion" />
           <EntitySet Name="PromotionsTypes" EntityType="GreatSavingsModel.PromotionsType" />
-          <AssociationSet Name="FK_Merchant_BusinessIndustry" Association="GreatSavingsModel.FK_Merchant_BusinessIndustry">
-            <End Role="BusinessIndustry" EntitySet="BusinessIndustries" />
-            <End Role="Merchant" EntitySet="Merchants" />
-          </AssociationSet>
           <AssociationSet Name="FK_Promotions_PromotionsType" Association="GreatSavingsModel.FK_Promotions_PromotionsType">
             <End Role="PromotionsType" EntitySet="PromotionsTypes" />
             <End Role="Promotion" EntitySet="Promotions" />
@@ -565,15 +425,7 @@
             <End Role="AdvertisementType" EntitySet="AdvertisementTypes" />
             <End Role="Advertisement" EntitySet="Advertisements" />
           </AssociationSet>
-          <AssociationSet Name="FK_Directory_BusinessIndustry" Association="GreatSavingsModel.FK_Directory_BusinessIndustry">
-            <End Role="BusinessIndustry" EntitySet="BusinessIndustries" />
-            <End Role="Directory" EntitySet="Directories" />
-          </AssociationSet>
           <EntitySet Name="MerchantAccounts" EntityType="GreatSavingsModel.MerchantAccount" />
-          <AssociationSet Name="FK_MerchantAccount_Merchant" Association="GreatSavingsModel.FK_MerchantAccount_Merchant">
-            <End Role="Merchant" EntitySet="Merchants" />
-            <End Role="MerchantAccount" EntitySet="MerchantAccounts" />
-          </AssociationSet>
           <FunctionImport Name="CreateMerchantAccount" ReturnType="Collection(Int32)">
           <Parameter Name="prUserID" Mode="In" Type="String" />
           </FunctionImport>
@@ -601,30 +453,10 @@
           <FunctionImport Name="CheckEmailAlreadyExist" ReturnType="Collection(Int32)">
           <Parameter Name="prEmail" Mode="In" Type="String" />
           </FunctionImport>
-          <AssociationSet Name="FK_Directory_Directory" Association="GreatSavingsModel.FK_Directory_Directory">
-            <End Role="Directory" EntitySet="Directories" />
-            <End Role="Directory1" EntitySet="Directories" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Transactions_Merchant" Association="GreatSavingsModel.FK_Transactions_Merchant">
-            <End Role="Merchant" EntitySet="Merchants" />
-            <End Role="Transaction" EntitySet="Transactions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Transactions_Transactions" Association="GreatSavingsModel.FK_Transactions_Transactions">
-            <End Role="Transaction" EntitySet="Transactions" />
-            <End Role="Transaction1" EntitySet="Transactions" />
-          </AssociationSet>
           <EntitySet Name="AspNetUsers" EntityType="GreatSavingsModel.AspNetUser" />
-          <AssociationSet Name="FK_Advertisement_Advertisement1" Association="GreatSavingsModel.FK_Advertisement_Advertisement1">
-            <End Role="Advertisement" EntitySet="Advertisements" />
-            <End Role="Advertisement1" EntitySet="Advertisements" />
-          </AssociationSet>
           <AssociationSet Name="FK_Advertisement_Directory" Association="GreatSavingsModel.FK_Advertisement_Directory">
             <End Role="Directory" EntitySet="Directories" />
             <End Role="Advertisement" EntitySet="Advertisements" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Deals_Deals" Association="GreatSavingsModel.FK_Deals_Deals">
-            <End Role="Deal" EntitySet="Deals" />
-            <End Role="Deal1" EntitySet="Deals" />
           </AssociationSet>
           <AssociationSet Name="FK_Deals_Directory" Association="GreatSavingsModel.FK_Deals_Directory">
             <End Role="Directory" EntitySet="Directories" />
@@ -638,44 +470,16 @@
             <End Role="Directory" EntitySet="Directories" />
             <End Role="Recommendation" EntitySet="Recommendations" />
           </AssociationSet>
-          <AssociationSet Name="FK_Recommendations_Recommendations" Association="GreatSavingsModel.FK_Recommendations_Recommendations">
-            <End Role="Recommendation" EntitySet="Recommendations" />
-            <End Role="Recommendation1" EntitySet="Recommendations" />
+          <AssociationSet Name="FK_Directory_MerchantAccount" Association="GreatSavingsModel.FK_Directory_MerchantAccount">
+            <End Role="MerchantAccount" EntitySet="MerchantAccounts" />
+            <End Role="Directory" EntitySet="Directories" />
+          </AssociationSet>
+          <EntitySet Name="BusinessIndustries" EntityType="GreatSavingsModel.BusinessIndustry" />
+          <AssociationSet Name="FK_Directory_BusinessIndustry" Association="GreatSavingsModel.FK_Directory_BusinessIndustry">
+            <End Role="BusinessIndustry" EntitySet="BusinessIndustries" />
+            <End Role="Directory" EntitySet="Directories" />
           </AssociationSet>
           </EntityContainer>
-        <EntityType Name="BusinessIndustry">
-          <Key>
-            <PropertyRef Name="BusIndustryId" />
-          </Key>
-          <Property Type="Int32" Name="BusIndustryId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="BusIndustry" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Merchants" Relationship="GreatSavingsModel.FK_Merchant_BusinessIndustry" FromRole="BusinessIndustry" ToRole="Merchant" />
-          <NavigationProperty Name="Directories" Relationship="GreatSavingsModel.FK_Directory_BusinessIndustry" FromRole="BusinessIndustry" ToRole="Directory" />
-        </EntityType>
-        <EntityType Name="Merchant">
-          <Key>
-            <PropertyRef Name="MerchantId" />
-          </Key>
-          <Property Type="Int32" Name="MerchantId" Nullable="false" />
-          <Property Type="String" Name="CompanyName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="StreetName" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Postcode" Nullable="false" />
-          <Property Type="String" Name="State" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Country" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Website" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="OperateFrom" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="OperateTo" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="BusIndustryId" Nullable="false" />
-          <NavigationProperty Name="BusinessIndustry" Relationship="GreatSavingsModel.FK_Merchant_BusinessIndustry" FromRole="Merchant" ToRole="BusinessIndustry" />
-          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="LastName" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ContactNo" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="IsActivated" />
-          <Property Type="Binary" Name="CompanyImg" MaxLength="Max" FixedLength="false" />
-          <Property Type="String" Name="UserId" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="MerchantAccount" Relationship="GreatSavingsModel.FK_MerchantAccount_Merchant" FromRole="Merchant" ToRole="MerchantAccount" />
-          <NavigationProperty Name="Transactions" Relationship="GreatSavingsModel.FK_Transactions_Merchant" FromRole="Merchant" ToRole="Transaction" />
-        </EntityType>
         <EntityType Name="Promotion">
           <Key>
             <PropertyRef Name="PromotionId" />
@@ -700,18 +504,6 @@
           <Property Type="String" Name="PromotionsType1" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Promotions" Relationship="GreatSavingsModel.FK_Promotions_PromotionsType" FromRole="PromotionsType" ToRole="Promotion" />
         </EntityType>
-        <Association Name="FK_Merchant_BusinessIndustry">
-          <End Type="GreatSavingsModel.BusinessIndustry" Role="BusinessIndustry" Multiplicity="1" />
-          <End Type="GreatSavingsModel.Merchant" Role="Merchant" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusinessIndustry">
-              <PropertyRef Name="BusIndustryId" />
-            </Principal>
-            <Dependent Role="Merchant">
-              <PropertyRef Name="BusIndustryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Promotions_PromotionsType">
           <End Type="GreatSavingsModel.PromotionsType" Role="PromotionsType" Multiplicity="1" />
           <End Type="GreatSavingsModel.Promotion" Role="Promotion" Multiplicity="*" />
@@ -754,8 +546,6 @@
           <NavigationProperty Name="Transaction" Relationship="GreatSavingsModel.FK_Deals_Transactions" FromRole="Deal" ToRole="Transaction" />
           <Property Type="Boolean" Name="IsActivated" Nullable="false" />
           <Property Type="String" Name="DirId" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Deals1" Relationship="GreatSavingsModel.FK_Deals_Deals" FromRole="Deal" ToRole="Deal1" />
-          <NavigationProperty Name="Deal1" Relationship="GreatSavingsModel.FK_Deals_Deals" FromRole="Deal1" ToRole="Deal" />
           <NavigationProperty Name="Directory" Relationship="GreatSavingsModel.FK_Deals_Directory" FromRole="Deal" ToRole="Directory" />
         </EntityType>
         <EntityType Name="Product">
@@ -786,8 +576,6 @@
           <NavigationProperty Name="AdvertisementType" Relationship="GreatSavingsModel.FK_Advertisement_AdvertisementType" FromRole="Advertisement" ToRole="AdvertisementType" />
           <NavigationProperty Name="Transaction" Relationship="GreatSavingsModel.FK_Advertisement_Advertisement" FromRole="Advertisement" ToRole="Transaction" />
           <Property Type="String" Name="DirId" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Advertisement1" Relationship="GreatSavingsModel.FK_Advertisement_Advertisement1" FromRole="Advertisement" ToRole="Advertisement1" />
-          <NavigationProperty Name="Advertisement2" Relationship="GreatSavingsModel.FK_Advertisement_Advertisement1" FromRole="Advertisement1" ToRole="Advertisement" />
           <NavigationProperty Name="Directory" Relationship="GreatSavingsModel.FK_Advertisement_Directory" FromRole="Advertisement" ToRole="Directory" />
         </EntityType>
         <EntityType Name="AdvertisementType">
@@ -818,16 +606,15 @@
           <Property Type="Boolean" Name="IsActivated" />
           <Property Type="Binary" Name="CompanyImg" MaxLength="Max" FixedLength="false" />
           <Property Type="Int32" Name="TransId" />
-          <NavigationProperty Name="BusinessIndustry" Relationship="GreatSavingsModel.FK_Directory_BusinessIndustry" FromRole="Directory" ToRole="BusinessIndustry" />
           <NavigationProperty Name="Transaction" Relationship="GreatSavingsModel.FK_Directory_Transaction" FromRole="Directory" ToRole="Transaction" />
           <Property Type="Int32" Name="MerchantId" />
-          <NavigationProperty Name="Directory1" Relationship="GreatSavingsModel.FK_Directory_Directory" FromRole="Directory" ToRole="Directory1" />
-          <NavigationProperty Name="Directory2" Relationship="GreatSavingsModel.FK_Directory_Directory" FromRole="Directory1" ToRole="Directory" />
           <Property Type="String" Name="Email" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Advertisements" Relationship="GreatSavingsModel.FK_Advertisement_Directory" FromRole="Directory" ToRole="Advertisement" />
           <NavigationProperty Name="Deals" Relationship="GreatSavingsModel.FK_Deals_Directory" FromRole="Directory" ToRole="Deal" />
           <NavigationProperty Name="NewOpenings" Relationship="GreatSavingsModel.FK_NewOpening_Directory" FromRole="Directory" ToRole="NewOpening" />
           <NavigationProperty Name="Recommendations" Relationship="GreatSavingsModel.FK_Recommendations_Directory" FromRole="Directory" ToRole="Recommendation" />
+          <NavigationProperty Name="MerchantAccount" Relationship="GreatSavingsModel.FK_Directory_MerchantAccount" FromRole="Directory" ToRole="MerchantAccount" />
+          <NavigationProperty Name="BusinessIndustry" Relationship="GreatSavingsModel.FK_Directory_BusinessIndustry" FromRole="Directory" ToRole="BusinessIndustry" />
         </EntityType>
         <EntityType Name="NewOpening">
           <Key>
@@ -861,9 +648,7 @@
           <NavigationProperty Name="Transaction" Relationship="GreatSavingsModel.FK_Recommendations_Transaction" FromRole="Recommendation" ToRole="Transaction" />
           <Property Type="String" Name="DirId" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Directory" Relationship="GreatSavingsModel.FK_Recommendations_Directory" FromRole="Recommendation" ToRole="Directory" />
-          <NavigationProperty Name="Recommendations1" Relationship="GreatSavingsModel.FK_Recommendations_Recommendations" FromRole="Recommendation" ToRole="Recommendation1" />
-          <NavigationProperty Name="Recommendation1" Relationship="GreatSavingsModel.FK_Recommendations_Recommendations" FromRole="Recommendation1" ToRole="Recommendation" />
-        </EntityType>
+          </EntityType>
         <Association Name="FK_Advertisement_AdvertisementType">
           <End Type="GreatSavingsModel.AdvertisementType" Role="AdvertisementType" Multiplicity="1" />
           <End Type="GreatSavingsModel.Advertisement" Role="Advertisement" Multiplicity="0..1" />
@@ -876,38 +661,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Directory_BusinessIndustry">
-          <End Type="GreatSavingsModel.BusinessIndustry" Role="BusinessIndustry" Multiplicity="1" />
-          <End Type="GreatSavingsModel.Directory" Role="Directory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusinessIndustry">
-              <PropertyRef Name="BusIndustryId" />
-            </Principal>
-            <Dependent Role="Directory">
-              <PropertyRef Name="BusIndustryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="MerchantAccount">
           <Key>
             <PropertyRef Name="MerchantId" />
           </Key>
           <Property Type="Int32" Name="MerchantId" Nullable="false" />
           <Property Type="String" Name="UserId" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Merchant" Relationship="GreatSavingsModel.FK_MerchantAccount_Merchant" FromRole="MerchantAccount" ToRole="Merchant" />
+          <NavigationProperty Name="Directories" Relationship="GreatSavingsModel.FK_Directory_MerchantAccount" FromRole="MerchantAccount" ToRole="Directory" />
         </EntityType>
-        <Association Name="FK_MerchantAccount_Merchant">
-          <End Type="GreatSavingsModel.Merchant" Role="Merchant" Multiplicity="1" />
-          <End Type="GreatSavingsModel.MerchantAccount" Role="MerchantAccount" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Merchant">
-              <PropertyRef Name="MerchantId" />
-            </Principal>
-            <Dependent Role="MerchantAccount">
-              <PropertyRef Name="MerchantId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Transaction">
           <Key>
             <PropertyRef Name="TransId" />
@@ -923,10 +684,7 @@
           <NavigationProperty Name="NewOpenings" Relationship="GreatSavingsModel.FK_NewOpening_Transaction" FromRole="Transaction" ToRole="NewOpening" />
           <NavigationProperty Name="Recommendations" Relationship="GreatSavingsModel.FK_Recommendations_Transaction" FromRole="Transaction" ToRole="Recommendation" />
           <NavigationProperty Name="Deals" Relationship="GreatSavingsModel.FK_Deals_Transactions" FromRole="Transaction" ToRole="Deal" />
-          <NavigationProperty Name="Merchant" Relationship="GreatSavingsModel.FK_Transactions_Merchant" FromRole="Transaction" ToRole="Merchant" />
-          <NavigationProperty Name="Transactions1" Relationship="GreatSavingsModel.FK_Transactions_Transactions" FromRole="Transaction" ToRole="Transaction1" />
-          <NavigationProperty Name="Transaction1" Relationship="GreatSavingsModel.FK_Transactions_Transactions" FromRole="Transaction1" ToRole="Transaction" />
-        </EntityType>
+          </EntityType>
         <Association Name="FK_Advertisement_Advertisement">
           <End Type="GreatSavingsModel.Transaction" Role="Transaction" Multiplicity="1" />
           <End Type="GreatSavingsModel.Advertisement" Role="Advertisement" Multiplicity="*" />
@@ -987,42 +745,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Directory_Directory">
-          <End Type="GreatSavingsModel.Directory" Role="Directory" Multiplicity="1" />
-          <End Type="GreatSavingsModel.Directory" Role="Directory1" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Directory">
-              <PropertyRef Name="DirId" />
-            </Principal>
-            <Dependent Role="Directory1">
-              <PropertyRef Name="DirId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Transactions_Merchant">
-          <End Type="GreatSavingsModel.Merchant" Role="Merchant" Multiplicity="1" />
-          <End Type="GreatSavingsModel.Transaction" Role="Transaction" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Merchant">
-              <PropertyRef Name="MerchantId" />
-            </Principal>
-            <Dependent Role="Transaction">
-              <PropertyRef Name="MerchantId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Transactions_Transactions">
-          <End Type="GreatSavingsModel.Transaction" Role="Transaction" Multiplicity="1" />
-          <End Type="GreatSavingsModel.Transaction" Role="Transaction1" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Transaction">
-              <PropertyRef Name="TransId" />
-            </Principal>
-            <Dependent Role="Transaction1">
-              <PropertyRef Name="TransId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="AspNetUser">
           <Key>
             <PropertyRef Name="Id" />
@@ -1041,18 +763,6 @@
           <Property Type="Int32" Name="AccessFailedCount" Nullable="false" />
           <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
         </EntityType>
-        <Association Name="FK_Advertisement_Advertisement1">
-          <End Type="GreatSavingsModel.Advertisement" Role="Advertisement" Multiplicity="1" />
-          <End Type="GreatSavingsModel.Advertisement" Role="Advertisement1" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Advertisement">
-              <PropertyRef Name="AdId" />
-            </Principal>
-            <Dependent Role="Advertisement1">
-              <PropertyRef Name="AdId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Advertisement_Directory">
           <End Type="GreatSavingsModel.Directory" Role="Directory" Multiplicity="0..1" />
           <End Type="GreatSavingsModel.Advertisement" Role="Advertisement" Multiplicity="*" />
@@ -1062,18 +772,6 @@
             </Principal>
             <Dependent Role="Advertisement">
               <PropertyRef Name="DirId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Deals_Deals">
-          <End Type="GreatSavingsModel.Deal" Role="Deal" Multiplicity="1" />
-          <End Type="GreatSavingsModel.Deal" Role="Deal1" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Deal">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Deal1">
-              <PropertyRef Name="Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1113,15 +811,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Recommendations_Recommendations">
-          <End Type="GreatSavingsModel.Recommendation" Role="Recommendation" Multiplicity="1" />
-          <End Type="GreatSavingsModel.Recommendation" Role="Recommendation1" Multiplicity="0..1" />
+        <Association Name="FK_Directory_MerchantAccount">
+          <End Type="GreatSavingsModel.MerchantAccount" Role="MerchantAccount" Multiplicity="0..1" />
+          <End Type="GreatSavingsModel.Directory" Role="Directory" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Recommendation">
-              <PropertyRef Name="RecomId" />
+            <Principal Role="MerchantAccount">
+              <PropertyRef Name="MerchantId" />
             </Principal>
-            <Dependent Role="Recommendation1">
-              <PropertyRef Name="RecomId" />
+            <Dependent Role="Directory">
+              <PropertyRef Name="MerchantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BusinessIndustry">
+          <Key>
+            <PropertyRef Name="BusIndustryId" />
+          </Key>
+          <Property Type="Int32" Name="BusIndustryId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="BusIndustry" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Directories" Relationship="GreatSavingsModel.FK_Directory_BusinessIndustry" FromRole="BusinessIndustry" ToRole="Directory" />
+        </EntityType>
+        <Association Name="FK_Directory_BusinessIndustry">
+          <End Type="GreatSavingsModel.BusinessIndustry" Role="BusinessIndustry" Multiplicity="1" />
+          <End Type="GreatSavingsModel.Directory" Role="Directory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessIndustry">
+              <PropertyRef Name="BusIndustryId" />
+            </Principal>
+            <Dependent Role="Directory">
+              <PropertyRef Name="BusIndustryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1131,36 +849,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="GreatSavingsModelStoreContainer" CdmEntityContainer="GreatSavingsEntities" >
-          <EntitySetMapping Name="BusinessIndustries">
-            <EntityTypeMapping TypeName="GreatSavingsModel.BusinessIndustry">
-              <MappingFragment StoreEntitySet="BusinessIndustry">
-                <ScalarProperty Name="BusIndustry" ColumnName="BusIndustry" />
-                <ScalarProperty Name="BusIndustryId" ColumnName="BusIndustryId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Merchants">
-            <EntityTypeMapping TypeName="GreatSavingsModel.Merchant">
-              <MappingFragment StoreEntitySet="Merchant">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="CompanyImg" ColumnName="CompanyImg" />
-                <ScalarProperty Name="IsActivated" ColumnName="IsActivated" />
-                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="BusIndustryId" ColumnName="BusIndustryId" />
-                <ScalarProperty Name="OperateTo" ColumnName="OperateTo" />
-                <ScalarProperty Name="OperateFrom" ColumnName="OperateFrom" />
-                <ScalarProperty Name="Website" ColumnName="Website" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
-                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="MerchantId" ColumnName="MerchantId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Promotions">
             <EntityTypeMapping TypeName="GreatSavingsModel.Promotion">
               <MappingFragment StoreEntitySet="Promotions">
@@ -1348,6 +1036,14 @@
                 <ScalarProperty Name="ConfirmedEmail" ColumnName="ConfirmedEmail" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BusinessIndustries">
+            <EntityTypeMapping TypeName="GreatSavingsModel.BusinessIndustry">
+              <MappingFragment StoreEntitySet="BusinessIndustry">
+                <ScalarProperty Name="BusIndustry" ColumnName="BusIndustry" />
+                <ScalarProperty Name="BusIndustryId" ColumnName="BusIndustryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -41,10 +41,10 @@ namespace GreatSavings.ViewModels
         public int GetNewMerchantId()
         {
             int newId = 100001;
-
-            if (db.Merchants.Count() > 0)
+          
+            if (db.MerchantAccounts.Count() > 0)
             {
-                var result = db.Merchants.Where(m => m.MerchantId > 0).Max(m => m.MerchantId);
+                var result = db.MerchantAccounts.Where(m => m.MerchantId > 0).Max(m => m.MerchantId);
                 newId = result+=1;
             }
   
