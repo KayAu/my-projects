@@ -43,11 +43,10 @@ namespace GreatSavings
     
         public virtual BusinessIndustry BusinessIndustry { get; set; }
         public virtual Transaction Transaction { get; set; }
-        public virtual Directory Directory1 { get; set; }
-        public virtual Directory Directory2 { get; set; }
         public virtual ICollection<Advertisement> Advertisements { get; set; }
         public virtual ICollection<Deal> Deals { get; set; }
         public virtual ICollection<NewOpening> NewOpenings { get; set; }
         public virtual ICollection<Recommendation> Recommendations { get; set; }
+        public virtual MerchantAccount MerchantAccount { get; set; }
     }
 }

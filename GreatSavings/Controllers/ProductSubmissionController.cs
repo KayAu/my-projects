@@ -149,6 +149,15 @@ namespace GreatSavings.Controllers
 
         //
         // GET: /ProductSubmission/Create
+        public ActionResult Promotion()
+        {
+           
+                return View();
+            
+        }
+
+        //
+        // GET: /ProductSubmission/Create
         public ActionResult GetForm(int productId)
         {
             switch  (productId)

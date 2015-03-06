@@ -11,9 +11,9 @@ namespace GreatSavings
 {
     using System;
     using System.Data.Entity;
+    using System.Data.Entity.Core.Objects;
     using System.Data.Entity.Infrastructure;
-    using System.Data.Objects;
-    using System.Data.Objects.DataClasses;
+
     using System.Linq;
     
     public partial class GreatSavingsEntities : DbContext
@@ -28,8 +28,6 @@ namespace GreatSavings
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<BusinessIndustry> BusinessIndustries { get; set; }
-        public DbSet<Merchant> Merchants { get; set; }
         public DbSet<Promotion> Promotions { get; set; }
         public DbSet<PromotionsType> PromotionsTypes { get; set; }
         public DbSet<State> States { get; set; }
@@ -44,6 +42,7 @@ namespace GreatSavings
         public DbSet<MerchantAccount> MerchantAccounts { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<AspNetUser> AspNetUsers { get; set; }
+        public DbSet<BusinessIndustry> BusinessIndustries { get; set; }
     
         public virtual ObjectResult<Nullable<int>> CreateMerchantAccount(string prUserID)
         {

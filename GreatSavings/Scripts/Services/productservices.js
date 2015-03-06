@@ -150,6 +150,16 @@ bizModule.service('dataService', ['$http', '$q', '$resource',  '$timeout', funct
         }
     });
 
+
+    this.promotion = $resource('/api/Promotion/Get/:id', { id: '@id' },
+    {
+        saveAll:
+        {
+            method: 'POST',
+            url: '/api/Promotion'
+        }
+    });
+
     this.recommendation = $resource('/api/Recommendation/Get/:id', { id: '@id' },
  {
      saveAll:

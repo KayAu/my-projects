@@ -34,8 +34,22 @@ namespace GreatSavings.Controllers
         }
 
         // POST api/<controller>
-        public void Post([FromBody]string value)
+        public HttpResponseMessage Post(Promotion value)
         {
+            try
+            {
+
+                db.Promotions.Add(value);
+                db.SaveChanges();
+
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.NotImplemented, ex.Message);
+                return response;
+            }
         }
 
         // PUT api/<controller>/5

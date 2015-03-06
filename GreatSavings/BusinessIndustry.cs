@@ -16,14 +16,12 @@ namespace GreatSavings
     {
         public BusinessIndustry()
         {
-            this.Merchants = new HashSet<Merchant>();
             this.Directories = new HashSet<Directory>();
         }
     
         public int BusIndustryId { get; set; }
         public string BusIndustry { get; set; }
     
-        public virtual ICollection<Merchant> Merchants { get; set; }
         public virtual ICollection<Directory> Directories { get; set; }
     }
 }

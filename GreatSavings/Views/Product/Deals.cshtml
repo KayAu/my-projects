@@ -16,7 +16,7 @@
                 <img src="data:image/gif;base64,@System.Convert.ToBase64String(Model.Image)" />
             </figure>
             <article>
-                <header>@Html.DisplayFor(model => model.Transaction.Merchant.CompanyName)</header>
+                <header>@Html.DisplayFor(model => model.Directory.CompanyName)</header>
                 <p>
                     @Html.DisplayFor(model => model.Title)
                 </p>
@@ -28,7 +28,11 @@
                         <span>To be added</span>
                     </span>
                 </div>
-                                
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Save</button>
+                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
+                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Email</button>                    
+                </div>              
             </article>
         </div>
         <!-- MIDDLE SECTION -->
@@ -53,14 +57,14 @@
                                 <i class="fa fa-map-marker"></i>
                                 <span>Address:</span>
                             </th>
-                            <td>@Model.Transaction.Merchant.StreetName</td>
+                            <td>@Model.Directory.StreetName</td>
                         </tr>
                         <tr>
                             <th class="phone">
                                 <i class="fa fa-phone"></i>
                                 <span>Phone:</span>
                             </th>
-                            <td>@Model.Transaction.Merchant.ContactNo</td>
+                            <td>@Model.Directory.ContactNo</td>
                         </tr>
                         <tr>
                             <th class="email">
@@ -90,11 +94,7 @@
         </div>
         <!-- BOTTOM SECTION -->
         <div class="bottom-section buttons-bar">
-            <div class="btn-group" role="group" aria-label="...">
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Save</button>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Email</button>                    
-            </div>
+           <span>Share</span>
             <div class="item-meta">         
                 <ul class="social-links">
                         <li>

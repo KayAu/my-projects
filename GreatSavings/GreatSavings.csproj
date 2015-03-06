@@ -214,12 +214,9 @@
     <Compile Include="BusinessIndustry.cs">
       <DependentUpon>GreatSavings.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Account1Controller.cs" />
     <Compile Include="Controllers\DealsController.cs" />
     <Compile Include="Controllers\DirectoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MerchantController.cs" />
-    <Compile Include="Controllers\MerchantModelController.cs" />
     <Compile Include="Controllers\NewOpeningController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductSubmissionController.cs" />
@@ -255,9 +252,6 @@
       <DependentUpon>GreatSavings.edmx</DependentUpon>
     </Compile>
     <Compile Include="Helper\DataManager.cs" />
-    <Compile Include="Merchant.cs">
-      <DependentUpon>GreatSavings.tt</DependentUpon>
-    </Compile>
     <Compile Include="MerchantAccount.cs">
       <DependentUpon>GreatSavings.tt</DependentUpon>
     </Compile>
@@ -406,6 +400,7 @@
     <Content Include="Scripts\angular-sanitize.min.js" />
     <Content Include="Scripts\Controllers\accountController.js" />
     <Content Include="Scripts\Controllers\dealsController.js" />
+    <Content Include="Scripts\Controllers\salesFreebiesController.js" />
     <Content Include="Scripts\Directives\merchantSelector.js" />
     <Content Include="Scripts\Directives\multipleImageUploader.js" />
     <Content Include="Scripts\Directives\imageFileReader.js" />
@@ -1299,6 +1294,7 @@
     <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\Home\Deals.cshtml" />
     <Content Include="Views\Product\Deals.cshtml" />
+    <Content Include="Views\ProductSubmission\Promotion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
