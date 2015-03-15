@@ -17,10 +17,10 @@ namespace GreatSavings
         public Transaction()
         {
             this.Advertisements = new HashSet<Advertisement>();
-            this.Directories = new HashSet<Directory>();
             this.NewOpenings = new HashSet<NewOpening>();
             this.Recommendations = new HashSet<Recommendation>();
             this.Deals = new HashSet<Deal>();
+            this.Directories = new HashSet<Directory>();
         }
     
         public int TransId { get; set; }
@@ -31,9 +31,9 @@ namespace GreatSavings
         public bool PymtReceived { get; set; }
     
         public virtual ICollection<Advertisement> Advertisements { get; set; }
-        public virtual ICollection<Directory> Directories { get; set; }
         public virtual ICollection<NewOpening> NewOpenings { get; set; }
         public virtual ICollection<Recommendation> Recommendations { get; set; }
         public virtual ICollection<Deal> Deals { get; set; }
+        public virtual ICollection<Directory> Directories { get; set; }
     }
 }

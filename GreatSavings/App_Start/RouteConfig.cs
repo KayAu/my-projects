@@ -16,9 +16,9 @@ namespace GreatSavings
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                //defaults: new { controller = "Home", action = "Home", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Home", id = UrlParameter.Optional }
                 //defaults: new { controller = "ProductSubmission", action = "ProductList", id = UrlParameter.Optional }
-                defaults: new { controller = "ProductSubmission", action = "Promotion", id = UrlParameter.Optional }
+               // defaults: new { controller = "ProductSubmission", action = "Promotion", id = UrlParameter.Optional }
             );
         }
     }

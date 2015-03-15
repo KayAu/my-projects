@@ -19,33 +19,82 @@
     <script src="~/Scripts/angular-animate.min.js" type="text/javascript"></script>
     <script src="~/Scripts/angular-route.min.js" type="text/javascript"></script>
     <script src="~/Scripts/angular-messages.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.cookie.js" type="text/javascript"></script>
+    
     <script src="~/Scripts/MvcApp.js" type="text/javascript"></script>
     <script src="~/Scripts/Services/productservices.js" type="text/javascript"></script>
+    <script src="~/Scripts/Controllers/visitorController.js" type="text/javascript"></script>
     <script src="~/Scripts/Controllers/dealsController.js" type="text/javascript"></script>
 @*   @Scripts.Render("~/bundles/AngularMVCApp")*@
     <title>ClientMaster</title>
 
 
 </head>
-<body>
+<body ng-controller="visitorController" ng-init="init()">
     <div class="top-bar">
         <div class="welcome">
             <span>Welcome</span>&nbsp
             <label>Kah Yin</label>
         </div>
         <div class="small-buttons-bar">
-           <div class="small-button">
-              <a href="#">My Account</a>
+            <div class="small-button">
+                <a href="#">My Account</a>
             </div>
             <div class="small-button">
-              <a href="#">
-                  <i class="fa fa-shopping-cart fa-lg"></i>
-                  &nbsp My Coupons &nbsp
-                  <span class="cart-items-number">0</span>
-              </a>
+                <a id="linkSavedCoupons" href="#">
+                    <i class="fa fa-shopping-cart fa-lg"></i>
+                    &nbsp My Coupons &nbsp
+                    <span class="cart-items-number">{{totalCouponSaved}}</span>
+                </a>
+                <div id="savedCoupons" ng-show="totalCouponSaved > 0" >
+                    <h4>Saved Offers</h4>
+                    <div class="saved-coupon-list">
+                        <ul>
+                            <li ng-repeat="item in savedCoupons | limitTo:3">
+                                @*<td><img src="data:image/gif;base64,{{item.image}}" /></td>*@
+                                <a class="offerImage" href="/Product/Deals/{{item.id}}">
+
+                                    <img src="http://a5.images.vouchercloud.com/image/upload/w_136,q_80,f_auto/Venues_M_McDonalds_5929_McDonalds.jpg" alt="Get the Latest Deals with Newsletter Sign Ups" width="52" height="52">
+                                </a>
+                                <div class="tableCell">
+                                    <span class="offerTitle">
+                                        <a href="/Product/Deals/{{item.id}}">
+                                            {{item.merchant}}
+                                            <br />
+                                            {{item.title}}
+                                        </a>
+                                    </span>
+                                    <span class="offerExpiredOn">
+                                        Expired On: {{item.expDate}}
+                                    </span>
+                                </div>
+                                <div class="tableCell" style="position: relative;">
+                                    <button class="remove" ng-click="removeSavedCoupon()">
+                                        <i class="fa fa-times-circle-o"></i>
+                                        @*<i class="fa fa-times"></i>*@
+                                        @*<span class="glyphicon glyphicon-remove">
+                                        </span>*@
+                                        @*<span class="badge">50 days lefts</span>*@
+                                        @*<img src="~/Images/delete8.png" />*@
+                                    </button>
+                                </div>
+                             </li>
+ 
+                        </ul> 
+                        <div class="bottom-bar" ng-show="totalCouponSaved > 3">
+                            <a href="#">
+                                <span class="badge">{{totalCouponSaved}}</span>
+                                View All
+                                <i class="fa fa-angle-double-right"></i>
+                            </a>
+
+                        </div>
+                        
+                    </div>
+                </div>
             </div>
             <div class="small-button">
-              <a href="#">Sign In</a>
+                <a href="#">Sign In</a>
             </div>
         </div>
     </div>
@@ -53,9 +102,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="http://demo.powerthemes.club/themes/couponer">
-					<img src="http://demo.powerthemes.club/themes/couponer/wp-content/uploads/2014/07/logo_v1.png" title="" alt="">
-				</a>
-		    </div>
+                    <img src="http://demo.powerthemes.club/themes/couponer/wp-content/uploads/2014/07/logo_v1.png" title="" alt="">
+                </a>
+            </div>
             <div class="navbar-right">
                 <div class="col-md-6">
                     <div class="form-group form-search">
@@ -67,35 +116,46 @@
                 <div class="col-md-6">
 
                     <div class="btn-group btn-categories ">
-						<button type="button" class="btn btn-categories btn-default btn-default btn-lg dropdown-toggle form-control" data-toggle="dropdown">
-							<span class="fa fa-bars btn-left-icon"></span>Categories								
+                        <button type="button" class="btn btn-categories btn-default btn-default btn-lg dropdown-toggle form-control" data-toggle="dropdown">
+                            <span class="fa fa-bars btn-left-icon"></span>Categories
                             <span class="fa fa-angle-down pull-right categories-angle-icon"></span>
-						</button>
+                        </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="http://demo.powerthemes.club/themes/couponer/code_category/computers/"><i class="fa fa-laptop"></i> Computers</a>
+                            <li>
+                                <a href="http://demo.powerthemes.club/themes/couponer/code_category/computers/"><i class="fa fa-laptop"></i> Computers</a>
                             </li>
-                            <li><a href="http://demo.powerthemes.club/themes/couponer/code_category/house/"><i class="fa fa-home"></i> House</a>
+                            <li>
+                                <a href="http://demo.powerthemes.club/themes/couponer/code_category/house/"><i class="fa fa-home"></i> House</a>
                             </li>
-                            <li><a href="http://demo.powerthemes.club/themes/couponer/code_category/photography/"><i class="fa fa-picture-o"></i> Photography</a>
+                            <li>
+                                <a href="http://demo.powerthemes.club/themes/couponer/code_category/photography/"><i class="fa fa-picture-o"></i> Photography</a>
                             </li>
-                            <li><a href="http://demo.powerthemes.club/themes/couponer/code_category/students/"><i class="fa fa-users"></i> Students</a>
+                            <li>
+                                <a href="http://demo.powerthemes.club/themes/couponer/code_category/students/"><i class="fa fa-users"></i> Students</a>
                             </li>
-                            <li><a href="http://demo.powerthemes.club/themes/couponer/code_category/technology/"><i class="fa fa-scissors"></i> Technology</a>
+                            <li>
+                                <a href="http://demo.powerthemes.club/themes/couponer/code_category/technology/"><i class="fa fa-scissors"></i> Technology</a>
                             </li>
-                            <li><a href="http://demo.powerthemes.club/themes/couponer/code_category/baby/"><i class="fa fa-child"></i> Baby</a>
+                            <li>
+                                <a href="http://demo.powerthemes.club/themes/couponer/code_category/baby/"><i class="fa fa-child"></i> Baby</a>
                             </li>
-                            <li><a href="http://demo.powerthemes.club/themes/couponer/code_category/books/"><i class="fa fa-book"></i> Books &amp; Movies</a>
+                            <li>
+                                <a href="http://demo.powerthemes.club/themes/couponer/code_category/books/"><i class="fa fa-book"></i> Books &amp; Movies</a>
                             </li>
-                            <li><a href="http://demo.powerthemes.club/themes/couponer/code_category/cars/"><i class="fa fa-car"></i> Cars</a>
+                            <li>
+                                <a href="http://demo.powerthemes.club/themes/couponer/code_category/cars/"><i class="fa fa-car"></i> Cars</a>
                             </li>
-                            <li><a href="http://demo.powerthemes.club/themes/couponer/code_category/music/"><i class="fa fa-music"></i> Music</a>
+                            <li>
+                                <a href="http://demo.powerthemes.club/themes/couponer/code_category/music/"><i class="fa fa-music"></i> Music</a>
                             </li>
-                            <li><a href="http://demo.powerthemes.club/themes/couponer/code_category/pet-care/"><i class="fa fa-paw"></i> Pet Care</a>
+                            <li>
+                                <a href="http://demo.powerthemes.club/themes/couponer/code_category/pet-care/"><i class="fa fa-paw"></i> Pet Care</a>
                             </li>
-                            <li><a href="http://demo.powerthemes.club/themes/couponer/code_category/travel/"><i class="fa fa-plane"></i> Travel</a>
+                            <li>
+                                <a href="http://demo.powerthemes.club/themes/couponer/code_category/travel/"><i class="fa fa-plane"></i> Travel</a>
                             </li>
                         </ul>
-					</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -104,102 +164,102 @@
     @* Page content *@
     <div class="body-content">
         @RenderBody()
-        
+
 
     </div>
     <div class="footer">
-         <div class="container">
-             <!-- LINKS -->
-             <div class="col-md-3">
-                 <div class="footer-widget">
-                     <div class="footer-title">
-                         <h3>Links</h3>
-                     </div>
-                     <ul class="footer-links">
-                         <li><a href="#">Vouchers</a></li>
-                         <li><a href="#">Sales</a></li>
-                         <li><a href="#">Freebies</a></li>
-                         <li><a href="#">Promotions</a></li>
-                         <li><a href="#">Our Merchants</a></li>
-                         <li><a href="#">Advertise With Us</a></li>
-                         <li><a href="#">Contact Us</a></li>
-                         <li><a href="#">FAQs</a></li>
-                     </ul>
-                 </div>
-             </div>
-             <!-- LEGAL -->
-             <div class="col-md-3">
-                 <div class="footer-widget">
-                     <div class="footer-title">
-                         <h3>Legal</h3>
-                     </div>
-                     <ul class="footer-links">
-                         <li><a href="#">Terms & Conditions</a></li>
-                         <li><a href="#">Privacy Policy</a></li>
-                     </ul>
-                 </div>
-
-                 <div class="footer-widget">
-                     <div class="footer-title" style="margin-top: 50px;">
-                         <h3>Follow Us</h3>
-                     </div>
-                     <ul class="social-links">
-                      <li>
-                          <a id="social-link-facebook" href="https://www.facebook.com/envatomarket">
-                              <i class="fa fa-facebook"></i>
-                          </a>
-                      </li>
-                      <li>
-                          <a id="social-link-twitter" href="https://twitter.com/envatomarket">
-                              <i class="fa fa-twitter"></i>
-                          </a>
-                      </li>
-                      <li>
-                          <a id="social-link-pinterest" href="https://plus.google.com/u/0/112592709425670873637/about">
-                              <i class="fa fa-pinterest"></i>
-                          </a>
-                      </li>
-                      <li>
-                           <a id="social-link-google" href="https://plus.google.com/u/0/112592709425670873637/about">
-                              <i class="fa fa-google-plus"></i>
-                          </a>
-                      </li>
+        <div class="container">
+            <!-- LINKS -->
+            <div class="col-md-3">
+                <div class="footer-widget">
+                    <div class="footer-title">
+                        <h3>Links</h3>
+                    </div>
+                    <ul class="footer-links">
+                        <li><a href="#">Vouchers</a></li>
+                        <li><a href="#">Sales</a></li>
+                        <li><a href="#">Freebies</a></li>
+                        <li><a href="#">Promotions</a></li>
+                        <li><a href="#">Our Merchants</a></li>
+                        <li><a href="#">Advertise With Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
                     </ul>
-                 </div>
-             </div>
-             <!-- ABOUT US -->
-             <div class="col-md-3">
-                 <div class="footer-widget">
-                     <div class="footer-title">
-                         <h3>About Us</h3>
-                     </div>
-                     <p>
-                         Creativity and originality is the important facts that why Not On The High Street can be popular with almost people. Everything on sale is                              different from the traditional item definitely. Creativity and originality satisfies everyone’s demand to find anything extra special 
-                         and a little bit unique with safe deal and trusted quality, and which solves the gift-choose problems. Over 50,000 products are available 
-                         for you and your families, friends and etc.
-                     </p>
-                 </div>
-             </div>
-             <!-- NEWSLETTER -->
-             <div class="col-md-3">
-                 <div class="footer-widget">
-                     <div class="footer-title">
-                         <h3>
-                             <i class="fa fa-envelope-o" style="margin-right:2px"></i>
-                             Newsletter
-                         </h3>
-                     </div>
-                     <p>
-                         Sign up to get the latest on vouchers, sales, freebies, member promotions and news
-                     </p>
-                     <div class="input-group">
-						<input type="text" class="email" placeholder="Enter your email" name="email_news">
-						<br>
-						<button type="submit" class="btn btn-custom btn-default subscribe">Subscribe</button>
-					</div>
-                 </div>
-             </div>
-         </div>
+                </div>
+            </div>
+            <!-- LEGAL -->
+            <div class="col-md-3">
+                <div class="footer-widget">
+                    <div class="footer-title">
+                        <h3>Legal</h3>
+                    </div>
+                    <ul class="footer-links">
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-widget">
+                    <div class="footer-title" style="margin-top: 50px;">
+                        <h3>Follow Us</h3>
+                    </div>
+                    <ul class="social-links">
+                        <li>
+                            <a id="social-link-facebook" href="https://www.facebook.com/envatomarket">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="social-link-twitter" href="https://twitter.com/envatomarket">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="social-link-pinterest" href="https://plus.google.com/u/0/112592709425670873637/about">
+                                <i class="fa fa-pinterest"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="social-link-google" href="https://plus.google.com/u/0/112592709425670873637/about">
+                                <i class="fa fa-google-plus"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- ABOUT US -->
+            <div class="col-md-3">
+                <div class="footer-widget">
+                    <div class="footer-title">
+                        <h3>About Us</h3>
+                    </div>
+                    <p>
+                        Creativity and originality is the important facts that why Not On The High Street can be popular with almost people. Everything on sale is                              different from the traditional item definitely. Creativity and originality satisfies everyone’s demand to find anything extra special
+                        and a little bit unique with safe deal and trusted quality, and which solves the gift-choose problems. Over 50,000 products are available
+                        for you and your families, friends and etc.
+                    </p>
+                </div>
+            </div>
+            <!-- NEWSLETTER -->
+            <div class="col-md-3">
+                <div class="footer-widget">
+                    <div class="footer-title">
+                        <h3>
+                            <i class="fa fa-envelope-o" style="margin-right:2px"></i>
+                            Newsletter
+                        </h3>
+                    </div>
+                    <p>
+                        Sign up to get the latest on vouchers, sales, freebies, member promotions and news
+                    </p>
+                    <div class="input-group">
+                        <input type="text" class="email" placeholder="Enter your email" name="email_news">
+                        <br>
+                        <button type="submit" class="btn btn-custom btn-default subscribe">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="disclaimer">
             © 2015 Goodie Heaven. Trademarks and brands are the property of their respective owners.
         </div>

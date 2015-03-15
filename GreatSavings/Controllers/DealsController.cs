@@ -41,9 +41,17 @@ namespace GreatSavings.Controllers
         {
             try
             {
-                var test = db.Deals.Include(i=>i.Transaction).ToList();
+               // var test = db.Deals.Include(i=>i.Transaction).ToList();
               
-                var deals = db.Deals.Take(totalReturn).OrderByDescending(d => d.ExpiryDate);
+                var deals = db.Deals.Where(t => t.Transaction.PymtReceived == true).AsEnumerable()
+                                    .Select(d => new { Image = System.Convert.ToBase64String(d.Image),
+                                                       Id = d.Id,
+                                                       CompanyName = d.Directory.CompanyName,
+                                                       Title = d.Title,
+                                                       ExpiryDate = d.ExpiryDate
+                                    }).Take(totalReturn).OrderByDescending(d => d.ExpiryDate);
+
+                
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, deals);
                 return response;
             }

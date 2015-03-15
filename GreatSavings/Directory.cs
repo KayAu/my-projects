@@ -28,6 +28,7 @@ namespace GreatSavings
         public int Postcode { get; set; }
         public string State { get; set; }
         public string Country { get; set; }
+        public string Email { get; set; }
         public string Website { get; set; }
         public string OperateFrom { get; set; }
         public string OperateTo { get; set; }
@@ -39,14 +40,13 @@ namespace GreatSavings
         public byte[] CompanyImg { get; set; }
         public Nullable<int> TransId { get; set; }
         public Nullable<int> MerchantId { get; set; }
-        public string Email { get; set; }
     
-        public virtual BusinessIndustry BusinessIndustry { get; set; }
-        public virtual Transaction Transaction { get; set; }
         public virtual ICollection<Advertisement> Advertisements { get; set; }
+        public virtual BusinessIndustry BusinessIndustry { get; set; }
         public virtual ICollection<Deal> Deals { get; set; }
+        public virtual MerchantAccount MerchantAccount { get; set; }
+        public virtual Transaction Transaction { get; set; }
         public virtual ICollection<NewOpening> NewOpenings { get; set; }
         public virtual ICollection<Recommendation> Recommendations { get; set; }
-        public virtual MerchantAccount MerchantAccount { get; set; }
     }
 }

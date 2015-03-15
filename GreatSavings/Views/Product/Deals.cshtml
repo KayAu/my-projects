@@ -1,14 +1,13 @@
-﻿@model GreatSavings.Deal
+﻿@using GreatSavings.Helper
+@model GreatSavings.Deal
 
 @{
     ViewBag.Title = "Deals";
     Layout = "~/Views/Shared/ClientMaster.cshtml";
 }
 
-
-
 <div class="container">
-
+    @Html.CustomImage("http://demo.powerthemes.club/themes/couponer/wp-content/uploads/2014/07/logo_v1.png", "Mohammad Ahmad", 150, 200)
     <section class="article-content">
         <!-- TOP SECTION -->
         <div class="top-section">
@@ -16,7 +15,7 @@
                 <img src="data:image/gif;base64,@System.Convert.ToBase64String(Model.Image)" />
             </figure>
             <article>
-                <header>@Html.DisplayFor(model => model.Directory.CompanyName)</header>
+                <h1>@Html.DisplayFor(model => model.Directory.CompanyName)</h1>
                 <p>
                     @Html.DisplayFor(model => model.Title)
                 </p>
@@ -25,11 +24,13 @@
                         <span>@Model.ExpiryDate.ToString("dd MMM yyyy")</span>
                     </span>
                      <span class="cat_wrapper">Category: 
-                        <span>To be added</span>
+                        <span>@Model.Directory.BusinessIndustry.BusIndustry</span>
                     </span>
                 </div>
                 <div class="btn-group" role="group" aria-label="...">
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Save</button>
+                    <button type="button" class="btn btn-default" ng-click="saveCoupon('@Model.Id', '@Model.Title', '@Model.Directory.CompanyName', '@Model.ExpiryDate.ToString("dd MMM yyyy")')">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Save
+                    </button>
                     <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
                     <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Email</button>                    
                 </div>              
@@ -121,7 +122,219 @@
             </div>
         </div>
     </section>
+    <div class="col-md-3">
+        <div class="widget right_widget">
+            <div class="blog-inner widget-inner">
+                <div class="line-divider widget-line-divider"></div><div class="caption widget-caption"><h4>Search Coupons</h4></div><!-- widget-content -->
+                <div class="widget-content">
 
+                    <!-- time-slider -->
+                    <div class="timeline">
+                        <p>Days Range: <span class="green">0</span> - <span class="green">77</span></p>
+                    </div>
+
+                    <div class="slider slider-horizontal">
+                        <div class="slider slider-horizontal" style="width: 154px;"><div class="slider-track"><div class="slider-selection" style="left: 0%; width: 100%;"></div><div class="slider-handle round" style="left: 0%;"></div><div class="slider-handle round" style="left: 100%;"></div></div><div class="tooltip top" style="top: -30px; left: 77.5px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">0 : 77</div></div><input type="text" class="span2" value="" data-slider-min="0" data-slider-max="77" data-slider-step="1" data-slider-value="[0,77]" id="time-slider"></div>
+                    </div>
+                    <!-- .time-slider -->
+                    <!-- dropdown-categories -->
+                    <div class="dropdown dd-widget">
+                        <button type="button" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown">
+                            Categories
+                            <span class="fa fa-angle-down pull-right"></span>
+                        </button>
+                        <ul class="dropdown-menu dd-custom dd-widget" role="menu" data-name="code_category">
+                            <li><a href="#" data-value="computers"><i class="fa fa-laptop"></i> Computers</a></li>
+                            <li><a href="#" data-value="house"><i class="fa fa-home"></i> House</a></li>
+                            <li><a href="#" data-value="photography"><i class="fa fa-picture-o"></i> Photography</a></li>
+                            <li><a href="#" data-value="students"><i class="fa fa-users"></i> Students</a></li>
+                            <li><a href="#" data-value="technology"><i class="fa fa-scissors"></i> Technology</a></li>
+                            <li><a href="#" data-value="baby"><i class="fa fa-child"></i> Baby</a></li>
+                            <li><a href="#" data-value="books"><i class="fa fa-book"></i> Books &amp; Movies</a></li>
+                            <li><a href="#" data-value="cars"><i class="fa fa-car"></i> Cars</a></li>
+                            <li><a href="#" data-value="music"><i class="fa fa-music"></i> Music</a></li>
+                            <li><a href="#" data-value="pet-care"><i class="fa fa-paw"></i> Pet Care</a></li>
+                            <li><a href="#" data-value="travel"><i class="fa fa-plane"></i> Travel</a></li>
+                        </ul>
+                    </div>
+                    <!-- .dropdown-categories -->
+                    <!-- dropdown-shops -->
+                    <div class="dropdown dd-widget">
+                        <button type="button" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown">
+                            Shops
+                            <span class="fa fa-angle-down pull-right"></span>
+                        </button>
+                        <ul class="dropdown-menu dd-custom dd-widget" role="menu" data-name="code_shop_id">
+                            <li><a href="#" data-value="130">Big</a></li>
+                            <li><a href="#" data-value="82">Arabesk</a></li>
+                            <li><a href="#" data-value="81">Playfair</a></li>
+                            <li><a href="#" data-value="80">Kingsize</a></li>
+                            <li><a href="#" data-value="79">Silicium</a></li>
+                            <li><a href="#" data-value="78">Reepook</a></li>
+                            <li><a href="#" data-value="77">Cornelius</a></li>
+                            <li><a href="#" data-value="13">Tobisha</a></li>
+                            <li><a href="#" data-value="6">Adibbas</a></li>
+                        </ul>
+                    </div>
+                    <!-- .dropdown-shops -->
+                    <!-- dropdown-type -->
+                    <div class="dropdown dd-widget">
+                        <button type="button" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown">
+                            Type
+                            <span class="fa fa-angle-down pull-right"></span>
+                        </button>
+                        <ul class="dropdown-menu dd-custom dd-widget" role="menu" data-name="coupon_label">
+                            <li>
+                                <a href="#" data-value="coupon">Coupon</a>
+                            </li>
+                            <li>
+                                <a href="#" data-value="discount">Discount</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- .dropdown-type -->
+                    <!-- search-button -->
+                    <form method="get" action="http://demo.powerthemes.club/themes/couponer/code-search/" class="search_widget">
+                        <input type="hidden" value="0" name="start_range">
+                        <input type="hidden" value="77" name="end_range">
+                        <input type="hidden" value="" name="code_category">
+                        <input type="hidden" value="" name="code_shop_id">
+                        <input type="hidden" value="" name="coupon_label">
+                        <button type="submit" class="btn btn-custom btn-full btn-default btn-lg">Search Coupons</button>
+                    </form>
+                    <!-- .search-button -->
+
+                </div>
+                <!-- .widget-content -->
+            </div>
+        </div><div class="widget right_widget">
+            <div class="blog-inner widget-inner">
+                <div class="line-divider widget-line-divider"></div><div class="caption widget-caption"><h4>Coupon Categories</h4></div><ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="badge">2</span>
+                        <a href="http://demo.powerthemes.club/themes/couponer/code_category/computers/"> Computers </a>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge">1</span>
+                        <a href="http://demo.powerthemes.club/themes/couponer/code_category/house/"> House </a>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge">1</span>
+                        <a href="http://demo.powerthemes.club/themes/couponer/code_category/photography/"> Photography </a>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge">1</span>
+                        <a href="http://demo.powerthemes.club/themes/couponer/code_category/students/"> Students </a>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge">2</span>
+                        <a href="http://demo.powerthemes.club/themes/couponer/code_category/technology/"> Technology </a>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge">2</span>
+                        <a href="http://demo.powerthemes.club/themes/couponer/code_category/baby/"> Baby </a>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge">1</span>
+                        <a href="http://demo.powerthemes.club/themes/couponer/code_category/books/"> Books &amp; Movies </a>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge">2</span>
+                        <a href="http://demo.powerthemes.club/themes/couponer/code_category/cars/"> Cars </a>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge">3</span>
+                        <a href="http://demo.powerthemes.club/themes/couponer/code_category/music/"> Music </a>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge">1</span>
+                        <a href="http://demo.powerthemes.club/themes/couponer/code_category/pet-care/"> Pet Care </a>
+                    </li>
+                </ul>
+            </div>
+        </div><div class="widget right_widget">
+            <div class="blog-inner widget-inner">
+                <div class="line-divider widget-line-divider"></div><div class="caption widget-caption"><h4>Popular Shops</h4></div><ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="badge">3</span>
+                        <a href="http://demo.powerthemes.club/themes/couponer/shop/tobisha/"> Tobisha </a>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge">3</span>
+                        <a href="http://demo.powerthemes.club/themes/couponer/shop/silicium/"> Silicium </a>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge">5</span>
+                        <a href="http://demo.powerthemes.club/themes/couponer/shop/adibbas-2/"> Cornelius </a>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge">1</span>
+                        <a href="http://demo.powerthemes.club/themes/couponer/shop/kingsize/"> Kingsize </a>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge">1</span>
+                        <a href="http://demo.powerthemes.club/themes/couponer/shop/playfair/"> Playfair </a>
+                    </li>
+                </ul>
+            </div>
+        </div><div class="widget right_widget">
+            <div class="blog-inner widget-inner">
+                <div class="line-divider widget-line-divider"></div><div class="caption widget-caption"><h4>Special Offer</h4></div>
+                <!-- widget-content -->
+                <div class="widget-content">
+
+                    <!-- coupon-timer -->
+                    <div class="time">
+
+                        <div class="time-caption caption">
+                            <a href="http://demo.powerthemes.club/themes/couponer/daily_offer/test-daily-offer-2/" class="green pack">Test Daily Offer 2</a>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            </p>
+                        </div>
+
+                        <!-- countdown -->
+                        <div class="time-content">
+
+                            <span class="coupon-meta-caption">Time Left To Buy</span>
+                            <!-- COUNTDOWN -->
+                            <div class="countdown" data-time="1427846400" data-button_url="http://google.com" data-button_text="Buy Now" data-days_text="days" data-day_text="day">
+
+                                <span class="kkcountdown-box"><div class="days green"><span class="c-time kkc-days">17</span><span class="date kkc-days-text">days</span></div><div class="count-rest"><div class="hours"><span class="c-time kkc-hours">07</span></div><div class="minutes"><span class="c-time kkc-min">26</span></div><div class="seconds "><span class="c-time last kkc-sec">49</span></div><a class="btn btn-custom btn-timer btn-primary btn-large" href="http://google.com" target="_blank">Buy Now</a></div></span>
+                            </div>
+
+                        </div>
+                        <!-- .countdown -->
+                    </div>
+                    <!-- .coupon-timer -->
+
+                </div>
+                <!-- .widget-content -->
+            </div>
+        </div><div class="widget right_widget">
+            <div class="blog-inner widget-inner">
+                <div class="line-divider widget-line-divider"></div><div class="caption widget-caption"><h4>Offers For You</h4></div><ul class="list-group">
+                    <li class="list-group-item">
+                        <a href="http://demo.powerthemes.club/themes/couponer/daily_offer/test-daily-offer/"> Test Daily Offer </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://demo.powerthemes.club/themes/couponer/daily_offer/test-daily-offer-1/"> Test Daily Offer 1 </a>
+                    </li>
+                </ul>
+            </div>
+        </div><div class="widget right_widget">
+            <div class="blog-inner widget-inner">
+                <div class="line-divider widget-line-divider"></div><div class="caption widget-caption"><h4>Search</h4></div><form role="search" method="get" id="searchform" class="searchform form-control-custom" action="http://demo.powerthemes.club/themes/couponer/">
+                    <div>
+                        <input type="text" value="" name="s" id="s" placeholder="Search...">
+                        <input type="submit" id="searchsubmit" value="Search">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+   
 @*    <section class="article-content">
         <div>
             <figure>

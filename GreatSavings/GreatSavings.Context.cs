@@ -13,7 +13,6 @@ namespace GreatSavings
     using System.Data.Entity;
     using System.Data.Entity.Core.Objects;
     using System.Data.Entity.Infrastructure;
-
     using System.Linq;
     
     public partial class GreatSavingsEntities : DbContext
@@ -36,13 +35,13 @@ namespace GreatSavings
         public DbSet<Product> Products { get; set; }
         public DbSet<Advertisement> Advertisements { get; set; }
         public DbSet<AdvertisementType> AdvertisementTypes { get; set; }
-        public DbSet<Directory> Directories { get; set; }
         public DbSet<NewOpening> NewOpenings { get; set; }
         public DbSet<Recommendation> Recommendations { get; set; }
         public DbSet<MerchantAccount> MerchantAccounts { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<AspNetUser> AspNetUsers { get; set; }
         public DbSet<BusinessIndustry> BusinessIndustries { get; set; }
+        public DbSet<Directory> Directories { get; set; }
     
         public virtual ObjectResult<Nullable<int>> CreateMerchantAccount(string prUserID)
         {
@@ -60,6 +59,15 @@ namespace GreatSavings
                 new ObjectParameter("prEmail", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("CheckEmailAlreadyExist", prEmailParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetProductSubscByCatgry_Result> GetProductSubscByCategory(Nullable<int> prProductId)
+        {
+            var prProductIdParameter = prProductId.HasValue ?
+                new ObjectParameter("prProductId", prProductId) :
+                new ObjectParameter("prProductId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetProductSubscByCatgry_Result>("GetProductSubscByCategory", prProductIdParameter);
         }
     }
 }

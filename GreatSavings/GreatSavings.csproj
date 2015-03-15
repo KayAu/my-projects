@@ -252,6 +252,7 @@
       <DependentUpon>GreatSavings.edmx</DependentUpon>
     </Compile>
     <Compile Include="Helper\DataManager.cs" />
+    <Compile Include="Helper\HtmlExtensions.cs" />
     <Compile Include="MerchantAccount.cs">
       <DependentUpon>GreatSavings.tt</DependentUpon>
     </Compile>
@@ -271,6 +272,9 @@
       <DependentUpon>GreatSavings.tt</DependentUpon>
     </Compile>
     <Compile Include="Recommendation.cs">
+      <DependentUpon>GreatSavings.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetProductSubscByCatgry_Result.cs">
       <DependentUpon>GreatSavings.tt</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
@@ -401,6 +405,7 @@
     <Content Include="Scripts\Controllers\accountController.js" />
     <Content Include="Scripts\Controllers\dealsController.js" />
     <Content Include="Scripts\Controllers\salesFreebiesController.js" />
+    <Content Include="Scripts\Controllers\visitorController.js" />
     <Content Include="Scripts\Directives\merchantSelector.js" />
     <Content Include="Scripts\Directives\multipleImageUploader.js" />
     <Content Include="Scripts\Directives\imageFileReader.js" />
@@ -408,6 +413,7 @@
     <Content Include="Scripts\Directives\validateSubmission.js" />
     <Content Include="Scripts\JQPlugins\jquery.easing.min.js" />
     <Content Include="Scripts\JQPlugins\unslider.min.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\knockout-2.2.1.debug.js" />
     <Content Include="Scripts\knockout-2.2.1.js" />
     <Content Include="Scripts\MvcApp.js" />
@@ -1295,6 +1301,7 @@
     <Content Include="Views\Home\Deals.cshtml" />
     <Content Include="Views\Product\Deals.cshtml" />
     <Content Include="Views\ProductSubmission\Promotion.cshtml" />
+    <Content Include="Views\Product\DisplayProducts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
