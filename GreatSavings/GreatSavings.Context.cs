@@ -61,13 +61,13 @@ namespace GreatSavings
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("CheckEmailAlreadyExist", prEmailParameter);
         }
     
-        public virtual ObjectResult<sp_GetProductSubscByCatgry_Result> GetProductSubscByCategory(Nullable<int> prProductId)
+        public virtual ObjectResult<GetProductSubscByCategory_Result> GetProductSubscByCategory(Nullable<int> prProductId)
         {
             var prProductIdParameter = prProductId.HasValue ?
                 new ObjectParameter("prProductId", prProductId) :
                 new ObjectParameter("prProductId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetProductSubscByCatgry_Result>("GetProductSubscByCategory", prProductIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProductSubscByCategory_Result>("GetProductSubscByCategory", prProductIdParameter);
         }
     }
 }

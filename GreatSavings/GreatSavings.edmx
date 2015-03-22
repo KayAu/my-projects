@@ -482,8 +482,8 @@
             <End Role="Directory" EntitySet="Directories" />
             <End Role="Recommendation" EntitySet="Recommendations" />
           </AssociationSet>
-          <FunctionImport Name="GetProductSubscByCategory" ReturnType="Collection(GreatSavingsModel.sp_GetProductSubscByCatgry_Result)">
-          <Parameter Name="prProductId" Mode="In" Type="Int32" />
+          <FunctionImport Name="GetProductSubscByCategory" ReturnType="Collection(GreatSavingsModel.GetProductSubscByCategory_Result)">
+            <Parameter Name="prProductId" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="Promotion">
@@ -853,6 +853,10 @@
           <Property Type="String" Name="BusIndustry" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="Column1" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="GetProductSubscByCategory_Result">
+          <Property Type="String" Name="Category" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Total" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1056,10 +1060,10 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="GetProductSubscByCategory" FunctionName="GreatSavingsModel.Store.sp_GetProductSubscByCatgry">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="GreatSavingsModel.sp_GetProductSubscByCatgry_Result">
-                <ScalarProperty Name="BusIndustry" ColumnName="BusIndustry" />
-                <ScalarProperty Name="Column1" ColumnName="Column1" />
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="GreatSavingsModel.GetProductSubscByCategory_Result">
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

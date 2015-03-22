@@ -738,8 +738,7 @@ button.dropdown-toggle.btn:active, button.dropdown-toggle.btn:focus, .open .drop
     -moz-box-shadow: 3px 7px 1px 0px rgba(208, 208, 208, .1);
     box-shadow: 3px 7px 1px 0px rgba(208, 208, 208, .1);
     float: left;
-    margin: auto;
-    margin-top: 40px;
+    margin: 40px 30px 0 0;
 }
 
     .article-content figure {
@@ -1176,15 +1175,61 @@ button.dropdown-toggle.btn:active, button.dropdown-toggle.btn:focus, .open .drop
     float: none;
 }
 
+.widget {
+  padding-bottom: 30px;
+}
 
-.vnav-counter {
-    float: right;
-    margin-top: 8px;
-    padding: 0 6px;
-    line-height: 18px;
-    font-size: 11px;
-    background: #464e59;
-    border-radius: 9px;
-    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.2);
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.2);
+.widget-content {
+  padding: 15px 20px;
+    border: 1px solid #e5e5e5;
+}
+
+.widget-inner
+{
+    border-color: #e5e5e5;
+    -webkit-box-shadow: 3px 7px 1px 0px rgba(208, 208, 208, .1);
+    -moz-box-shadow: 3px 7px 1px 0px rgba(208, 208, 208, .1);
+    box-shadow: 3px 7px 1px 0px rgba(208, 208, 208, .1);
+}
+.widget-caption {
+    padding: 15px 20px;
+    border: 1px solid #e5e5e5;
+    border-bottom: none;
+}
+
+.list-group
+{
+    list-style: none;
+    padding-left: 0;  
+    margin-bottom: 20px;
+}
+
+
+.list-group .list-group-item:first-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.timeline p {
+  margin-bottom: 15px;
+}
+
+.timeline span.green{
+    color: #24b6ac;
+}
+
+.slider {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    width: 200px !important;
+    height: 30px;
+    padding-left: 10px;
+}
+
+.slider-track {
+  position: absolute;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid #e5e5e5;
 }

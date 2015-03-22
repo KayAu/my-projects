@@ -6,8 +6,8 @@
     Layout = "~/Views/Shared/ClientMaster.cshtml";
 }
 
-<div class="container">
-    @Html.CustomImage("http://demo.powerthemes.club/themes/couponer/wp-content/uploads/2014/07/logo_v1.png", "Mohammad Ahmad", 150, 200)
+
+<div class="container">    
     <section class="article-content">
         <!-- TOP SECTION -->
         <div class="top-section">
@@ -124,7 +124,9 @@
     </section>
     <div class="col-md-3">
         <div class="widget right_widget">
-            <div class="blog-inner widget-inner">
+           @Html.Partial("~/Views/Product/SearchProduct.cshtml", new GreatSavings.Product())  
+            <div class="widget-inner">
+
                 <div class="line-divider widget-line-divider"></div><div class="caption widget-caption"><h4>Search Coupons</h4></div><!-- widget-content -->
                 <div class="widget-content">
 
@@ -143,6 +145,7 @@
                             Categories
                             <span class="fa fa-angle-down pull-right"></span>
                         </button>
+                        
                         <ul class="dropdown-menu dd-custom dd-widget" role="menu" data-name="code_category">
                             <li><a href="#" data-value="computers"><i class="fa fa-laptop"></i> Computers</a></li>
                             <li><a href="#" data-value="house"><i class="fa fa-home"></i> House</a></li>
@@ -208,50 +211,10 @@
                 <!-- .widget-content -->
             </div>
         </div><div class="widget right_widget">
-            <div class="blog-inner widget-inner">
-                <div class="line-divider widget-line-divider"></div><div class="caption widget-caption"><h4>Coupon Categories</h4></div><ul class="list-group">
-                    <li class="list-group-item">
-                        <span class="badge">2</span>
-                        <a href="http://demo.powerthemes.club/themes/couponer/code_category/computers/"> Computers </a>
-                    </li>
-                    <li class="list-group-item">
-                        <span class="badge">1</span>
-                        <a href="http://demo.powerthemes.club/themes/couponer/code_category/house/"> House </a>
-                    </li>
-                    <li class="list-group-item">
-                        <span class="badge">1</span>
-                        <a href="http://demo.powerthemes.club/themes/couponer/code_category/photography/"> Photography </a>
-                    </li>
-                    <li class="list-group-item">
-                        <span class="badge">1</span>
-                        <a href="http://demo.powerthemes.club/themes/couponer/code_category/students/"> Students </a>
-                    </li>
-                    <li class="list-group-item">
-                        <span class="badge">2</span>
-                        <a href="http://demo.powerthemes.club/themes/couponer/code_category/technology/"> Technology </a>
-                    </li>
-                    <li class="list-group-item">
-                        <span class="badge">2</span>
-                        <a href="http://demo.powerthemes.club/themes/couponer/code_category/baby/"> Baby </a>
-                    </li>
-                    <li class="list-group-item">
-                        <span class="badge">1</span>
-                        <a href="http://demo.powerthemes.club/themes/couponer/code_category/books/"> Books &amp; Movies </a>
-                    </li>
-                    <li class="list-group-item">
-                        <span class="badge">2</span>
-                        <a href="http://demo.powerthemes.club/themes/couponer/code_category/cars/"> Cars </a>
-                    </li>
-                    <li class="list-group-item">
-                        <span class="badge">3</span>
-                        <a href="http://demo.powerthemes.club/themes/couponer/code_category/music/"> Music </a>
-                    </li>
-                    <li class="list-group-item">
-                        <span class="badge">1</span>
-                        <a href="http://demo.powerthemes.club/themes/couponer/code_category/pet-care/"> Pet Care </a>
-                    </li>
-                </ul>
-            </div>
+
+                @Html.ProductCategories(2, "Deals")
+                
+            
         </div><div class="widget right_widget">
             <div class="blog-inner widget-inner">
                 <div class="line-divider widget-line-divider"></div><div class="caption widget-caption"><h4>Popular Shops</h4></div><ul class="list-group">

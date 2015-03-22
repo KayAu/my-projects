@@ -21,34 +21,84 @@ namespace GreatSavings.Helper
                 return MvcHtmlString.Create(imageTag.ToString(TagRenderMode.SelfClosing));           
         }
 
-        public static MvcHtmlString ProductCategories(this HtmlHelper htmlHelper, int productId)
+        public static MvcHtmlString ProductCategories(this HtmlHelper htmlHelper, int productId, string productName)
         {
-            var results = db.GetProductSubscByCategory(productId);
-            var ul = new TagBuilder("ul");
-
-            foreach (var item in results)
+            try
             {
-                TagBuilder li = new TagBuilder("li");
-                TagBuilder span = new TagBuilder("span");
-                TagBuilder a = new TagBuilder("a");
+                var results = db.GetProductSubscByCategory(productId);
+                var ul = new TagBuilder("ul");
+                var div_widget_inner = new TagBuilder("div");
+                var div_widget_caption = new TagBuilder("div");
 
-                span.MergeAttribute("class", "badge");
-                span.SetInnerText(item.Column1.ToString());
-                a.MergeAttribute("href", "/Product/DisplayProducts/{{item.Id}}");
-                    li.SetInnerText(String.Format("{0} {1}", _firstname.Compile()(item), _lastname.Compile()(item)));
+                div_widget_inner.MergeAttribute("class", "widget-inner");
+                div_widget_caption.MergeAttribute("class", "widget-caption");
+                div_widget_caption.InnerHtml = string.Format("<h4>{0} Categories</h4>", productName);
+
+                ul.AddCssClass("list-group");
+
+                foreach (var item in results)
+                {
+                    TagBuilder li = new TagBuilder("li");
+                    TagBuilder span = new TagBuilder("span");
+                    TagBuilder a = new TagBuilder("a");
+
+                    span.MergeAttribute("class", "badge");
+                    span.InnerHtml=item.Total.ToString();
+                    a.InnerHtml =item.Category;
+                    a.MergeAttribute("href", "/Product/DisplayProducts/" +1 );
+                    li.InnerHtml = a.ToString() + span.ToString();
+                    li.MergeAttribute("class", "list-group-item");
                     ul.InnerHtml += li.ToString(TagRenderMode.Normal);
+                }
 
-                //<li class="list-group-item">
-                //                        <span class="badge">2</span>
-                //                        <a href="http://demo.powerthemes.club/themes/couponer/code_category/computers/"> Computers </a>
-                //                      </li>
+                div_widget_inner.InnerHtml = div_widget_caption.ToString();
+                div_widget_inner.InnerHtml += ul.ToString();
+
+                return MvcHtmlString.Create(div_widget_inner.ToString());
             }
-            //imageTag.MergeAttribute("src", src);
-            //imageTag.MergeAttribute("alt", alt);
-            //imageTag.MergeAttribute("width", width.ToString());
-            //imageTag.MergeAttribute("height", height.ToString());
+            catch(Exception ex)
+            {
+               return MvcHtmlString.Create("");
+            }
+        }
 
-            return MvcHtmlString.Create(ul.ToString(TagRenderMode.SelfClosing));    
+        public static MvcHtmlString CategoryDropDown(this HtmlHelper htmlHelper, int productId)
+        {
+            try
+            {
+                var results = db.GetProductSubscByCategory(productId);
+                var dropDownButton = new TagBuilder("button");
+                var ul = new TagBuilder("ul");
+
+                dropDownButton.MergeAttribute("class", "btn btn-default dropdown-toggle");
+                dropDownButton.MergeAttribute("data-toggle", "dropdown");
+                dropDownButton.InnerHtml = "Categories <span class='fa fa-angle-down pull-right'></span>";
+
+                ul.AddCssClass("dropdown-menu dd-custom dd-widget");
+                ul.MergeAttribute("role", "menu");
+
+                foreach (var item in results)
+                {
+                    TagBuilder li = new TagBuilder("li");
+                    TagBuilder a = new TagBuilder("a");
+                    TagBuilder i = new TagBuilder("i");
+                    
+
+                    a.InnerHtml = item.Category;
+                    a.MergeAttribute("href", "#");
+                    li.InnerHtml = a.ToString();
+                    ul.InnerHtml += li.ToString(TagRenderMode.Normal);
+                }
+
+                string render = dropDownButton.ToString();
+                render += ul.ToString();
+
+                return MvcHtmlString.Create(render);
+            }
+            catch (Exception ex)
+            {
+                return MvcHtmlString.Create("");
+            }
         }
     }
 }

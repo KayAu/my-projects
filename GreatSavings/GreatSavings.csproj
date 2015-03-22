@@ -233,6 +233,9 @@
     <Compile Include="Directory.cs">
       <DependentUpon>GreatSavings.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetProductSubscByCategory_Result.cs">
+      <DependentUpon>GreatSavings.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -298,6 +301,7 @@
     <Content Include="Content\bootstrap-datepicker3.css" />
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap-responsive.min.css" />
+    <Content Include="Content\bootstrap-slider.css" />
     <Content Include="Content\bootstrap-timepicker.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -402,6 +406,7 @@
     <Content Include="Scripts\angular-resource.js" />
     <Content Include="Scripts\angular-route.min.js" />
     <Content Include="Scripts\angular-sanitize.min.js" />
+    <Content Include="Scripts\bootstrap-slider.js" />
     <Content Include="Scripts\Controllers\accountController.js" />
     <Content Include="Scripts\Controllers\dealsController.js" />
     <Content Include="Scripts\Controllers\salesFreebiesController.js" />
@@ -1246,6 +1251,7 @@
     <Content Include="Scripts\Controllers\productcontroller.js" />
     <Content Include="Scripts\ProductSubmission\form-animate.js" />
     <Content Include="Scripts\Services\productservices.js" />
+    <Content Include="Scripts\test.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1302,6 +1308,7 @@
     <Content Include="Views\Product\Deals.cshtml" />
     <Content Include="Views\ProductSubmission\Promotion.cshtml" />
     <Content Include="Views\Product\DisplayProducts.cshtml" />
+    <Content Include="Views\Product\SearchProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
