@@ -48,6 +48,7 @@ namespace GreatSavings.Helper
                     a.MergeAttribute("href", "/Product/DisplayProducts/" +1 );
                     li.InnerHtml = a.ToString() + span.ToString();
                     li.MergeAttribute("class", "list-group-item");
+
                     ul.InnerHtml += li.ToString(TagRenderMode.Normal);
                 }
 
@@ -137,5 +138,44 @@ namespace GreatSavings.Helper
             }
         }
 
+        public static MvcHtmlString ProductDropDown(this HtmlHelper htmlHelper, int productId)
+        {
+            try
+            {
+                var results = db.Products.Where(p=> p.Searchable == true).OrderBy(p=>p.Name);
+                var dropDownButton = new TagBuilder("button");
+                var ul = new TagBuilder("ul");
+
+                dropDownButton.MergeAttribute("class", "btn btn-default dropdown-toggle");
+                dropDownButton.MergeAttribute("data-toggle", "dropdown");
+                dropDownButton.InnerHtml = "Type <span class='fa fa-angle-down pull-right'></span>";
+
+                ul.AddCssClass("dropdown-menu dd-custom dd-widget");
+                ul.MergeAttribute("role", "menu");
+
+                foreach (var item in results)
+                {
+                    TagBuilder li = new TagBuilder("li");
+                    TagBuilder a = new TagBuilder("a");
+                    TagBuilder span = new TagBuilder("span");
+
+                    span.MergeAttribute("class", "selectedValue hidden");
+                    span.InnerHtml = item.Id.ToString();
+                    a.InnerHtml = item.Name;
+                    a.MergeAttribute("href", "#");
+                    li.InnerHtml = a.ToString() + span.ToString() ;
+                    ul.InnerHtml += li.ToString(TagRenderMode.Normal);
+                }
+
+                string render = dropDownButton.ToString();
+                render += ul.ToString();
+
+                return MvcHtmlString.Create(render);
+            }
+            catch (Exception ex)
+            {
+                return MvcHtmlString.Create("");
+            }
+        }
     }
 }

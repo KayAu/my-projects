@@ -1,11 +1,16 @@
-﻿
+﻿@model string
 
-<div id="deals" ng-controller="dealsController"  ng-init="loadDeals(10)">
+@if (Model != null) {
+    <div>
+        Data are available!!
+    </div>
+}
+<div id="deals" ng-controller="dealsController" ng-init="loadDeals(10, (Model != null ? @Html.Raw(Model) : null))">
     <div class="item-container col-md-3" ng-repeat="item in deals">
         <div class="featured-item">
             @*<div class="days-mask">
-                <p>77 days left</p>
-            </div>*@
+                    <p>77 days left</p>
+                </div>*@
             <div class="featured-item-container">
                 <div class="logotype">
                     <div class="logotype-image">
@@ -25,56 +30,56 @@
                     <p></p>
                     <p class="item-title">{{item.Title}}</p>
                     <p></p>
-                    <div class="item-date" >
+                    <div class="item-date">
                         <span class="caption">Expired:</span>
                         <span class="value">{{item.ExpiryDate | date:'dd MMM yyyy'}}</span>
                     </div>
-              
+
                 </div>
                 <div class="item-meta">
-                
-                    <a href="#"><i class="fa fa-plus-square">&nbsp</i>Save</a>             
-                
+
+                    <a href="#"><i class="fa fa-plus-square">&nbsp</i>Save</a>
+
                     <ul class="social-links">
-                          <li>
-                              <a id="social-link-facebook" href="https://www.facebook.com/envatomarket">
-                                  <i class="fa fa-facebook"></i>
-                              </a>
-                          </li>
-                          <li>
-                              <a id="social-link-twitter" href="https://twitter.com/envatomarket">
-                                  <i class="fa fa-twitter"></i>
-                              </a>
-                          </li>
-                          <li>
-                              <a id="social-link-pinterest" href="https://plus.google.com/u/0/112592709425670873637/about">
-                                  <i class="fa fa-pinterest"></i>
-                              </a>
-                          </li>
-                          <li>
-                               <a id="social-link-google" href="https://plus.google.com/u/0/112592709425670873637/about">
-                                  <i class="fa fa-google-plus"></i>
-                              </a>
-                          </li>
-                     </ul>
+                        <li>
+                            <a id="social-link-facebook" href="https://www.facebook.com/envatomarket">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="social-link-twitter" href="https://twitter.com/envatomarket">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="social-link-pinterest" href="https://plus.google.com/u/0/112592709425670873637/about">
+                                <i class="fa fa-pinterest"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="social-link-google" href="https://plus.google.com/u/0/112592709425670873637/about">
+                                <i class="fa fa-google-plus"></i>
+                            </a>
+                        </li>
+                    </ul>
 
                     @*<ul class="list-inline list-unstyled">
-                        <li>
-                            <a href="javascript:;">
-                                <span class="fa fa-clock-o"></span>77 days
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://demo.powerthemes.club/themes/couponer/shop/adibbas-2/?label_var=discount">
-                                <span class="fa fa-tag"></span>Discount
-                            </a>
-                        </li>
-                        <li class="pull-right">
-                            <a href="http://demo.powerthemes.club/themes/couponer/shop/adibbas-2/">
-                                <span class="fa fa-plus-square"></span>
-                            </a>
-                        </li>
-                    </ul>*@
+                            <li>
+                                <a href="javascript:;">
+                                    <span class="fa fa-clock-o"></span>77 days
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://demo.powerthemes.club/themes/couponer/shop/adibbas-2/?label_var=discount">
+                                    <span class="fa fa-tag"></span>Discount
+                                </a>
+                            </li>
+                            <li class="pull-right">
+                                <a href="http://demo.powerthemes.club/themes/couponer/shop/adibbas-2/">
+                                    <span class="fa fa-plus-square"></span>
+                                </a>
+                            </li>
+                        </ul>*@
                 </div>
             </div>
         </div>

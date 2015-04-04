@@ -1,5 +1,5 @@
 ﻿body {
-    overflow: hidden;
+ 
     font-family: 'Open Sans',sans-serif;
     font-weight: 400;
     color: #333;
@@ -1343,4 +1343,8 @@ ul.dd-custom {
     border: none;
     outline: none;
     transition: all .2s linear;
+}
+
+.hidden{
+    display:none;
 }

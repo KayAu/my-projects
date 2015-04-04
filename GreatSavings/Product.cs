@@ -24,5 +24,6 @@ namespace GreatSavings
         public string Term { get; set; }
         public string Currency { get; set; }
         public Nullable<short> Position { get; set; }
+        public Nullable<bool> Searchable { get; set; }
     }
 }

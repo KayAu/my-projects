@@ -280,6 +280,9 @@
     <Compile Include="sp_GetProductSubscByCatgry_Result.cs">
       <DependentUpon>GreatSavings.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_SearchProducts_Result.cs">
+      <DependentUpon>GreatSavings.tt</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="State.cs">
       <DependentUpon>GreatSavings.tt</DependentUpon>
@@ -411,6 +414,7 @@
     <Content Include="Scripts\Controllers\dealsController.js" />
     <Content Include="Scripts\Controllers\salesFreebiesController.js" />
     <Content Include="Scripts\Controllers\visitorController.js" />
+    <Content Include="Scripts\Directives\hidden-data-store.js" />
     <Content Include="Scripts\Directives\merchantSelector.js" />
     <Content Include="Scripts\Directives\multipleImageUploader.js" />
     <Content Include="Scripts\Directives\imageFileReader.js" />
@@ -1251,7 +1255,7 @@
     <Content Include="Scripts\Controllers\productcontroller.js" />
     <Content Include="Scripts\ProductSubmission\form-animate.js" />
     <Content Include="Scripts\Services\productservices.js" />
-    <Content Include="Scripts\test.js" />
+    <Content Include="Scripts\prod-search.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1307,8 +1311,8 @@
     <Content Include="Views\Home\Deals.cshtml" />
     <Content Include="Views\Product\Deals.cshtml" />
     <Content Include="Views\ProductSubmission\Promotion.cshtml" />
-    <Content Include="Views\Product\DisplayProducts.cshtml" />
     <Content Include="Views\Product\SearchProduct.cshtml" />
+    <Content Include="Views\Product\AllDeals.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
