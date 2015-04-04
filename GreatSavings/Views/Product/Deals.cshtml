@@ -125,7 +125,7 @@
     <div class="col-md-3">
         <div class="widget right_widget">
            @Html.Partial("~/Views/Product/SearchProduct.cshtml", new GreatSavings.Product())  
-            <div class="widget-inner">
+            @*<div class="widget-inner">
 
                 <div class="line-divider widget-line-divider"></div><div class="caption widget-caption"><h4>Search Coupons</h4></div><!-- widget-content -->
                 <div class="widget-content">
@@ -209,92 +209,14 @@
 
                 </div>
                 <!-- .widget-content -->
-            </div>
+            </div>*@
         </div><div class="widget right_widget">
 
                 @Html.ProductCategories(2, "Deals")
                 
             
-        </div><div class="widget right_widget">
-            <div class="blog-inner widget-inner">
-                <div class="line-divider widget-line-divider"></div><div class="caption widget-caption"><h4>Popular Shops</h4></div><ul class="list-group">
-                    <li class="list-group-item">
-                        <span class="badge">3</span>
-                        <a href="http://demo.powerthemes.club/themes/couponer/shop/tobisha/"> Tobisha </a>
-                    </li>
-                    <li class="list-group-item">
-                        <span class="badge">3</span>
-                        <a href="http://demo.powerthemes.club/themes/couponer/shop/silicium/"> Silicium </a>
-                    </li>
-                    <li class="list-group-item">
-                        <span class="badge">5</span>
-                        <a href="http://demo.powerthemes.club/themes/couponer/shop/adibbas-2/"> Cornelius </a>
-                    </li>
-                    <li class="list-group-item">
-                        <span class="badge">1</span>
-                        <a href="http://demo.powerthemes.club/themes/couponer/shop/kingsize/"> Kingsize </a>
-                    </li>
-                    <li class="list-group-item">
-                        <span class="badge">1</span>
-                        <a href="http://demo.powerthemes.club/themes/couponer/shop/playfair/"> Playfair </a>
-                    </li>
-                </ul>
-            </div>
-        </div><div class="widget right_widget">
-            <div class="blog-inner widget-inner">
-                <div class="line-divider widget-line-divider"></div><div class="caption widget-caption"><h4>Special Offer</h4></div>
-                <!-- widget-content -->
-                <div class="widget-content">
-
-                    <!-- coupon-timer -->
-                    <div class="time">
-
-                        <div class="time-caption caption">
-                            <a href="http://demo.powerthemes.club/themes/couponer/daily_offer/test-daily-offer-2/" class="green pack">Test Daily Offer 2</a>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            </p>
-                        </div>
-
-                        <!-- countdown -->
-                        <div class="time-content">
-
-                            <span class="coupon-meta-caption">Time Left To Buy</span>
-                            <!-- COUNTDOWN -->
-                            <div class="countdown" data-time="1427846400" data-button_url="http://google.com" data-button_text="Buy Now" data-days_text="days" data-day_text="day">
-
-                                <span class="kkcountdown-box"><div class="days green"><span class="c-time kkc-days">17</span><span class="date kkc-days-text">days</span></div><div class="count-rest"><div class="hours"><span class="c-time kkc-hours">07</span></div><div class="minutes"><span class="c-time kkc-min">26</span></div><div class="seconds "><span class="c-time last kkc-sec">49</span></div><a class="btn btn-custom btn-timer btn-primary btn-large" href="http://google.com" target="_blank">Buy Now</a></div></span>
-                            </div>
-
-                        </div>
-                        <!-- .countdown -->
-                    </div>
-                    <!-- .coupon-timer -->
-
-                </div>
-                <!-- .widget-content -->
-            </div>
-        </div><div class="widget right_widget">
-            <div class="blog-inner widget-inner">
-                <div class="line-divider widget-line-divider"></div><div class="caption widget-caption"><h4>Offers For You</h4></div><ul class="list-group">
-                    <li class="list-group-item">
-                        <a href="http://demo.powerthemes.club/themes/couponer/daily_offer/test-daily-offer/"> Test Daily Offer </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="http://demo.powerthemes.club/themes/couponer/daily_offer/test-daily-offer-1/"> Test Daily Offer 1 </a>
-                    </li>
-                </ul>
-            </div>
-        </div><div class="widget right_widget">
-            <div class="blog-inner widget-inner">
-                <div class="line-divider widget-line-divider"></div><div class="caption widget-caption"><h4>Search</h4></div><form role="search" method="get" id="searchform" class="searchform form-control-custom" action="http://demo.powerthemes.club/themes/couponer/">
-                    <div>
-                        <input type="text" value="" name="s" id="s" placeholder="Search...">
-                        <input type="submit" id="searchsubmit" value="Search">
-                    </div>
-                </form>
-            </div>
         </div>
+        
     </div>
 
    

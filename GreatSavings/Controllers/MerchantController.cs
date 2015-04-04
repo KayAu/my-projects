@@ -107,18 +107,18 @@ namespace GreatSavings.Controllers
         //
         // POST: /Merchant/Edit/5
 
-        [HttpPost]
-        public ActionResult Edit(Merchant merchant)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(merchant).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.BusIndustryId = new SelectList(db.BusinessIndustries, "BusIndustryId", "BusIndustry", merchant.BusIndustryId);
-            return View(merchant);
-        }
+        //[HttpPost]
+        //public ActionResult Edit(Merchant merchant)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(merchant).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    ViewBag.BusIndustryId = new SelectList(db.BusinessIndustries, "BusIndustryId", "BusIndustry", merchant.BusIndustryId);
+        //    return View(merchant);
+        //}
 
         //
         // GET: /Merchant/Delete/5
