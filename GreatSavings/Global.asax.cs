@@ -7,7 +7,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 namespace GreatSavings
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
@@ -28,7 +29,8 @@ namespace GreatSavings
             // Added these two lines to resolve the problem with circular referencing.
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             GlobalConfiguration.Configuration.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
-      
+
+
 
         }
     }

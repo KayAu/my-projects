@@ -1,11 +1,7 @@
 ﻿@model string
 
-@if (Model != null) {
-    <div>
-        Data are available!!
-    </div>
-}
-<div id="deals" ng-controller="dealsController" ng-init="loadDeals(10, (Model != null ? @Html.Raw(Model) : null))">
+
+<div id="deals" ng-controller="dealsController" ng-init="loadDeals(10, @Html.Raw(Model))">
     <div class="item-container col-md-3" ng-repeat="item in deals">
         <div class="featured-item">
             @*<div class="days-mask">
@@ -38,7 +34,13 @@
                 </div>
                 <div class="item-meta">
 
-                    <a href="#"><i class="fa fa-plus-square">&nbsp</i>Save</a>
+
+
+                    <a href="" ng-click="$parent.saveCoupon(item.Id, item.Title, item.CompanyName, item.ExpiryDate)">
+                        <i class="fa fa-plus-square">&nbsp</i>Save
+                    </a>
+
+
 
                     <ul class="social-links">
                         <li>

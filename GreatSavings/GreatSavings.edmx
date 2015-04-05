@@ -493,7 +493,7 @@
           <FunctionImport Name="GetProductSubscByCategory" ReturnType="Collection(GreatSavingsModel.GetProductSubscByCategory_Result)">
           <Parameter Name="prProductId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SearchProducts" EntitySet="Deals" ReturnType="Collection(GreatSavingsModel.Deal)">
+          <FunctionImport Name="SearchProducts" ReturnType="Collection(GreatSavingsModel.DealsSearchResult)">
             <Parameter Name="prProductId" Mode="In" Type="Int32" />
             <Parameter Name="prBizCategory" Mode="In" Type="String" />
             <Parameter Name="prLocation" Mode="In" Type="String" />
@@ -904,6 +904,14 @@
           <Property Type="Int32" Name="BusIndustryId1" Nullable="false" />
           <Property Type="String" Name="BusIndustry" Nullable="false" MaxLength="50" />
         </ComplexType>
+        <ComplexType Name="DealsSearchResult">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="150" />
+          <Property Type="Binary" Name="Image" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="ExpiryDate" Nullable="false" />
+          <Property Type="String" Name="CompanyName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="BusIndustry" Nullable="false" MaxLength="50" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1115,7 +1123,18 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SearchProducts" FunctionName="GreatSavingsModel.Store.sp_SearchProducts" />
+          <FunctionImportMapping FunctionImportName="SearchProducts" FunctionName="GreatSavingsModel.Store.sp_SearchProducts" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GreatSavingsModel.DealsSearchResult">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="BusIndustry" ColumnName="BusIndustry" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

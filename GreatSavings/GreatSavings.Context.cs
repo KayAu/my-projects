@@ -70,7 +70,7 @@ namespace GreatSavings
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProductSubscByCategory_Result>("GetProductSubscByCategory", prProductIdParameter);
         }
     
-        public virtual ObjectResult<Deal> SearchProducts(Nullable<int> prProductId, string prBizCategory, string prLocation, Nullable<int> prExpDaysRangeFrom, Nullable<int> prExpDaysRangeTo)
+        public virtual ObjectResult<DealsSearchResult> SearchProducts(Nullable<int> prProductId, string prBizCategory, string prLocation, Nullable<int> prExpDaysRangeFrom, Nullable<int> prExpDaysRangeTo)
         {
             var prProductIdParameter = prProductId.HasValue ?
                 new ObjectParameter("prProductId", prProductId) :
@@ -92,32 +92,7 @@ namespace GreatSavings
                 new ObjectParameter("prExpDaysRangeTo", prExpDaysRangeTo) :
                 new ObjectParameter("prExpDaysRangeTo", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Deal>("SearchProducts", prProductIdParameter, prBizCategoryParameter, prLocationParameter, prExpDaysRangeFromParameter, prExpDaysRangeToParameter);
-        }
-    
-        public virtual ObjectResult<Deal> SearchProducts(Nullable<int> prProductId, string prBizCategory, string prLocation, Nullable<int> prExpDaysRangeFrom, Nullable<int> prExpDaysRangeTo, MergeOption mergeOption)
-        {
-            var prProductIdParameter = prProductId.HasValue ?
-                new ObjectParameter("prProductId", prProductId) :
-                new ObjectParameter("prProductId", typeof(int));
-    
-            var prBizCategoryParameter = prBizCategory != null ?
-                new ObjectParameter("prBizCategory", prBizCategory) :
-                new ObjectParameter("prBizCategory", typeof(string));
-    
-            var prLocationParameter = prLocation != null ?
-                new ObjectParameter("prLocation", prLocation) :
-                new ObjectParameter("prLocation", typeof(string));
-    
-            var prExpDaysRangeFromParameter = prExpDaysRangeFrom.HasValue ?
-                new ObjectParameter("prExpDaysRangeFrom", prExpDaysRangeFrom) :
-                new ObjectParameter("prExpDaysRangeFrom", typeof(int));
-    
-            var prExpDaysRangeToParameter = prExpDaysRangeTo.HasValue ?
-                new ObjectParameter("prExpDaysRangeTo", prExpDaysRangeTo) :
-                new ObjectParameter("prExpDaysRangeTo", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Deal>("SearchProducts", mergeOption, prProductIdParameter, prBizCategoryParameter, prLocationParameter, prExpDaysRangeFromParameter, prExpDaysRangeToParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DealsSearchResult>("SearchProducts", prProductIdParameter, prBizCategoryParameter, prLocationParameter, prExpDaysRangeFromParameter, prExpDaysRangeToParameter);
         }
     }
 }

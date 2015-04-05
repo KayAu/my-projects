@@ -230,6 +230,9 @@
     <Compile Include="Deal.cs">
       <DependentUpon>GreatSavings.tt</DependentUpon>
     </Compile>
+    <Compile Include="DealsSearchResult.cs">
+      <DependentUpon>GreatSavings.tt</DependentUpon>
+    </Compile>
     <Compile Include="Directory.cs">
       <DependentUpon>GreatSavings.tt</DependentUpon>
     </Compile>

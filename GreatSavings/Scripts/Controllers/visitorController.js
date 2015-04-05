@@ -62,4 +62,8 @@ bizModule.controller("visitorController", function ($scope, $http, $compile, $q,
             element.removeClass('animate-cart-items-number');
         });
     });
+
+    $scope.extractDeals = function (dealsJsonString) {
+        alert(dealsJsonString);
+    }
 });

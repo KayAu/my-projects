@@ -49,7 +49,7 @@ namespace GreatSavings.Controllers
                                                 Id = d.Id,
                                                 CompanyName = d.Directory.CompanyName,
                                                 Title = d.Title,
-                                                ExpiryDate = d.ExpiryDate
+                                                ExpiryDate = d.ExpiryDate.ToString("dd MMM yyyy")
                             }).Take(totalReturn).OrderByDescending(d => d.ExpiryDate);
 
                 

@@ -67,6 +67,7 @@ namespace GreatSavings.Controllers
                                 string jsonString = JsonConvert.SerializeObject(results, Formatting.Indented, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
 
                                 return View("~/Views/Product/AllDeals.cshtml", (object)jsonString);
+                              //  return View("~/Views/Product/AllDeals.cshtml", results);
                             }
                         }
                     }

@@ -5,7 +5,7 @@ bizModule.controller("dealsController", function ($scope, $http, $compile, $q, $
     $scope.testing = "Testing";
 
     $scope.loadDeals = function (count, dealsJsonString) {
-        if (dealsJsonString == null || dealsJsonString == undefined) {
+        if (dealsJsonString == '' || dealsJsonString == null || dealsJsonString == undefined) {
             return dataService.deals.load({ totalReturn: count }).$promise.then(
                 //success
                 function (dealsObj) {
@@ -22,8 +22,5 @@ bizModule.controller("dealsController", function ($scope, $http, $compile, $q, $
         }
     }
 
-    $scope.extractDeals = function (dealsJsonString)
-    {
-        return dealsJsonString;
-    }
+  
 });
