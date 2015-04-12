@@ -14,6 +14,7 @@ namespace GreatSavings
     public partial class GetProductSubscByCategory_Result
     {
         public string Category { get; set; }
+        public int CategoryId { get; set; }
         public Nullable<int> Total { get; set; }
     }
 }

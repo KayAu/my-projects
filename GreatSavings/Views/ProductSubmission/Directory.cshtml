@@ -80,11 +80,11 @@
                     <label class="control-label col-xs-2">Postcode</label>
                     <div class="col-xs-10">
                         <input ng-model="model.Merchant.Postcode" class="form-control" name="postcode" type="text" 
-                               ng-pattern="/^[0-9]{6}$/" required validation-style/>
+                               ng-pattern="/^[0-9]{5}$/" required validation-style/>
                         <validation-error has-error="directoryForm.$submitted && directoryForm.postcode.$error.required" show-icon="true"
                         error-message="The postcode is required"></validation-error>  
                         <validation-error has-error="directoryForm.$submitted && directoryForm.postcode.$error.pattern" show-icon="true"
-                        error-message="The postcode must be 6 digits"></validation-error>  
+                        error-message="The postcode must be 5 digits"></validation-error>  
                       @*   <validation-error has-error="directoryForm.$submitted && directoryForm.postcode.$error.pattern" show-icon="true"
                         error-message="The postcode is invalid"></validation-error>  *@
                     </div>

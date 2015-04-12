@@ -42,10 +42,11 @@ namespace GreatSavings.Helper
                     TagBuilder span = new TagBuilder("span");
                     TagBuilder a = new TagBuilder("a");
 
+                    string targetUrl = string.Format("/Product/DisplayProducts?productType={0}&categoryId={1}", productId, item.CategoryId);
+                    a.InnerHtml = item.Category;
+                    a.MergeAttribute("href", targetUrl);   // Product/DisplayProducts?productType=2&categoryId=3
                     span.MergeAttribute("class", "badge");
                     span.InnerHtml=item.Total.ToString();
-                    a.InnerHtml =item.Category;
-                    a.MergeAttribute("href", "/Product/DisplayProducts/" +1 );
                     li.InnerHtml = a.ToString() + span.ToString();
                     li.MergeAttribute("class", "list-group-item");
 
@@ -82,11 +83,13 @@ namespace GreatSavings.Helper
                 {
                     TagBuilder li = new TagBuilder("li");
                     TagBuilder a = new TagBuilder("a");
-                    TagBuilder i = new TagBuilder("i");
-                    
+                    TagBuilder span = new TagBuilder("span");
+
+                    span.MergeAttribute("class", "selectedValue hidden");
+                    span.InnerHtml = item.CategoryId.ToString();
                     a.InnerHtml = item.Category;
                     a.MergeAttribute("href", "#");
-                    li.InnerHtml = a.ToString();
+                    li.InnerHtml = a.ToString() + span.ToString();
                     ul.InnerHtml += li.ToString(TagRenderMode.Normal);
                 }
 
@@ -119,7 +122,6 @@ namespace GreatSavings.Helper
                 {
                     TagBuilder li = new TagBuilder("li");
                     TagBuilder a = new TagBuilder("a");
-                    TagBuilder i = new TagBuilder("i");
 
                     a.InnerHtml = item.StateName;
                     a.MergeAttribute("href", "#");

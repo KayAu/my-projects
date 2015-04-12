@@ -280,9 +280,6 @@
     <Compile Include="Recommendation.cs">
       <DependentUpon>GreatSavings.tt</DependentUpon>
     </Compile>
-    <Compile Include="sp_GetProductSubscByCatgry_Result.cs">
-      <DependentUpon>GreatSavings.tt</DependentUpon>
-    </Compile>
     <Compile Include="sp_SearchProducts_Result.cs">
       <DependentUpon>GreatSavings.tt</DependentUpon>
     </Compile>

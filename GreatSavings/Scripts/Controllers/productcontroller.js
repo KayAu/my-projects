@@ -196,10 +196,10 @@ bizModule.controller("productController", function ($scope, $http, $compile, $q,
         // save all the subdcriptios details into database
         if ($scope.merchantId == 0) {
                        
-           registerMember($scope.accountinfo).then(loadTransaction).then(createTransaction).then(addAllSubscriptionInfo).catch(reportProblems);
+            registerMember($scope.accountinfo).then(loadTransaction).then(createTransaction).then(addDirectories).then(addAllSubscriptionInfo).catch(reportProblems);
         }
         else {
-            loadTransaction($scope.merchantId).then(createTransaction).then(addAllSubscriptionInfo).catch(reportProblems);
+            loadTransaction($scope.merchantId).then(createTransaction).then(addDirectories).then(addAllSubscriptionInfo).catch(reportProblems);
         }
     }
 
@@ -250,21 +250,28 @@ bizModule.controller("productController", function ($scope, $http, $compile, $q,
                 }
               );
         },
+        addDirectories = function (newTransId)
+        {
+            if ($scope.directorylisting.length > 0)
+            {
+                dataService.directory.saveAll({ transactionId: newTransId }, $scope.directorylisting).$promise.then(
+                    //success
+                    function (result) {
+                        return newTransId;
+                    },
+                    //error
+                    function (data) {
+                        alert(error.data.Message);
+                });
+
+            }
+            return newTransId;
+        },
         addAllSubscriptionInfo = function(newTransId)
         {
-           // $q.all([resource1.query().$promise, resource2.query().$promise, resource3.query().$promise])
-           //.then( function(result) {
-           //        $scope.data1 = result[1];
-           //        $scope.data2 = result1[2];
-           //        $scope.data3 = result[3];
-
-           //        console.log($scope.data1);
-
-           //        doSomething($scope.data1,$scope.data2); 
-           //    })
-           // }
+ 
             var func = [];
-            if ($scope.directorylisting.length > 0) func.push(dataService.directory.saveAll({ transactionId: newTransId }, $scope.directorylisting).$promise);
+            //if ($scope.directorylisting.length > 0) func.push(dataService.directory.saveAll({ transactionId: newTransId }, $scope.directorylisting).$promise);
             if ($scope.deals.length > 0) func.push(dataService.deals.saveAll({ transactionId: newTransId }, $scope.deals).$promise);
             if ($scope.newopening.length > 0) func.push(dataService.newOpening.saveAll({ transactionId: newTransId }, $scope.newopening).$promise);
             if ($scope.recommedation.length > 0) func.push(dataService.recommendation.saveAll({ transactionId: newTransId }, $scope.recommedation).$promise);

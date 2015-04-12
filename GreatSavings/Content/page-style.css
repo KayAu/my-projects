@@ -923,7 +923,7 @@ button.dropdown-toggle.btn:active, button.dropdown-toggle.btn:focus, .open .drop
     }
 
         .article-content #compdetails table {
-            margin: 20px;
+            margin: 20px 20px 0 20px;
             width: 100%;
         }
 
@@ -1348,3 +1348,18 @@ ul.dd-custom {
 .hidden{
     display:none;
 }
+
+ #map-canvas {
+    width: 100%;
+    height: 400px;
+    margin: 0 25px 25px 25px;
+    border: 3px solid #E5E5E5;
+}
+
+ #map-canvas img {
+  max-width: none;
+}
+
+ #mapCanvas label { 
+  width: auto; display:inline; 
+} 

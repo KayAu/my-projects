@@ -26,18 +26,20 @@ namespace GreatSavings.Controllers
 
         // GET api/<controller>
         [System.Web.Http.HttpGet]
-        public IEnumerable<Directory> GetByMerchant(int id)
+        public HttpResponseMessage GetByMerchant(int id)
         {
             try
             {
-                var results =  db.Directories.Where(d => d.Transaction.MerchantId == id);
+                var results = db.Directories.Where(d => d.Transaction.MerchantId == id)
+                                             .Select(m => new { DirId = m.DirId, CompanyName = m.CompanyName });
 
-                return results.ToList();
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, results);
+                return response;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return null; 
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.NotImplemented, ex.Message);
+                return response;
             }
            
         }

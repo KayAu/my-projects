@@ -70,15 +70,15 @@ namespace GreatSavings
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProductSubscByCategory_Result>("GetProductSubscByCategory", prProductIdParameter);
         }
     
-        public virtual ObjectResult<DealsSearchResult> SearchProducts(Nullable<int> prProductId, string prBizCategory, string prLocation, Nullable<int> prExpDaysRangeFrom, Nullable<int> prExpDaysRangeTo)
+        public virtual ObjectResult<DealsSearchResult> SearchProducts(Nullable<int> prProductId, Nullable<int> prBizCategoryId, string prLocation, Nullable<int> prExpDaysRangeFrom, Nullable<int> prExpDaysRangeTo)
         {
             var prProductIdParameter = prProductId.HasValue ?
                 new ObjectParameter("prProductId", prProductId) :
                 new ObjectParameter("prProductId", typeof(int));
     
-            var prBizCategoryParameter = prBizCategory != null ?
-                new ObjectParameter("prBizCategory", prBizCategory) :
-                new ObjectParameter("prBizCategory", typeof(string));
+            var prBizCategoryIdParameter = prBizCategoryId.HasValue ?
+                new ObjectParameter("prBizCategoryId", prBizCategoryId) :
+                new ObjectParameter("prBizCategoryId", typeof(int));
     
             var prLocationParameter = prLocation != null ?
                 new ObjectParameter("prLocation", prLocation) :
@@ -92,7 +92,7 @@ namespace GreatSavings
                 new ObjectParameter("prExpDaysRangeTo", prExpDaysRangeTo) :
                 new ObjectParameter("prExpDaysRangeTo", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DealsSearchResult>("SearchProducts", prProductIdParameter, prBizCategoryParameter, prLocationParameter, prExpDaysRangeFromParameter, prExpDaysRangeToParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DealsSearchResult>("SearchProducts", prProductIdParameter, prBizCategoryIdParameter, prLocationParameter, prExpDaysRangeFromParameter, prExpDaysRangeToParameter);
         }
     }
 }

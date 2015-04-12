@@ -96,6 +96,7 @@ namespace GreatSavings.Controllers
                 foreach (Deal item in deals)
                 {
                     item.TransId = transactionId;  // Convert.ToInt32(transactionId);
+                    item.ExpiryDate = new DateTime(1900, 01, 01, 00, 00, 00);
                     db.Deals.Add(item);
                     db.SaveChanges();
                 }

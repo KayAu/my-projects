@@ -342,7 +342,7 @@
         </Function>
         <Function Name="sp_SearchProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="prProductId" Type="int" Mode="In" />
-          <Parameter Name="prBizCategory" Type="varchar" Mode="In" />
+          <Parameter Name="prBizCategoryId" Type="int" Mode="In" />
           <Parameter Name="prLocation" Type="varchar" Mode="In" />
           <Parameter Name="prExpDaysRangeFrom" Type="int" Mode="In" />
           <Parameter Name="prExpDaysRangeTo" Type="int" Mode="In" />
@@ -495,7 +495,7 @@
           </FunctionImport>
           <FunctionImport Name="SearchProducts" ReturnType="Collection(GreatSavingsModel.DealsSearchResult)">
             <Parameter Name="prProductId" Mode="In" Type="Int32" />
-            <Parameter Name="prBizCategory" Mode="In" Type="String" />
+            <Parameter Name="prBizCategoryId" Mode="In" Type="Int32" />
             <Parameter Name="prLocation" Mode="In" Type="String" />
             <Parameter Name="prExpDaysRangeFrom" Mode="In" Type="Int32" />
             <Parameter Name="prExpDaysRangeTo" Mode="In" Type="Int32" />
@@ -865,14 +865,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="sp_GetProductSubscByCatgry_Result">
-          <Property Type="String" Name="BusIndustry" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="Column1" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="GetProductSubscByCategory_Result">
-          <Property Type="String" Name="Category" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="Total" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="sp_SearchProducts_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="Int32" Name="TransId" Nullable="false" />
@@ -911,6 +903,11 @@
           <Property Type="String" Name="ExpiryDate" Nullable="false" />
           <Property Type="String" Name="CompanyName" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="BusIndustry" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetProductSubscByCategory_Result">
+          <Property Type="String" Name="Category" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="CategoryId" Nullable="false" />
+          <Property Type="Int32" Name="Total" Nullable="true" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1116,9 +1113,10 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="GetProductSubscByCategory" FunctionName="GreatSavingsModel.Store.sp_GetProductSubscByCatgry">
-          <ResultMapping>
+            <ResultMapping>
               <ComplexTypeMapping TypeName="GreatSavingsModel.GetProductSubscByCategory_Result">
                 <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
               </ComplexTypeMapping>
             </ResultMapping>
