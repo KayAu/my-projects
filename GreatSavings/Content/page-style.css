@@ -3,7 +3,7 @@
     font-family: 'Open Sans',sans-serif;
     font-weight: 400;
     color: #333;
-    font-size: 13px;
+    font-size: 11px;
     background: url(images/bg.png);
     margin: 0px;
 }
@@ -528,6 +528,10 @@ button.dropdown-toggle.btn:active, button.dropdown-toggle.btn:focus, .open .drop
     padding: 15px;
 }
 
+    .featured-item-container h4{
+        font-size: 14px;
+    }
+
     .featured-item-content a {
         color: #333333;
         text-decoration: none;
@@ -565,10 +569,10 @@ button.dropdown-toggle.btn:active, button.dropdown-toggle.btn:focus, .open .drop
     left: 0;
     top: 0;
     height: 100%;
-    margin: 13px 29px;
+    margin: 12px 28px;
     float: left;
-    width: 227px;
-    height: 150px;
+    width: 228px;
+    height: 151px;
 }
 
 .featured-item .logotype:hover .featured-item-overlay {
@@ -667,7 +671,7 @@ button.dropdown-toggle.btn:active, button.dropdown-toggle.btn:focus, .open .drop
     height: 150px;
     text-align: center;
     position: relative;
-    margin: 12px 6px;
+    margin:  12px 6px 0px 6px;
 }
 
 .item-date .caption {
@@ -680,7 +684,7 @@ button.dropdown-toggle.btn:active, button.dropdown-toggle.btn:focus, .open .drop
 }
 
 .item-title {
-    min-height: 42px;
+    min-height: 72px;
 }
 
 .item-days {
@@ -947,7 +951,7 @@ button.dropdown-toggle.btn:active, button.dropdown-toggle.btn:focus, .open .drop
             .article-content #compdetails table tr:last-child th,
             .article-content #compdetails table tr:last-child td {
                 border-bottom: none;
-                font-size: 14px;
+                /*font-size: 14px;*/
             }
 
 
