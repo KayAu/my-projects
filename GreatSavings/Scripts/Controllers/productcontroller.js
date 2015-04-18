@@ -195,11 +195,23 @@ bizModule.controller("productController", function ($scope, $http, $compile, $q,
 
         // save all the subdcriptios details into database
         if ($scope.merchantId == 0) {
-                       
-            registerMember($scope.accountinfo).then(loadTransaction).then(createTransaction).then(addDirectories).then(addAllSubscriptionInfo).catch(reportProblems);
-        }
+             
+            if ($scope.directorylisting.length > 0) {
+                registerMember($scope.accountinfo).then(loadTransaction).then(createTransaction).then(addDirectories).then(addAllSubscriptionInfo).catch(reportProblems);
+            }
+            else {
+                registerMember($scope.accountinfo).then(loadTransaction).then(createTransaction).then(addAllSubscriptionInfo).catch(reportProblems);
+
+            }
+       }
         else {
-            loadTransaction($scope.merchantId).then(createTransaction).then(addDirectories).then(addAllSubscriptionInfo).catch(reportProblems);
+            if ($scope.directorylisting.length > 0) {
+                loadTransaction($scope.merchantId).then(createTransaction).then(addDirectories).then(addAllSubscriptionInfo).catch(reportProblems);
+            }
+            else
+            {
+                loadTransaction($scope.merchantId).then(createTransaction).then(addAllSubscriptionInfo).catch(reportProblems);
+            }
         }
     }
 
@@ -252,9 +264,8 @@ bizModule.controller("productController", function ($scope, $http, $compile, $q,
         },
         addDirectories = function (newTransId)
         {
-            if ($scope.directorylisting.length > 0)
-            {
-                dataService.directory.saveAll({ transactionId: newTransId }, $scope.directorylisting).$promise.then(
+            //if ($scope.directorylisting.length > 0) {
+            return    dataService.directory.saveAll({ transactionId: newTransId }, $scope.directorylisting).$promise.then(
                     //success
                     function (result) {
                         return newTransId;
@@ -262,10 +273,12 @@ bizModule.controller("productController", function ($scope, $http, $compile, $q,
                     //error
                     function (data) {
                         alert(error.data.Message);
-                });
+                    });
 
-            }
-            return newTransId;
+            //}
+            //else {
+            //    return newTransId;
+            //}
         },
         addAllSubscriptionInfo = function(newTransId)
         {

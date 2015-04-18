@@ -1133,6 +1133,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CheckEmailAlreadyExist" FunctionName="GreatSavingsModel.Store.sp_CheckEmailAlreadyExist" />
+          <FunctionImportMapping FunctionImportName="CreateMerchantAccount" FunctionName="GreatSavingsModel.Store.sp_CreateMerchant" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
