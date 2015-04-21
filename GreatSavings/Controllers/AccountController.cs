@@ -150,13 +150,14 @@ namespace GreatSavings.Controllers
 
                 if (user != null)
                 {
-                    if (user.ConfirmedEmail == true)
-                    {
+                    //todo: temporary comment this line
+                    //if (user.ConfirmedEmail == true)
+                    //{
                         var merchant = db.MerchantAccounts.Where(m => m.UserId == user.Id).FirstOrDefault();
 
                         if (merchant != null)
                             return merchant.MerchantId;
-                    }
+                    //}
                 }
             }
             return 0;

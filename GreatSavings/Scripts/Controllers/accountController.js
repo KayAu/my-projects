@@ -22,6 +22,7 @@
             // verfiy the merchant id returned
             if (merchantId != 0) {
                 $scope.$parent.merchantId = merchantId;
+                $scope.loginFailed = false;
                 return merchantId;
             }
             else {

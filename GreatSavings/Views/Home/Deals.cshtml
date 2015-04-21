@@ -1,7 +1,7 @@
 ﻿@model string
 
 
-<div id="deals" ng-controller="dealsController" ng-init="loadDeals(10, @Html.Raw(Model))">
+<div id="deals" ng-controller="dealsController" ng-init="loadDeals(10, @Html.Raw(Model))" infinite-scroll="loadMoreDeals()" infinite-scroll-disabled='loading' infinite-scroll-distance='2'>
     <div class="item-container col-md-3" ng-repeat="item in deals">
         <div class="featured-item">
             @*<div class="days-mask">
