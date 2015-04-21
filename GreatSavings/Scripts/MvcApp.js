@@ -1,4 +1,4 @@
-﻿var bizModule = angular.module("businessModule", ['ngAnimate', 'ngRoute', 'ngResource', 'ngMessages']);
+﻿var bizModule = angular.module("businessModule", ['ngAnimate', 'ngRoute', 'ngResource', 'ngMessages', 'infinite-scroll']);
 
 
 //bizModule.factory('companyProfileSvc', function ($http, $q) {

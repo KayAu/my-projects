@@ -37,7 +37,7 @@ namespace GreatSavings.Controllers
 
         // GET api/<controller>
         [HttpGet]
-        public HttpResponseMessage Load(int totalReturn)
+        public HttpResponseMessage Load(int totalReturn, int skipRecord)
         {
             try
             {
@@ -50,7 +50,7 @@ namespace GreatSavings.Controllers
                                                 CompanyName = d.Directory.CompanyName,
                                                 Title = d.Title,
                                                 ExpiryDate = d.ExpiryDate.ToString("dd MMM yyyy")
-                            }).Take(totalReturn).OrderByDescending(d => d.ExpiryDate);
+                            }).Skip(skipRecord).Take(totalReturn).OrderByDescending(d => d.ExpiryDate);
 
                 
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, deals);

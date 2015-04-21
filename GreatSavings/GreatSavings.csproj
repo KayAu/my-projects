@@ -419,6 +419,7 @@
     <Content Include="Scripts\Directives\multipleImageUploader.js" />
     <Content Include="Scripts\Directives\imageFileReader.js" />
     <Content Include="Scripts\Directives\imagePicker.js" />
+    <Content Include="Scripts\Directives\recordHandlers.js" />
     <Content Include="Scripts\Directives\validateSubmission.js" />
     <Content Include="Scripts\JQPlugins\jquery.easing.min.js" />
     <Content Include="Scripts\JQPlugins\unslider.min.js" />
@@ -1313,6 +1314,7 @@
     <Content Include="Views\ProductSubmission\Promotion.cshtml" />
     <Content Include="Views\Product\SearchProduct.cshtml" />
     <Content Include="Views\Product\AllDeals.cshtml" />
+    <Content Include="Scripts\angular-infinite-scroll.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
