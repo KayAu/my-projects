@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="GreatSavingsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="GreatSavingsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Advertisement">
           <Key>
             <PropertyRef Name="AdId" />
@@ -331,22 +331,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="sp_CheckEmailAlreadyExist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="prEmail" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="sp_CreateMerchant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="prUserID" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_GetProductSubscByCatgry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="prProductId" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_SearchProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="prProductId" Type="int" Mode="In" />
-          <Parameter Name="prBizCategoryId" Type="int" Mode="In" />
-          <Parameter Name="prLocation" Type="varchar" Mode="In" />
-          <Parameter Name="prExpDaysRangeFrom" Type="int" Mode="In" />
-          <Parameter Name="prExpDaysRangeTo" Type="int" Mode="In" />
-        </Function>
         <EntityContainer Name="GreatSavingsModelStoreContainer">
           <EntitySet Name="Advertisement" EntityType="Self.Advertisement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdvertisementType" EntityType="Self.AdvertisementType" Schema="dbo" store:Type="Tables" />
@@ -1112,28 +1096,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="GetProductSubscByCategory" FunctionName="GreatSavingsModel.Store.sp_GetProductSubscByCatgry">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="GreatSavingsModel.GetProductSubscByCategory_Result">
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-                <ScalarProperty Name="Total" ColumnName="Total" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SearchProducts" FunctionName="GreatSavingsModel.Store.sp_SearchProducts" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="GreatSavingsModel.DealsSearchResult">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="BusIndustry" ColumnName="BusIndustry" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
